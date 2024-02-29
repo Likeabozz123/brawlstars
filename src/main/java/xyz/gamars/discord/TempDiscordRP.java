@@ -1,10 +1,12 @@
-package xyz.gamars;
+package xyz.gamars.discord;
 
 import de.jcm.discordgamesdk.Core;
 import de.jcm.discordgamesdk.CreateParams;
 import de.jcm.discordgamesdk.activity.Activity;
+import xyz.gamars.discord.DownloadNativeLibrary;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Instant;
 
 public class TempDiscordRP {
@@ -12,7 +14,19 @@ public class TempDiscordRP {
     public void start() {
 
         // Initialize the Core
-        Core.init(new File("discord_game_sdk.dll"));
+        File discordLibrary;
+        try {
+            discordLibrary = DownloadNativeLibrary.downloadDiscordLibrary();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if(discordLibrary == null)
+        {
+            System.err.println("Error downloading Discord SDK.");
+            System.exit(-1);
+        }
+        // Initialize the Core
+        Core.init(discordLibrary);
         try(CreateParams params = new CreateParams())
         {
             params.setClientID(1212112030203519047L);

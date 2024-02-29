@@ -10,6 +10,10 @@ public class PongPacket implements Packet {
         this.message = "Pong!";
     }
 
+    /**
+     * Returns message of the packet
+     * @return message
+     */
     public String getMessage() {
         return message;
     }

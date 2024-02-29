@@ -10,6 +10,10 @@ public class PingPacket implements Packet {
         this.message = "Ping!";
     }
 
+    /**
+     * Returns what the message of the packet is
+     * @return message
+     */
     public String getMessage() {
         return message;
     }

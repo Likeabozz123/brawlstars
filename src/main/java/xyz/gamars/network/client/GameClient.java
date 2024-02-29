@@ -17,11 +17,17 @@ public class GameClient {
         Network.register(client);
     }
 
+    /**
+     * Starts the client
+     */
     public void start() {
         client.start();
 
     }
 
+    /**
+     * Connects the client to the server
+     */
     public void connect() {
         try {
             client.connect(5000, "localhost", Network.PORT);
@@ -30,22 +36,40 @@ public class GameClient {
         }
     }
 
+    /**
+     * Closes the client
+     */
     public void close() {
         client.close();
     }
 
+    /**
+     * Adds a listener to the client
+     * @param listener listener
+     */
     public void addListener(Listener listener) {
         client.addListener(listener);
     }
 
+    /**
+     * Sends a TCP packet to the server
+     * @param packet packet
+     */
     public void sendPacketTCP(Packet packet) {
         client.sendTCP(packet);
     }
 
+    /**
+     * Sends a UDP packet to the server
+     * @param packet packet
+     */
     public void sendPacketUDP(Packet packet) {
         client.sendUDP(packet);
     }
 
+    /**
+     * Returns whether the client is connected to the server
+     */
     public boolean isConnected() {
         return client.isConnected();
 

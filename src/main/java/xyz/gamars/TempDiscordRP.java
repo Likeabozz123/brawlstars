@@ -12,7 +12,8 @@ public class TempDiscordRP {
     public void start() {
 
         // Initialize the Core
-        Core.init(new File("discord_game_sdk.dll"));
+
+        Core.init(new File("discord_game_sdk.dylib"));
         try(CreateParams params = new CreateParams())
         {
             params.setClientID(1212112030203519047L);

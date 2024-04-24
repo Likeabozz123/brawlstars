@@ -30,7 +30,7 @@ public class GameClient {
      */
     public void connect() {
         try {
-            client.connect(5000, "localhost", Network.PORT);
+            client.connect(5000, "mc.gamars.xyz", Network.PORT);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

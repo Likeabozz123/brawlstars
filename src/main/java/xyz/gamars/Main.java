@@ -12,27 +12,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        JFrame window  = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-        window.setTitle("Brawlstars");
-
-        GamePanel gamePanel = new GamePanel();
-        window.add(gamePanel);
-
-        window.pack();
-
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-
-        Thread thread = new Thread() {
+        Thread discordRPThread = new Thread() {
             @Override
             public void run() {
                 TempDiscordRP tempDiscordRP = new TempDiscordRP();
                 tempDiscordRP.start();
             }
         };
-        thread.start();
+        discordRPThread.start();
 
         Thread clientThread = new Thread() {
             @Override
@@ -45,6 +32,22 @@ public class Main {
             }
         };
         clientThread.start();
+
+        JFrame window  = new JFrame();
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        window.setTitle("Brawlstars");
+
+        GamePanel gamePanel = new GamePanel();
+        window.add(gamePanel);
+
+        window.pack();
+
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+        gamePanel.startGameThread();
+
+
 
     }
 }

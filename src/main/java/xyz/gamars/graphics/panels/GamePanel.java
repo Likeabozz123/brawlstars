@@ -29,7 +29,6 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
 
-
     }
 
 
@@ -42,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
-        double drawInterval = 1000000000/FPS;
+        double drawInterval = 1_000_000_000 / FPS;
         double deltaTime = 0;
         long previousTime = System.nanoTime();
         long currentTime;

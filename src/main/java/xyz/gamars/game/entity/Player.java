@@ -2,6 +2,7 @@ package xyz.gamars.game.entity;
 
 import xyz.gamars.game.KeyHandler;
 import xyz.gamars.graphics.panels.GamePanel;
+import xyz.gamars.util.ResourceFile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -23,13 +24,13 @@ public class Player extends Entity {
         loadPlayerImages();
     }
 
-    public void loadPlayerImages(){
+    private void loadPlayerImages(){
         try {
             for (int spriteCount = 0; spriteCount < getTotalSpriteCount(); spriteCount++) {
-                setUpImage(spriteCount, new File("src/main/resources/up_" + spriteCount + ".png"));
-                setDownImages(spriteCount, new File("src/main/resources/down_" + spriteCount + ".png"));
-                setRightImages(spriteCount, new File("src/main/resources/right_" + spriteCount + ".png"));
-                setLeftImages(spriteCount, new File("src/main/resources/left_" + spriteCount + ".png"));
+                setUpImage(spriteCount, new ResourceFile("up_" + spriteCount + ".png"));
+                setDownImages(spriteCount, new ResourceFile("down_" + spriteCount + ".png"));
+                setRightImages(spriteCount, new ResourceFile("right_" + spriteCount + ".png"));
+                setLeftImages(spriteCount, new ResourceFile("left_" + spriteCount + ".png"));
             }
 
         } catch(FileNotFoundException e){
@@ -45,18 +46,19 @@ public class Player extends Entity {
         if(keyHandler.isUpPressed() || keyHandler.isDownPressed() || keyHandler.isLeftPressed() || keyHandler.isRightPressed()){
             if (keyHandler.isUpPressed()){
                 setEntityDirection(EntityDirection.UP);
-                addY(-getSpeed());
-            }else if (keyHandler.isDownPressed()){
+                decrementY();
+            }
+            if (keyHandler.isDownPressed()){
                 setEntityDirection(EntityDirection.DOWN);
-                addY(getSpeed());
+                incrementY();
             }
             if (keyHandler.isRightPressed()){
                 setEntityDirection(EntityDirection.RIGHT);
-                addX(getSpeed());
+                incrementX();
             }
             if (keyHandler.isLeftPressed()){
                 setEntityDirection(EntityDirection.LEFT);
-                addX(-getSpeed());
+                decrementX();
             }
 
             incrementFrame();

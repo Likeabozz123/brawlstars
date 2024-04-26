@@ -143,4 +143,22 @@ public class Entity {
     public void setLeftImages(int index, File image) throws IOException {
         this.leftImages[index] = ImageIO.read(image);
     }
+
+
+    public void incrementY() {
+        y += speed;
+    }
+
+    public void decrementY() {
+        y -= speed;
+    }
+
+    public void incrementX() {
+        x += speed;
+    }
+
+    public void decrementX() {
+        x -= speed;
+    }
+
 }

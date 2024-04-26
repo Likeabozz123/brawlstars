@@ -1,6 +1,7 @@
 package xyz.gamars.graphics.panels;
 import xyz.gamars.game.KeyHandler;
 import xyz.gamars.game.entity.Player;
+import xyz.gamars.game.tile.TileManager;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -18,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private Thread gameThread;
     private KeyHandler keyHandler = new KeyHandler();
+    private TileManager tileManager = new TileManager(this);
     private final int FPS = 60;
 
     private Player player = new Player(this, keyHandler);
@@ -85,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(graphics);
 
         Graphics2D graphics2D = (Graphics2D) graphics;
+        tileManager.draw(graphics2D);
         player.draw(graphics2D);
         graphics2D.dispose();
 
@@ -92,5 +95,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getTileSize() {
         return tileSize;
+    }
+
+    public int getMaxScreenCol() {
+        return maxScreenCol;
+    }
+
+    public int getMaxScreenRow() {
+        return maxScreenRow;
     }
 }

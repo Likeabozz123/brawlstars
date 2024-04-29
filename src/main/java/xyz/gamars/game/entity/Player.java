@@ -4,10 +4,8 @@ import xyz.gamars.game.KeyHandler;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -17,10 +15,15 @@ public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
+    private final int SCREENX;
+    private final int SCREENY;
+
     public Player(GamePanel gamePanel, KeyHandler keyHandler){
-        super(100, 100, 3, EntityDirection.RIGHT, 2);
+        super(gamePanel.getTileSize() * 7, gamePanel.getTileSize() * 7, 3, EntityDirection.RIGHT, 2);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
+        SCREENX = gamePanel.getScreenWidth()/2 - gamePanel.getTileSize()/2;
+        SCREENY = gamePanel.getScreenHeight()/2 - gamePanel.getTileSize()/2;
         loadPlayerImages();
     }
 
@@ -81,7 +84,10 @@ public class Player extends Entity {
         } else if (getEntityDirection() == EntityDirection.RIGHT) {
             image = getRightImages()[getCurrentSpriteIndex()];
         }
-        graphics2D.drawImage(image,getX(),getY(),gamePanel.getTileSize(),gamePanel.getTileSize(),null);
+        graphics2D.drawImage(image, getSCREENX(), getSCREENY(),gamePanel.getTileSize(),gamePanel.getTileSize(),null);
     }
+
+    public int getSCREENX(){return SCREENX;}
+    public int getSCREENY(){return SCREENY;}
 }
 

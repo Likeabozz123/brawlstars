@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class Entity {
 
-    private int x;
-    private int y;
+    private int worldX;
+    private int worldY;
     private int speed;
 
     private BufferedImage[] upImages;
@@ -22,8 +22,8 @@ public class Entity {
     private int currentSpriteIndex = 0;
 
     public Entity(int x, int y, int speed, Enum entityDirection, int totalSpriteCount) {
-        this.x = x;
-        this.y = y;
+        this.worldX = x;
+        this.worldY = y;
         this.speed = speed;
         this.entityDirection = entityDirection;
         this.totalSpriteCount = totalSpriteCount;
@@ -42,24 +42,24 @@ public class Entity {
     }
 
 
-    public int getX() {
-        return x;
+    public int getWorldX() {
+        return worldX;
     }
 
-    public int getY() {
-        return y;
+    public int getWorldY() {
+        return worldY;
     }
 
     public int getSpeed() {
         return speed;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setWorldX(int worldX) {
+        this.worldX = worldX;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setWorldY(int worldY) {
+        this.worldY = worldY;
     }
 
     public void setSpeed(int speed) {
@@ -67,10 +67,10 @@ public class Entity {
     }
 
     public void addX(int x) {
-        this.x += x;
+        this.worldX += x;
     }
     public void addY(int y) {
-        this.y += y;
+        this.worldY += y;
     }
 
     public Enum getEntityDirection() {
@@ -146,19 +146,19 @@ public class Entity {
 
 
     public void incrementY() {
-        y += speed;
+        worldY += speed;
     }
 
     public void decrementY() {
-        y -= speed;
+        worldY -= speed;
     }
 
     public void incrementX() {
-        x += speed;
+        worldX += speed;
     }
 
     public void decrementX() {
-        x -= speed;
+        worldX -= speed;
     }
 
 }

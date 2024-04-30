@@ -122,24 +122,6 @@ public class Entity {
     }
 
     /**
-     * Adds a value to the world X-coordinate of the entity.
-     *
-     * @param x The value to add.
-     */
-    public void addX(int x) {
-        this.worldX += x;
-    }
-
-    /**
-     * Adds a value to the world Y-coordinate of the entity.
-     *
-     * @param y The value to add.
-     */
-    public void addY(int y) {
-        this.worldY += y;
-    }
-
-    /**
      * Gets the direction of the entity.
      *
      * @return The direction.

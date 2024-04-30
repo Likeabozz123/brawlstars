@@ -11,7 +11,7 @@ public class Tile {
     private boolean collision;
 
     /**
-     * Constructs a tile with the specified image and collision property.
+     * Constructs a tile with the specified image and collision.
      *
      * @param image     The image representing the tile.
      * @param collision Indicates whether the tile is collidable or not.

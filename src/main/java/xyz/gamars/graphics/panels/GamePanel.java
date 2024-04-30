@@ -12,23 +12,35 @@ import java.awt.*;
  */
 public class GamePanel extends JPanel implements Runnable {
 
+    // Pixel size of each texture of the tile
     private final int originalTileSize = 16;
+    // The scale at which tile is rendered
     private final int scale = 3;
+    // The rendered size of the tile
     private final int tileSize = originalTileSize * scale;
-    private final int maxScreenCol = 16; //change later?
-    private final int maxScreenRow = 12; //change later?
-    private final int screenWidth = tileSize * maxScreenCol; //768 pix
-    private final int screenHeight = tileSize * maxScreenRow; // 576 pix
 
-    private final int maxWorldCol = 16;
-    private final int maxWorldRow = 12;
-    private final int worldWidth = tileSize * maxWorldCol;
-    private final int worldHeight = tileSize * maxWorldRow;
+    // The amount of tiles rendered on a screen
+    private final int maxScreenWidth = 16; //change later?
+    private final int maxScreenHeight = 12; //change later?
+
+    // The dimensions of the screen
+    private final int screenWidth = tileSize * maxScreenWidth; //768 pix
+    private final int screenHeight = tileSize * maxScreenHeight; // 576 pix
+
+    // The size of the world in tiles
+    private final int maxWorldWidth = 16;
+    private final int maxWorldHeight = 12;
+
+    // The actual pixel size of the world
+    private final int worldWidth = tileSize * maxWorldWidth;
+    private final int worldHeight = tileSize * maxWorldHeight;
+
 
     private Thread gameThread;
 
     private KeyHandler keyHandler = new KeyHandler();
     private TileManager tileManager = new TileManager(this);
+
     private final int FPS = 60;
 
     private Player player = new Player(this, keyHandler);
@@ -103,12 +115,13 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(graphics);
 
         Graphics2D graphics2D = (Graphics2D) graphics;
+
         tileManager.draw(graphics2D);
         player.draw(graphics2D);
+
         graphics2D.dispose();
     }
 
-    // GETTERS
 
     /**
      * Gets the tile size.
@@ -120,21 +133,21 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-     * Gets the maximum number of screen columns.
+     * Gets the max screen width (in tiles).
      *
-     * @return The maximum number of columns that fit on the screen.
+     * @return The maximum number of tiles that fit on the screen.
      */
-    public int getMaxScreenCol() {
-        return maxScreenCol;
+    public int getMaxScreenWidth() {
+        return maxScreenWidth;
     }
 
     /**
-     * Gets the maximum number of screen rows.
+     * Gets the max screen height (in tiles).
      *
-     * @return The maximum number of rows that fit on the screen.
+     * @return The maximum number of tiles that fit on the screen.
      */
-    public int getMaxScreenRow() {
-        return maxScreenRow;
+    public int getMaxScreenHeight() {
+        return maxScreenHeight;
     }
 
     /**
@@ -156,25 +169,25 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-     * Gets the maximum number of world columns.
+     * Gets the max width of the world (in tiles).
      *
      * @return The maximum number of columns in the game world.
      */
-    public int getMaxWorldCol() {
-        return maxWorldCol;
+    public int getMaxWorldWidth() {
+        return maxWorldWidth;
     }
 
     /**
-     * Gets the maximum number of world rows.
+     * Gets the max height of the world (in tiles).
      *
      * @return The maximum number of rows in the game world.
      */
-    public int getMaxWorldRow() {
-        return maxWorldRow;
+    public int getMaxWorldHeight() {
+        return maxWorldHeight;
     }
 
     /**
-     * Gets the width of the game world.
+     * Gets the width of the game world (in pixels).
      *
      * @return The width of the game world.
      */
@@ -183,7 +196,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-     * Gets the height of the game world.
+     * Gets the height of the game world (in pixels).
      *
      * @return The height of the game world.
      */

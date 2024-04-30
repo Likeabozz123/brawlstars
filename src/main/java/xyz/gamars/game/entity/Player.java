@@ -18,8 +18,8 @@ public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
-    private final int SCREENX;
-    private final int SCREENY;
+    private final int screenX;
+    private final int screenY;
 
     /**
      * Constructs a player entity with the specified game panel and key handler.
@@ -28,11 +28,11 @@ public class Player extends Entity {
      * @param keyHandler The key handler for controlling the player.
      */
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-        super(gamePanel.getTileSize() * 7, gamePanel.getTileSize() * 7, 3, EntityDirection.RIGHT, 2);
+        super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3, EntityDirection.RIGHT, 2);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
-        SCREENX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
-        SCREENY = gamePanel.getScreenHeight() / 2 - gamePanel.getTileSize() / 2;
+        screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
+        screenY = gamePanel.getScreenHeight() / 2 - gamePanel.getTileSize() / 2;
         loadPlayerImages();
     }
 
@@ -101,7 +101,7 @@ public class Player extends Entity {
         } else if (getEntityDirection() == EntityDirection.RIGHT) {
             image = getRightImages()[getCurrentSpriteIndex()];
         }
-        graphics2D.drawImage(image, getSCREENX(), getSCREENY(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        graphics2D.drawImage(image, getScreenX(), getScreenY(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 
     /**
@@ -109,8 +109,8 @@ public class Player extends Entity {
      *
      * @return The x-coordinate of the player's position.
      */
-    public int getSCREENX() {
-        return SCREENX;
+    public int getScreenX() {
+        return screenX;
     }
 
     /**
@@ -118,7 +118,7 @@ public class Player extends Entity {
      *
      * @return The y-coordinate of the player's position.
      */
-    public int getSCREENY() {
-        return SCREENY;
+    public int getScreenY() {
+        return screenY;
     }
 }

@@ -3,6 +3,9 @@ package xyz.gamars.game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * The KeyHandler Class.
+ */
 public class KeyHandler implements KeyListener {
 
     private boolean upPressed;
@@ -12,9 +15,14 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        // This method not used
     }
 
+    /**
+     * Handles the event when a key is pressed.
+     *
+     * @param e The KeyEvent representing the key press event.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -25,6 +33,11 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_A) leftPressed = true;
     }
 
+    /**
+     * Handles the event when a key is released.
+     *
+     * @param e The KeyEvent representing the key release event.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -35,18 +48,38 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_A) leftPressed = false;
     }
 
+    /**
+     * Checks if the up arrow key is pressed.
+     *
+     * @return true if the up arrow key is pressed, false otherwise.
+     */
     public boolean isUpPressed() {
         return upPressed;
     }
 
+    /**
+     * Checks if the down arrow key is pressed.
+     *
+     * @return true if the down arrow key is pressed, false otherwise.
+     */
     public boolean isDownPressed() {
         return downPressed;
     }
 
+    /**
+     * Checks if the right arrow key is pressed.
+     *
+     * @return true if the right arrow key is pressed, false otherwise.
+     */
     public boolean isRightPressed() {
         return rightPressed;
     }
 
+    /**
+     * Checks if the left arrow key is pressed.
+     *
+     * @return true if the left arrow key is pressed, false otherwise.
+     */
     public boolean isLeftPressed() {
         return leftPressed;
     }

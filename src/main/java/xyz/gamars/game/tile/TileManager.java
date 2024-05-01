@@ -34,11 +34,16 @@ public class TileManager {
      */
     private void setupTiles() {
         try {
-            Scanner scanner = new Scanner(new ResourceFile("map.txt"));
-            for (int x = 0; x < gamePanel.getMaxWorldWidth(); x++) {
-                for (int y = 0; y < gamePanel.getMaxWorldHeight(); y++) {
+            Scanner scanner = new Scanner(new ResourceFile("maps/map.txt"));
+            for (int y = 0; y < gamePanel.getMaxWorldHeight(); y++) {
+                for (int x = 0; x < gamePanel.getMaxWorldWidth(); x++) {
                     int tileIndex = scanner.nextInt();
-                    tiles[x][y] = new Tile(ImageIO.read(new ResourceFile("tile_" + tileIndex + ".png")), false);
+
+                    if (tileIndex == 1) {
+                        tiles[x][y] = new Tile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + ".png")), true);
+                    } else {
+                        tiles[x][y] = new Tile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + ".png")), false);
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -66,9 +71,9 @@ public class TileManager {
                 int screenY = worldY - gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY();
 
                 if (worldX + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldX() - gamePanel.getPlayer().getScreenX() &&
-                        worldX - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX() &&
-                        worldY + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldY() - gamePanel.getPlayer().getScreenY() &&
-                        worldY - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY()) {
+                    worldX - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX() &&
+                    worldY + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldY() - gamePanel.getPlayer().getScreenY() &&
+                    worldY - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY()) {
 
                     graphics2D.drawImage(tiles[x][y].getImage(), screenX, screenY,
                             gamePanel.getTileSize(), gamePanel.getTileSize(), null);
@@ -76,5 +81,9 @@ public class TileManager {
 
             }
         }
+    }
+
+    public Tile[][] getTiles() {
+        return tiles;
     }
 }

@@ -8,17 +8,17 @@ import java.awt.image.BufferedImage;
 public class Tile {
 
     private BufferedImage image;
-    private boolean collision;
+    private boolean collidable;
 
     /**
-     * Constructs a tile with the specified image and collision.
+     * Constructs a tile with the specified image and collidable.
      *
      * @param image     The image representing the tile.
-     * @param collision Indicates whether the tile is collidable or not.
+     * @param collidable Indicates whether the tile is collidable or not.
      */
-    public Tile(BufferedImage image, boolean collision) {
+    public Tile(BufferedImage image, boolean collidable) {
         this.image = image;
-        this.collision = collision;
+        this.collidable = collidable;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Tile {
      *
      * @return True if the tile is collidable, false otherwise.
      */
-    public boolean isCollision() {
-        return collision;
+    public boolean isCollidable() {
+        return collidable;
     }
 }

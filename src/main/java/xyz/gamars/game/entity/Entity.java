@@ -1,6 +1,7 @@
 package xyz.gamars.game.entity;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +14,9 @@ public class Entity {
     private int worldX;
     private int worldY;
     private int speed;
+
+    private Rectangle collisionBounds;
+    private boolean colliding = false;
 
     private BufferedImage[] upImages;
     private BufferedImage[] downImages;
@@ -33,10 +37,11 @@ public class Entity {
      * @param entityDirection The initial direction of the entity.
      * @param totalSpriteCount The total number of sprites for animation.
      */
-    public Entity(int x, int y, int speed, Enum entityDirection, int totalSpriteCount) {
+    public Entity(int x, int y, int speed, Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount) {
         this.worldX = x;
         this.worldY = y;
         this.speed = speed;
+        this.collisionBounds = collisionBounds;
         this.entityDirection = entityDirection;
         this.totalSpriteCount = totalSpriteCount;
         this.upImages = new BufferedImage[totalSpriteCount];
@@ -52,8 +57,8 @@ public class Entity {
      * @param entityDirection The initial direction of the entity.
      * @param totalSpriteCount The total number of sprites for animation.
      */
-    public Entity(int speed, Enum entityDirection, int totalSpriteCount) {
-        this(100, 100, speed, entityDirection, totalSpriteCount);
+    public Entity(int speed, Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount) {
+        this(100, 100, speed, collisionBounds, entityDirection, totalSpriteCount);
     }
 
     /**
@@ -62,8 +67,8 @@ public class Entity {
      * @param entityDirection The initial direction of the entity.
      * @param totalSpriteCount The total number of sprites for animation.
      */
-    public Entity(Enum entityDirection, int totalSpriteCount) {
-        this(100, 100, 3, entityDirection, totalSpriteCount);
+    public Entity(Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount) {
+        this(100, 100, 3, collisionBounds, entityDirection, totalSpriteCount);
     }
 
 
@@ -127,7 +132,7 @@ public class Entity {
      * @return The direction.
      */
     public Enum getEntityDirection() {
-        return entityDirection;
+         return entityDirection;
     }
 
     /**
@@ -307,5 +312,17 @@ public class Entity {
      */
     public void decrementX() {
         worldX -= speed;
+    }
+
+    public Rectangle getCollisionBounds() {
+        return collisionBounds;
+    }
+
+    public boolean isColliding() {
+        return colliding;
+    }
+
+    public void setColliding(boolean colliding) {
+        this.colliding = colliding;
     }
 }

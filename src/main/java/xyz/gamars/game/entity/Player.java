@@ -28,7 +28,9 @@ public class Player extends Entity {
      * @param keyHandler The key handler for controlling the player.
      */
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-        super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3, EntityDirection.RIGHT, 2);
+        super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3,
+                new Rectangle(gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3, (gamePanel.getTileSize() / 3) * 2, (gamePanel.getTileSize() / 3) * 2),
+                EntityDirection.RIGHT, 2);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
@@ -42,10 +44,10 @@ public class Player extends Entity {
     private void loadPlayerImages() {
         try {
             for (int spriteCount = 0; spriteCount < getTotalSpriteCount(); spriteCount++) {
-                setUpImage(spriteCount, new ResourceFile("up_" + spriteCount + ".png"));
-                setDownImages(spriteCount, new ResourceFile("down_" + spriteCount + ".png"));
-                setRightImages(spriteCount, new ResourceFile("right_" + spriteCount + ".png"));
-                setLeftImages(spriteCount, new ResourceFile("left_" + spriteCount + ".png"));
+                setUpImage(spriteCount, new ResourceFile("player/up_" + spriteCount + ".png"));
+                setDownImages(spriteCount, new ResourceFile("player/down_" + spriteCount + ".png"));
+                setRightImages(spriteCount, new ResourceFile("player/right_" + spriteCount + ".png"));
+                setLeftImages(spriteCount, new ResourceFile("player/left_" + spriteCount + ".png"));
             }
         } catch (FileNotFoundException e) {
             Logger.getLogger("Brawlstars").severe("Player sprites are not found");
@@ -74,6 +76,29 @@ public class Player extends Entity {
             if (keyHandler.isLeftPressed()) {
                 setEntityDirection(EntityDirection.LEFT);
                 decrementX();
+            }
+
+            setColliding(false);
+            gamePanel.getCollisionHandler().checkTile(this);
+
+            // if its colliding undo the movement changes
+            if (isColliding()) {
+                if (keyHandler.isUpPressed()) {
+                    setEntityDirection(EntityDirection.UP);
+                    incrementY();
+                }
+                if (keyHandler.isDownPressed()) {
+                    setEntityDirection(EntityDirection.DOWN);
+                    decrementY();
+                }
+                if (keyHandler.isRightPressed()) {
+                    setEntityDirection(EntityDirection.RIGHT);
+                    decrementX();
+                }
+                if (keyHandler.isLeftPressed()) {
+                    setEntityDirection(EntityDirection.LEFT);
+                    incrementX();
+                }
             }
 
             incrementFrame();

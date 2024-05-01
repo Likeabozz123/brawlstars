@@ -1,6 +1,9 @@
 package xyz.gamars.graphics.panels;
 
+import xyz.gamars.game.CollisionHandler;
 import xyz.gamars.game.KeyHandler;
+import xyz.gamars.game.MouseHandler;
+import xyz.gamars.game.StatsHUD;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.tile.TileManager;
 
@@ -39,9 +42,14 @@ public class GamePanel extends JPanel implements Runnable {
     private Thread gameThread;
 
     private KeyHandler keyHandler = new KeyHandler();
+    private MouseHandler mouseHandler = new MouseHandler();
+    private CollisionHandler collisionHandler = new CollisionHandler(this);
+
     private TileManager tileManager = new TileManager(this);
+    private StatsHUD statsHUD = new StatsHUD();
 
     private final int FPS = 60;
+    private int currentFPS;
 
     private Player player = new Player(this, keyHandler);
 
@@ -53,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
+        this.addMouseListener(mouseHandler);
         this.setFocusable(true);
     }
 
@@ -91,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
             }
             if (timer >= 1_000_000_000) {
-                System.out.println("FPS:" + drawCount);
+                currentFPS = drawCount;
                 drawCount = 0;
                 timer = 0;
             }
@@ -118,6 +127,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         tileManager.draw(graphics2D);
         player.draw(graphics2D);
+        statsHUD.draw(graphics2D, currentFPS, player);
 
         graphics2D.dispose();
     }
@@ -211,5 +221,13 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public Player getPlayer() {
         return player;
+    }
+
+    public CollisionHandler getCollisionHandler() {
+        return collisionHandler;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
     }
 }

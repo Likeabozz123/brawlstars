@@ -30,6 +30,7 @@ public class CollisionHandler {
 
         if (entity.getEntityDirection() == EntityDirection.UP) {
             entityTopRow = (colliderTopY - entity.getSpeed()) / gamePanel.getTileSize();
+
             tile1 = gamePanel.getTileManager().getTiles()[entityLeftCol][entityTopRow];
             tile2 = gamePanel.getTileManager().getTiles()[entityRightCol][entityTopRow];
 

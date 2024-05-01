@@ -30,7 +30,7 @@ public class Player extends Entity {
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3,
                 new Rectangle(gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3, (gamePanel.getTileSize() / 3) * 2, (gamePanel.getTileSize() / 3) * 2),
-                EntityDirection.RIGHT, 2);
+                EntityDirection.RIGHT, 3);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
@@ -61,6 +61,15 @@ public class Player extends Entity {
      */
     public void update() {
         if (keyHandler.isUpPressed() || keyHandler.isDownPressed() || keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
+            if ((keyHandler.isUpPressed() && keyHandler.isLeftPressed())
+                || (keyHandler.isUpPressed() && keyHandler.isRightPressed())
+                || (keyHandler.isDownPressed() && keyHandler.isLeftPressed())
+                || (keyHandler.isDownPressed() && keyHandler.isRightPressed())) {
+                setSpeed(2);
+            } else {
+                setSpeed(3);
+            }
+
             if (keyHandler.isUpPressed()) {
                 setEntityDirection(EntityDirection.UP);
                 decrementY();
@@ -77,6 +86,8 @@ public class Player extends Entity {
                 setEntityDirection(EntityDirection.LEFT);
                 decrementX();
             }
+
+
 
             setColliding(false);
             gamePanel.getCollisionHandler().checkTile(this);

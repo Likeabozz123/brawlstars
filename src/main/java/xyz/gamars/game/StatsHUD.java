@@ -12,6 +12,8 @@ public class StatsHUD {
         graphics2D.setColor(Color.GREEN);
         graphics2D.drawString("FPS: " + FPS, 5, graphics2D.getFont().getSize());
         graphics2D.drawString("Player Coordinates: " + player.getWorldX() + ", " + player.getWorldY(), 5, graphics2D.getFont().getSize() * 2);
+        graphics2D.drawString("Player Direction: " + player.getEntityDirection(), 5, graphics2D.getFont().getSize() * 3);
+        graphics2D.drawString("Player Sprite Frame: " + player.getCurrentSpriteIndex(), 5, graphics2D.getFont().getSize() * 4);
     }
 
 }

@@ -20,7 +20,7 @@ public class Main {
             }
         };
         discordRPThread.start();
-
+/*
         Thread clientThread = new Thread() {
             @Override
             public void run() {
@@ -32,6 +32,7 @@ public class Main {
             }
         };
         clientThread.start();
+*/
 
         JFrame window  = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

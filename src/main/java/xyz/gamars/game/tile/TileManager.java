@@ -39,6 +39,11 @@ public class TileManager {
                 for (int x = 0; x < gamePanel.getMaxWorldWidth(); x++) {
                     int tileIndex = scanner.nextInt();
 
+                    // tile 0: floor thing
+                    // tile 1: bricks
+                    // tile 2: grass
+                    // tile 3: crate
+
                     if (tileIndex == 1) {
                         tiles[x][y] = new Tile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + ".png")), true);
                     } else {
@@ -82,6 +87,10 @@ public class TileManager {
             }
         }
     }
+
+
+    
+    
 
     public Tile[][] getTiles() {
         return tiles;

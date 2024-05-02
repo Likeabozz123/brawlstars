@@ -5,6 +5,8 @@ import xyz.gamars.game.KeyHandler;
 import xyz.gamars.game.MouseHandler;
 import xyz.gamars.game.StatsHUD;
 import xyz.gamars.game.entity.Player;
+import xyz.gamars.game.object.Interactable;
+import xyz.gamars.game.object.InteractablePlacement;
 import xyz.gamars.game.tile.TileManager;
 
 import javax.swing.JPanel;
@@ -43,7 +45,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     private KeyHandler keyHandler = new KeyHandler();
     private MouseHandler mouseHandler = new MouseHandler();
+
     private CollisionHandler collisionHandler = new CollisionHandler(this);
+    private InteractablePlacement interactablePlacement = new InteractablePlacement(this);
 
     private TileManager tileManager = new TileManager(this);
     private StatsHUD statsHUD = new StatsHUD();
@@ -52,6 +56,8 @@ public class GamePanel extends JPanel implements Runnable {
     private int currentFPS;
 
     private Player player = new Player(this, keyHandler);
+
+    private Interactable interactable[] = new Interactable[10];
 
     /**
      * Constructs the game panel.
@@ -63,6 +69,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyHandler);
         this.addMouseListener(mouseHandler);
         this.setFocusable(true);
+    }
+
+    public void setUpGame(){
+        interactablePlacement.setInteractables();
     }
 
     /**
@@ -125,8 +135,20 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphics;
 
+        // TILE
         tileManager.draw(graphics2D);
+
+        // INTERACTABLE OBJECT
+        for(int i = 0; i < interactable.length; i++){
+            if(interactable[i] != null){
+                interactable[i].draw(graphics2D,this);
+            }
+        }
+
+        // PLAYER
         player.draw(graphics2D);
+
+        // STATUS HUD
         statsHUD.draw(graphics2D, currentFPS, player);
 
         graphics2D.dispose();
@@ -229,5 +251,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public TileManager getTileManager() {
         return tileManager;
+    }
+
+    public Interactable[] getInteractableObject(){
+        return interactable;
     }
 }

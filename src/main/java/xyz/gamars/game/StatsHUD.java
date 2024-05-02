@@ -4,9 +4,18 @@ import xyz.gamars.game.entity.Player;
 
 import java.awt.*;
 
+/**
+ * The StatsHUD class handles how the HUD renders on screen for the user.
+ */
 public class StatsHUD {
 
-
+    /**
+     * Draws the HUD statistics above the world.
+     *
+     * @param graphics2D The Graphics2D object to draw on
+     * @param FPS        The current FPS
+     * @param player     The player object that the HUD retrieves and displays information about
+     */
     public void draw(Graphics2D graphics2D, int FPS, Player player) {
         graphics2D.setFont(new Font("Arial", Font.BOLD, 16));
         graphics2D.setColor(Color.GREEN);

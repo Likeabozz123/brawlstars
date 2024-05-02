@@ -30,11 +30,12 @@ public class Player extends Entity {
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3,
                 new Rectangle(gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3, (gamePanel.getTileSize() / 3) * 2, (gamePanel.getTileSize() / 3) * 2),
-                EntityDirection.RIGHT, 3);
+                EntityDirection.RIGHT, 3, gamePanel.getTileSize()/6, gamePanel.getTileSize()/3);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
         screenY = gamePanel.getScreenHeight() / 2 - gamePanel.getTileSize() / 2;
+
         loadPlayerImages();
     }
 

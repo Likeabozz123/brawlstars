@@ -20,6 +20,7 @@ public class Main {
             }
         };
         discordRPThread.start();
+
 /*
         Thread clientThread = new Thread() {
             @Override
@@ -34,6 +35,8 @@ public class Main {
         clientThread.start();
 */
 
+
+
         JFrame window  = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
@@ -46,7 +49,9 @@ public class Main {
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+        gamePanel.setUpGame();
         gamePanel.startGameThread();
+
 
 
 

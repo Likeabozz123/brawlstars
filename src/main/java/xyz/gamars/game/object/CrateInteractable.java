@@ -7,12 +7,10 @@ import java.io.IOException;
 
 public class CrateInteractable extends Interactable {
 
-
-
-    public CrateInteractable() {
-        super("Crate", true);
+    public CrateInteractable(int worldX, int worldY, int boundX, int boundY, int boundWidth, int boundHeight) {
+        super(worldX, worldY, boundX, boundY, boundWidth, boundHeight, true);
         try {
-            setImage(ImageIO.read(new ResourceFile("tiles/tile_3.png")));
+            setImage(ImageIO.read(new ResourceFile("tiles/tile_3_layer_0.png")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

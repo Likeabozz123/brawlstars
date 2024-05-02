@@ -1,7 +1,6 @@
 package xyz.gamars.util;
 
 import java.io.File;
-import java.net.URI;
 
 public class ResourceFile extends File {
 

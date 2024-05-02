@@ -1,4 +1,4 @@
-package xyz.gamars.game;
+package xyz.gamars.game.huds;
 
 import xyz.gamars.game.entity.Player;
 

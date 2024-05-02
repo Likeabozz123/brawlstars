@@ -1,4 +1,4 @@
-package xyz.gamars.game.tile;
+package xyz.gamars.game.layers;
 
 import java.awt.image.BufferedImage;
 
@@ -13,7 +13,7 @@ public class Tile {
     /**
      * Constructs a tile with the specified image and collidable.
      *
-     * @param image     The image representing the tile.
+     * @param image      The image representing the tile.
      * @param collidable Indicates whether the tile is collidable or not.
      */
     public Tile(BufferedImage image, boolean collidable) {

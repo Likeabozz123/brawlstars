@@ -3,7 +3,6 @@ package xyz.gamars.discord;
 import de.jcm.discordgamesdk.Core;
 import de.jcm.discordgamesdk.CreateParams;
 import de.jcm.discordgamesdk.activity.Activity;
-import xyz.gamars.discord.DownloadNativeLibrary;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,22 +19,18 @@ public class TempDiscordRP {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(discordLibrary == null)
-        {
+        if (discordLibrary == null) {
             System.err.println("Error downloading Discord SDK.");
             System.exit(-1);
         }
         // Initialize the Core
         Core.init(discordLibrary);
-        try(CreateParams params = new CreateParams())
-        {
+        try (CreateParams params = new CreateParams()) {
             params.setClientID(1212112030203519047L);
             params.setFlags(CreateParams.getDefaultFlags());
 
-            try(Core core = new Core(params))
-            {
-                try(Activity activity = new Activity())
-                {
+            try (Core core = new Core(params)) {
+                try (Activity activity = new Activity()) {
                     activity.setDetails("Playing Brawlstars");
 
                     // Setting a start time causes an "elapsed" field to appear
@@ -48,16 +43,12 @@ public class TempDiscordRP {
                 }
 
                 // Run callbacks forever
-                while(true)
-                {
+                while (true) {
                     core.runCallbacks();
-                    try
-                    {
+                    try {
                         // Sleep a bit to save CPU
                         Thread.sleep(16);
-                    }
-                    catch(InterruptedException e)
-                    {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }

@@ -12,6 +12,7 @@ public class PongPacket implements Packet {
 
     /**
      * Returns message of the packet
+     *
      * @return message
      */
     public String getMessage() {

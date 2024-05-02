@@ -7,6 +7,4 @@ public interface IAnimatable {
     //like walls? do those count - vishak, im just trying to review your code right now you know what I mean
 
 
-
-
 }

@@ -1,4 +1,4 @@
-package xyz.gamars.game;
+package xyz.gamars.game.handlers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -1,16 +1,19 @@
 package xyz.gamars.graphics.panels;
 
-import xyz.gamars.game.CollisionHandler;
-import xyz.gamars.game.KeyHandler;
-import xyz.gamars.game.MouseHandler;
-import xyz.gamars.game.StatsHUD;
 import xyz.gamars.game.entity.Player;
+import xyz.gamars.game.handlers.CollisionHandler;
+import xyz.gamars.game.handlers.KeyHandler;
+import xyz.gamars.game.handlers.MouseHandler;
+import xyz.gamars.game.huds.StatsHUD;
+import xyz.gamars.game.layers.Layer;
+import xyz.gamars.game.layers.LayerManager;
+import xyz.gamars.game.layers.TileLayer;
 import xyz.gamars.game.object.Interactable;
 import xyz.gamars.game.object.InteractablePlacement;
-import xyz.gamars.game.tile.TileManager;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * The GamePanel Class.
@@ -49,7 +52,8 @@ public class GamePanel extends JPanel implements Runnable {
     private CollisionHandler collisionHandler = new CollisionHandler(this);
     private InteractablePlacement interactablePlacement = new InteractablePlacement(this);
 
-    private TileManager tileManager = new TileManager(this);
+    private LayerManager layerManager = new LayerManager();
+
     private StatsHUD statsHUD = new StatsHUD();
 
     private final int FPS = 60;
@@ -57,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private Player player = new Player(this, keyHandler);
 
-    private Interactable interactable[] = new Interactable[10];
+    private ArrayList<Interactable> interactables = new ArrayList<>();
 
     /**
      * Constructs the game panel.
@@ -71,7 +75,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-    public void setUpGame(){
+    public void setUpGame() {
+        layerManager.setupLayers(this);
         interactablePlacement.setInteractables();
     }
 
@@ -135,18 +140,20 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphics;
 
-        // TILE
-        tileManager.draw(graphics2D);
+        for (Layer layer : layerManager.getBelowPlayerLayers()) {
+            layer.draw(graphics2D);
+        }
 
-        // INTERACTABLE OBJECT
-        for(int i = 0; i < interactable.length; i++){
-            if(interactable[i] != null){
-                interactable[i].draw(graphics2D,this);
-            }
+        for(Interactable interactable : interactables) {
+            interactable.draw(graphics2D, this);
         }
 
         // PLAYER
         player.draw(graphics2D);
+
+        for (Layer layer : layerManager.getAbovePlayerLayers()) {
+            layer.draw(graphics2D);
+        }
 
         // STATUS HUD
         statsHUD.draw(graphics2D, currentFPS, player);
@@ -249,11 +256,11 @@ public class GamePanel extends JPanel implements Runnable {
         return collisionHandler;
     }
 
-    public TileManager getTileManager() {
-        return tileManager;
+    public TileLayer getTileLayer() {
+        return (TileLayer) this.layerManager.getBelowPlayerLayers().get(0);
     }
 
-    public Interactable[] getInteractableObject(){
-        return interactable;
+    public ArrayList<Interactable> getInteractableObject() {
+        return interactables;
     }
 }

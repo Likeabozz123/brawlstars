@@ -31,14 +31,13 @@ public class Entity {
     private int collisionBoundsY;
 
 
-
     /**
      * Constructs an Entity with specified parameters.
      *
-     * @param x               The initial x-coordinate of the entity in the world.
-     * @param y               The initial y-coordinate of the entity in the world.
-     * @param speed           The speed of the entity.
-     * @param entityDirection The initial direction of the entity.
+     * @param x                The initial x-coordinate of the entity in the world.
+     * @param y                The initial y-coordinate of the entity in the world.
+     * @param speed            The speed of the entity.
+     * @param entityDirection  The initial direction of the entity.
      * @param totalSpriteCount The total number of sprites for animation.
      */
     public Entity(int x, int y, int speed, Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount, int collisionBoundsX, int collisionBoundsY) {
@@ -59,21 +58,21 @@ public class Entity {
     /**
      * Constructs an Entity with default initial position and speed.
      *
-     * @param speed           The speed of the entity.
-     * @param entityDirection The initial direction of the entity.
+     * @param speed            The speed of the entity.
+     * @param entityDirection  The initial direction of the entity.
      * @param totalSpriteCount The total number of sprites for animation.
      */
-    public Entity(int speed, Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount,int collisionBoundsX, int collisionBoundsY) {
+    public Entity(int speed, Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount, int collisionBoundsX, int collisionBoundsY) {
         this(100, 100, speed, collisionBounds, entityDirection, totalSpriteCount, collisionBoundsX, collisionBoundsY);
     }
 
     /**
      * Constructs an Entity with default initial position, speed, and direction.
      *
-     * @param entityDirection The initial direction of the entity.
+     * @param entityDirection  The initial direction of the entity.
      * @param totalSpriteCount The total number of sprites for animation.
      */
-    public Entity(Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount,int collisionBoundsX, int collisionBoundsY) {
+    public Entity(Rectangle collisionBounds, Enum entityDirection, int totalSpriteCount, int collisionBoundsX, int collisionBoundsY) {
         this(100, 100, 3, collisionBounds, entityDirection, totalSpriteCount, collisionBoundsX, collisionBoundsY);
     }
 
@@ -138,7 +137,7 @@ public class Entity {
      * @return The direction.
      */
     public Enum getEntityDirection() {
-         return entityDirection;
+        return entityDirection;
     }
 
     /**

@@ -45,6 +45,7 @@ public class GameClient {
 
     /**
      * Adds a listener to the client
+     *
      * @param listener listener
      */
     public void addListener(Listener listener) {
@@ -53,6 +54,7 @@ public class GameClient {
 
     /**
      * Sends a TCP packet to the server
+     *
      * @param packet packet
      */
     public void sendPacketTCP(Packet packet) {
@@ -61,6 +63,7 @@ public class GameClient {
 
     /**
      * Sends a UDP packet to the server
+     *
      * @param packet packet
      */
     public void sendPacketUDP(Packet packet) {
@@ -74,9 +77,6 @@ public class GameClient {
         return client.isConnected();
 
     }
-
-
-
 
 
 }

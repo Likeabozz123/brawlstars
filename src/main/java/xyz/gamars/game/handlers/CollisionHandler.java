@@ -1,8 +1,8 @@
-package xyz.gamars.game;
+package xyz.gamars.game.handlers;
 
 import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.EntityDirection;
-import xyz.gamars.game.tile.Tile;
+import xyz.gamars.game.layers.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 
 /**
@@ -49,16 +49,16 @@ public class CollisionHandler {
         if (entity.getEntityDirection() == EntityDirection.UP) {
             entityTopRow = (colliderTopY - entity.getSpeed()) / gamePanel.getTileSize();
 
-            tile1 = gamePanel.getTileManager().getTiles()[entityLeftCol][entityTopRow];
-            tile2 = gamePanel.getTileManager().getTiles()[entityRightCol][entityTopRow];
+            tile1 = gamePanel.getTileLayer().getTiles()[entityLeftCol][entityTopRow];
+            tile2 = gamePanel.getTileLayer().getTiles()[entityRightCol][entityTopRow];
 
             if (tile1.isCollidable() || tile2.isCollidable()) {
                 entity.setColliding(true);
             }
         } else if (entity.getEntityDirection() == EntityDirection.DOWN) {
             entityBottomRow = (colliderBottomY + entity.getSpeed()) / gamePanel.getTileSize();
-            tile1 = gamePanel.getTileManager().getTiles()[entityLeftCol][entityBottomRow];
-            tile2 = gamePanel.getTileManager().getTiles()[entityRightCol][entityBottomRow];
+            tile1 = gamePanel.getTileLayer().getTiles()[entityLeftCol][entityBottomRow];
+            tile2 = gamePanel.getTileLayer().getTiles()[entityRightCol][entityBottomRow];
 
             if (tile1.isCollidable() || tile2.isCollidable()) {
                 entity.setColliding(true);
@@ -66,16 +66,16 @@ public class CollisionHandler {
 
         } else if (entity.getEntityDirection() == EntityDirection.LEFT) {
             entityLeftCol = (colliderLeftX - entity.getSpeed()) / gamePanel.getTileSize();
-            tile1 = gamePanel.getTileManager().getTiles()[entityLeftCol][entityTopRow];
-            tile2 = gamePanel.getTileManager().getTiles()[entityLeftCol][entityBottomRow];
+            tile1 = gamePanel.getTileLayer().getTiles()[entityLeftCol][entityTopRow];
+            tile2 = gamePanel.getTileLayer().getTiles()[entityLeftCol][entityBottomRow];
 
             if (tile1.isCollidable() || tile2.isCollidable()) {
                 entity.setColliding(true);
             }
-        } else if (entity.getEntityDirection()  == EntityDirection.RIGHT) {
+        } else if (entity.getEntityDirection() == EntityDirection.RIGHT) {
             entityRightCol = (colliderRightX + entity.getSpeed()) / gamePanel.getTileSize();
-            tile1 = gamePanel.getTileManager().getTiles()[entityRightCol][entityTopRow];
-            tile2 = gamePanel.getTileManager().getTiles()[entityRightCol][entityBottomRow];
+            tile1 = gamePanel.getTileLayer().getTiles()[entityRightCol][entityTopRow];
+            tile2 = gamePanel.getTileLayer().getTiles()[entityRightCol][entityBottomRow];
 
             if (tile1.isCollidable() || tile2.isCollidable()) {
                 entity.setColliding(true);

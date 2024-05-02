@@ -40,6 +40,7 @@ public class GameServer {
 
     /**
      * Adds a listener to the server
+     *
      * @param listener listener
      */
     public void addListener(Listener listener) {
@@ -48,6 +49,7 @@ public class GameServer {
 
     /**
      * Send packet to all connected through TCP
+     *
      * @param packet packet
      */
     public void sendPacketToAllTCP(Packet packet) {
@@ -56,6 +58,7 @@ public class GameServer {
 
     /**
      * Send packet to all connected through UDP
+     *
      * @param packet packet
      */
     public void sendPacketToAllUDP(Packet packet) {
@@ -64,8 +67,9 @@ public class GameServer {
 
     /**
      * Send a packet to all connected except one connection, through TCP
+     *
      * @param connectionID connection id of the excluded connection
-     * @param packet packet
+     * @param packet       packet
      */
     public void sendPacketToAllTCPExcept(int connectionID, Packet packet) {
         server.sendToAllExceptTCP(connectionID, packet);
@@ -73,8 +77,9 @@ public class GameServer {
 
     /**
      * Send a packet to all connected except one connection, through UDP
+     *
      * @param connectionID connection id of the excluded connection
-     * @param packet packet
+     * @param packet       packet
      */
     public void sendPacketToAllUDPExcept(int connectionID, Packet packet) {
         server.sendToAllExceptUDP(connectionID, packet);
@@ -82,8 +87,9 @@ public class GameServer {
 
     /**
      * Send packet to single connection through TCP
+     *
      * @param connectionID connection id to send to
-     * @param packet packet
+     * @param packet       packet
      */
     public void sendPacketTCP(int connectionID, Packet packet) {
         server.sendToTCP(connectionID, packet);
@@ -91,8 +97,9 @@ public class GameServer {
 
     /**
      * Send packet to single connection through UDP
+     *
      * @param connectionID connection id to send to
-     * @param packet packet
+     * @param packet       packet
      */
     public void sendPacketUDP(int connectionID, Packet packet) {
         server.sendToUDP(connectionID, packet);
@@ -100,6 +107,7 @@ public class GameServer {
 
     /**
      * Return all connections to the server
+     *
      * @return connections
      */
     public Connection[] getConnections() {

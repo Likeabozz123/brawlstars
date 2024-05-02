@@ -2,9 +2,6 @@ package xyz.gamars;
 
 import xyz.gamars.discord.TempDiscordRP;
 import xyz.gamars.graphics.panels.GamePanel;
-import xyz.gamars.network.client.GameClient;
-import xyz.gamars.network.client.listeners.PongListener;
-import xyz.gamars.network.client.packets.PingPacket;
 
 import javax.swing.*;
 
@@ -36,8 +33,7 @@ public class Main {
 */
 
 
-
-        JFrame window  = new JFrame();
+        JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("Brawlstars");
@@ -51,8 +47,6 @@ public class Main {
         window.setVisible(true);
         gamePanel.setUpGame();
         gamePanel.startGameThread();
-
-
 
 
     }

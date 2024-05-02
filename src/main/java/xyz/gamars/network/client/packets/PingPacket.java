@@ -12,6 +12,7 @@ public class PingPacket implements Packet {
 
     /**
      * Returns what the message of the packet is
+     *
      * @return message
      */
     public String getMessage() {

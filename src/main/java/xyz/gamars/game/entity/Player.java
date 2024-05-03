@@ -21,6 +21,8 @@ public class Player extends Entity {
     private final int screenX;
     private final int screenY;
 
+    private boolean inGrass;
+
     /**
      * Constructs a player entity with the specified game panel and key handler.
      *
@@ -33,6 +35,7 @@ public class Player extends Entity {
                 EntityDirection.RIGHT, 3, gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
+        this.inGrass = false;
         screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
         screenY = gamePanel.getScreenHeight() / 2 - gamePanel.getTileSize() / 2;
 
@@ -89,8 +92,11 @@ public class Player extends Entity {
             }
 
 
-            setColliding(false);
+
             gamePanel.getCollisionHandler().checkTile(this);
+            gamePanel.getGrassHandler().checkTile(this);
+
+
 
             // if its colliding undo the movement changes
             if (isColliding()) {
@@ -111,6 +117,7 @@ public class Player extends Entity {
                     incrementX();
                 }
             }
+
 
             incrementFrame();
             if (getCurrentFrameCount() > 12) {
@@ -137,6 +144,10 @@ public class Player extends Entity {
         } else if (getEntityDirection() == EntityDirection.RIGHT) {
             image = getRightImages()[getCurrentSpriteIndex()];
         }
+
+        if (isInGrass()) {
+            graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
+        }
         graphics2D.drawImage(image, getScreenX(), getScreenY(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 
@@ -156,5 +167,13 @@ public class Player extends Entity {
      */
     public int getScreenY() {
         return screenY;
+    }
+
+    public boolean isInGrass() {
+        return inGrass;
+    }
+
+    public void setInGrass(boolean inGrass) {
+        this.inGrass = inGrass;
     }
 }

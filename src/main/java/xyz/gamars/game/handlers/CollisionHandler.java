@@ -45,6 +45,7 @@ public class CollisionHandler {
         Tile tile1;
         Tile tile2;
 
+        entity.setColliding(false);
         //Check collision based upon entity's direction and location
         if (entity.getEntityDirection() == EntityDirection.UP) {
             entityTopRow = (colliderTopY - entity.getSpeed()) / gamePanel.getTileSize();

@@ -31,9 +31,9 @@ public class GrassLayer extends Layer {
                     // tile 0: grass
 
                     if (tileIndex != -1) {
-                        tiles[x][y] = new Tile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_1.png")), false);
+                        tiles[x][y] = new GrassTile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_1.png")), false);
                     } else {
-                        tiles[x][y] = new Tile(null, false);
+                        tiles[x][y] = new EmptyTile();
                     }
                 }
             }
@@ -60,7 +60,9 @@ public class GrassLayer extends Layer {
                         worldY + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldY() - gamePanel.getPlayer().getScreenY() &&
                         worldY - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY()) {
 
-                    if (tiles[x][y].getImage() != null) {
+                    if (tiles[x][y].getImage() != null && !(tiles[x][y] instanceof EmptyTile)) {
+                        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
                         graphics2D.drawImage(tiles[x][y].getImage(), screenX, screenY,
                                 gamePanel.getTileSize(), gamePanel.getTileSize(), null);
                     }
@@ -68,5 +70,9 @@ public class GrassLayer extends Layer {
 
             }
         }
+    }
+
+    public Tile[][] getTiles() {
+        return tiles;
     }
 }

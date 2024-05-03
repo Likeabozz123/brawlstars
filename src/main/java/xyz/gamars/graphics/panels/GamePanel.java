@@ -2,9 +2,11 @@ package xyz.gamars.graphics.panels;
 
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.handlers.CollisionHandler;
+import xyz.gamars.game.handlers.GrassHandler;
 import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.game.handlers.MouseHandler;
 import xyz.gamars.game.huds.StatsHUD;
+import xyz.gamars.game.layers.GrassLayer;
 import xyz.gamars.game.layers.Layer;
 import xyz.gamars.game.layers.LayerManager;
 import xyz.gamars.game.layers.TileLayer;
@@ -50,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     private MouseHandler mouseHandler = new MouseHandler();
 
     private CollisionHandler collisionHandler = new CollisionHandler(this);
+    private GrassHandler grassHandler = new GrassHandler(this);
     private InteractablePlacement interactablePlacement = new InteractablePlacement(this);
 
     private LayerManager layerManager = new LayerManager();
@@ -256,8 +259,16 @@ public class GamePanel extends JPanel implements Runnable {
         return collisionHandler;
     }
 
+    public GrassHandler getGrassHandler() {
+        return grassHandler;
+    }
+
     public TileLayer getTileLayer() {
         return (TileLayer) this.layerManager.getBelowPlayerLayers().get(0);
+    }
+
+    public GrassLayer getGrassLayer() {
+        return (GrassLayer) this.layerManager.getAbovePlayerLayers().get(0);
     }
 
     public ArrayList<Interactable> getInteractableObject() {

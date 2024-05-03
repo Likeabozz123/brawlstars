@@ -1,5 +1,7 @@
 package xyz.gamars.game.handlers;
 
+import xyz.gamars.graphics.PanelManager;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -31,6 +33,7 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_S) downPressed = true;
         if (keyCode == KeyEvent.VK_D) rightPressed = true;
         if (keyCode == KeyEvent.VK_A) leftPressed = true;
+
     }
 
     /**

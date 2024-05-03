@@ -1,9 +1,11 @@
 package xyz.gamars;
 
 import xyz.gamars.discord.TempDiscordRP;
+import xyz.gamars.graphics.PanelManager;
 import xyz.gamars.graphics.panels.GamePanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
 
@@ -31,22 +33,7 @@ public class Main {
         };
         clientThread.start();
 */
-
-
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-        window.setTitle("Brawlstars");
-
-        GamePanel gamePanel = new GamePanel();
-        window.add(gamePanel);
-
-        window.pack();
-
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-        gamePanel.setUpGame();
-        gamePanel.startGameThread();
+        
 
 
     }

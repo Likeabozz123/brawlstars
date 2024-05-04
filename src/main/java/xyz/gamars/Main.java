@@ -33,7 +33,7 @@ public class Main {
         };
         clientThread.start();
 */
-        
+        PanelManager panelManager = PanelManager.getPanelManager();
 
 
     }

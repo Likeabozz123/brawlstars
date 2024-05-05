@@ -20,7 +20,6 @@ public class PanelManager {
         instantiateWindow();
         instantiatePanels();
         startWindow();
-        startGame();
     }
 
     public static PanelManager getPanelManager() {
@@ -37,13 +36,13 @@ public class PanelManager {
     private void instantiatePanels() {
         this.cardLayoutPanel = new JPanel(new CardLayout());
 
-        MainScreenPanel mainScreenPanel = new MainScreenPanel();
+        MainScreenPanel mainScreenPanel = new MainScreenPanel(new JButton(new ImageIcon("src/main/resources/other/playButton.png")));
         this.gamePanel = new GamePanel();
 
-
-        this.cardLayoutPanel.add(gamePanel);
-        this.cardLayoutPanel.add(mainScreenPanel);
-
+        // Add panels with names to the CardLayout
+        // --> names because then we can go straight to specific panels instead of using next
+        cardLayoutPanel.add(mainScreenPanel, "mainScreenPanel");
+        cardLayoutPanel.add(gamePanel, "gamePanel");
 
         this.window.add(cardLayoutPanel);
         this.panels = (CardLayout) cardLayoutPanel.getLayout();
@@ -55,7 +54,12 @@ public class PanelManager {
         window.setVisible(true);
     }
 
-    private void startGame() {
+    // Method to switch to the game panel
+    public void switchToGamePanel() {
+        panels.show(cardLayoutPanel, "gamePanel"); //Instead of using next
+        // everytime we swap panels need to request focus for key listeners to work
+        gamePanel.requestFocusInWindow();
+
         gamePanel.setUpGame();
         gamePanel.startGameThread();
     }
@@ -67,6 +71,4 @@ public class PanelManager {
     public JPanel getCardLayoutPanel() {
         return cardLayoutPanel;
     }
-
-
 }

@@ -33,13 +33,9 @@ public class Main {
         };
         clientThread.start();
 */
-<<<<<<< Updated upstream
         PanelManager panelManager = PanelManager.getPanelManager();
 
-=======
-        
-        PanelManager panelManager = PanelManager.getPanelManager();
->>>>>>> Stashed changes
+
 
     }
 }

@@ -10,9 +10,10 @@ import java.awt.event.ActionListener;
 public class MainScreenPanel extends JPanel {
 
     private JButton playButton;
-    private JButton settingsButton;
     private ImageIcon playerIcon;
     private JButton displayPlayer;
+    private ImageIcon settingsIcon;
+    private JButton displaySettings;
 
     public MainScreenPanel(JButton playButton) {
         this.setBackground(Color.BLUE);
@@ -33,12 +34,15 @@ public class MainScreenPanel extends JPanel {
         });
 
         // Creating settings button
-        settingsButton = new JButton(new ImageIcon("src/main/resources/other/setting_drawing.png"));
-        settingsButton.setPreferredSize(new Dimension(200, 200));
-        settingsButton.addActionListener(new ActionListener() {
+        settingsIcon = new ImageIcon("src/main/resources/other/settings.png");
+        displaySettings = new JButton();
+        displaySettings.setOpaque(false); // Make button transparent
+        displaySettings.setBorderPainted(false); // Remove border
+        displaySettings.setContentAreaFilled(false); // Remove background
+        displaySettings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Settings Button to display stats hud but do later because right now it is always displayed
+                // show stats hud when clicked
             }
         });
 
@@ -63,7 +67,7 @@ public class MainScreenPanel extends JPanel {
         // Panel to hold settings button in the left
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Right alignment --> because we use borderlayout
         topPanel.setOpaque(false); // Transparent background and also using specific panels it is just for better button placement
-        topPanel.add(settingsButton);
+        topPanel.add(displaySettings);
 
         //Panel to hold player icon on the left
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -80,8 +84,13 @@ public class MainScreenPanel extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         // Set the icon of displayPlayer button and to scale to button size
-        if (displayPlayer.getWidth() > 0 && displayPlayer.getWidth() < 300 && displayPlayer.getHeight() > 0 && displayPlayer.getHeight() < 400) {
+        if (displayPlayer.getWidth() > 0 && displayPlayer.getWidth() < 400 && displayPlayer.getHeight() > 0 && displayPlayer.getHeight() < 500) {
             displayPlayer.setIcon(new ImageIcon(playerIcon.getImage().getScaledInstance(displayPlayer.getWidth(), displayPlayer.getHeight(), Image.SCALE_SMOOTH)));
+
+            // Set the icon of settingsButton and scale it to button size
+            if (displaySettings.getWidth() > 0 && displaySettings.getWidth() < 250 && displaySettings.getHeight() > 0 && displaySettings.getHeight() < 200) {
+                displaySettings.setIcon(new ImageIcon(settingsIcon.getImage().getScaledInstance(displaySettings.getWidth(), displaySettings.getHeight(), Image.SCALE_SMOOTH)));
+            }
         }
     }
 }

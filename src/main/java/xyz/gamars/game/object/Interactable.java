@@ -13,12 +13,17 @@ public class Interactable {
     private int worldX;
     private int worldY;
 
+    private int collisionBoundsDefaultX;
+    private int collisionBoundsDefaultY;
+
 
     public Interactable(int worldX, int worldY, int boundX, int boundY, int boundWidth, int boundHeight, boolean collision) {
         this.worldX = worldX;
         this.worldY = worldY;
         this.collisionBounds = new Rectangle(boundX, boundY, boundWidth, boundHeight);
         this.collision = collision;
+        this.collisionBoundsDefaultX = collisionBounds.x;
+        this.collisionBoundsDefaultY = collisionBounds.y;
     }
 
     public void draw(Graphics2D graphics2D, GamePanel gamePanel) {
@@ -71,4 +76,12 @@ public class Interactable {
     public void setCollision(boolean collision) {
         this.collision = collision;
     }
+
+    public Rectangle getCollisionBounds () {
+        return collisionBounds;
+    }
+
+    public int getCollisionBoundsDefaultX() { return collisionBoundsDefaultX;}
+    public int getCollisionBoundsDefaultY() { return collisionBoundsDefaultY;}
+
 }

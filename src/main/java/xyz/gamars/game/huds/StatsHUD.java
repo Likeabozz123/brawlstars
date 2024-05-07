@@ -23,7 +23,8 @@ public class StatsHUD {
         graphics2D.drawString("Player Coordinates: " + player.getWorldX() + ", " + player.getWorldY(), 5, graphics2D.getFont().getSize() * 2);
         graphics2D.drawString("Player Direction: " + player.getEntityDirection(), 5, graphics2D.getFont().getSize() * 3);
         graphics2D.drawString("Player Sprite Frame: " + player.getCurrentSpriteIndex(), 5, graphics2D.getFont().getSize() * 4);
-        graphics2D.drawString("In grass: " + player.isInGrass(), 5, graphics2D.getFont().getSize() * 5);
+        graphics2D.drawString("Collision: " + player.isColliding(), 5, graphics2D.getFont().getSize() * 5);
+        graphics2D.drawString("In Grass: " + player.isInGrass(), 5, graphics2D.getFont().getSize() * 6);
     }
 
 }

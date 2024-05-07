@@ -32,7 +32,7 @@ public class Player extends Entity {
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3,
                 new Rectangle(gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3, (gamePanel.getTileSize() / 3) * 2, (gamePanel.getTileSize() / 3) * 2),
-                EntityDirection.RIGHT, 3, gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3);
+                EntityDirection.RIGHT, 3);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         this.inGrass = false;
@@ -95,6 +95,7 @@ public class Player extends Entity {
 
             gamePanel.getCollisionHandler().checkTile(this);
             gamePanel.getGrassHandler().checkTile(this);
+            int objectIndex = gamePanel.getCollisionHandler().checkObjectIfHit(this, true);
 
 
 

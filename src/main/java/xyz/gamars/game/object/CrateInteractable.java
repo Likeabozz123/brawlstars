@@ -14,6 +14,6 @@ public class CrateInteractable extends Interactable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        setCollision(true);
     }
 }

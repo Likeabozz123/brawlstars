@@ -47,7 +47,8 @@ public class CollisionHandler {
             if (tile1.isCollidable() || tile2.isCollidable()) {
                 entity.setColliding(true);
             }
-        } else if (entity.getEntityDirection() == EntityDirection.DOWN) {
+        }
+        if (entity.getEntityDirection() == EntityDirection.DOWN) {
             entityBottomRow = (colliderBottomY + entity.getSpeed()) / gamePanel.getTileSize();
             tile1 = gamePanel.getTileLayer().getTiles()[entityLeftCol][entityBottomRow];
             tile2 = gamePanel.getTileLayer().getTiles()[entityRightCol][entityBottomRow];
@@ -56,7 +57,8 @@ public class CollisionHandler {
                 entity.setColliding(true);
             }
 
-        } else if (entity.getEntityDirection() == EntityDirection.LEFT) {
+        }
+        if (entity.getEntityDirection() == EntityDirection.LEFT) {
             entityLeftCol = (colliderLeftX - entity.getSpeed()) / gamePanel.getTileSize();
             tile1 = gamePanel.getTileLayer().getTiles()[entityLeftCol][entityTopRow];
             tile2 = gamePanel.getTileLayer().getTiles()[entityLeftCol][entityBottomRow];
@@ -64,7 +66,8 @@ public class CollisionHandler {
             if (tile1.isCollidable() || tile2.isCollidable()) {
                 entity.setColliding(true);
             }
-        } else if (entity.getEntityDirection() == EntityDirection.RIGHT) {
+        }
+        if (entity.getEntityDirection() == EntityDirection.RIGHT) {
             entityRightCol = (colliderRightX + entity.getSpeed()) / gamePanel.getTileSize();
             tile1 = gamePanel.getTileLayer().getTiles()[entityRightCol][entityTopRow];
             tile2 = gamePanel.getTileLayer().getTiles()[entityRightCol][entityBottomRow];
@@ -105,7 +108,8 @@ public class CollisionHandler {
                             }
                         }
                     }
-                } if (entity.getEntityDirection() == EntityDirection.DOWN) {
+                }
+                if (entity.getEntityDirection() == EntityDirection.DOWN) {
                     entity.getCollisionBounds().y += entity.getSpeed();
                     if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
                         if (gamePanel.getInteractableObject().get(i).getCollision()) {
@@ -115,7 +119,8 @@ public class CollisionHandler {
                             index = i;
                         }
                     }
-                } if (entity.getEntityDirection() == EntityDirection.LEFT) {
+                }
+                if (entity.getEntityDirection() == EntityDirection.LEFT) {
                     entity.getCollisionBounds().x -= entity.getSpeed();
                     if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
                         if (gamePanel.getInteractableObject().get(i).getCollision()) {
@@ -125,7 +130,8 @@ public class CollisionHandler {
                             index = i;
                         }
                     }
-                } if (entity.getEntityDirection() == EntityDirection.RIGHT) {
+                }
+                if (entity.getEntityDirection() == EntityDirection.RIGHT) {
                     entity.getCollisionBounds().x += entity.getSpeed();
                     if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
                         if (gamePanel.getInteractableObject().get(i).getCollision()) {

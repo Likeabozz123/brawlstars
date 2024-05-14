@@ -4,7 +4,6 @@ import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.handlers.CollisionHandler;
 import xyz.gamars.game.handlers.GrassHandler;
 import xyz.gamars.game.handlers.KeyHandler;
-import xyz.gamars.game.handlers.MouseHandler;
 import xyz.gamars.game.huds.StatsHUD;
 import xyz.gamars.game.layers.GrassLayer;
 import xyz.gamars.game.layers.Layer;
@@ -47,11 +46,9 @@ public class GamePanel extends JPanel implements Runnable {
     private final int worldWidth = tileSize * maxWorldWidth;
     private final int worldHeight = tileSize * maxWorldHeight;
 
-
     private Thread gameThread;
 
     private KeyHandler keyHandler = new KeyHandler();
-    private MouseHandler mouseHandler = new MouseHandler();
 
     private CollisionHandler collisionHandler = new CollisionHandler();
     private GrassHandler grassHandler = new GrassHandler();
@@ -76,7 +73,6 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler);
-        this.addMouseListener(mouseHandler);
         this.setFocusable(true);
     }
 
@@ -154,7 +150,7 @@ public class GamePanel extends JPanel implements Runnable {
             layer.draw(graphics2D);
         }
 
-        for(Interactable interactable : interactables) {
+        for (Interactable interactable : interactables) {
             interactable.draw(graphics2D);
         }
 

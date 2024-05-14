@@ -1,10 +1,6 @@
 package xyz.gamars.game.entity;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * The Entity Class.
@@ -129,11 +125,11 @@ public class Entity {
         return collisionBounds;
     }
 
-    public int getCollisionBoundsX () {
+    public int getCollisionBoundsX() {
         return collisionBoundsDefaultX;
     }
 
-    public int getCollisionBoundsY () {
+    public int getCollisionBoundsY() {
         return collisionBoundsDefaultY;
     }
 

@@ -1,7 +1,5 @@
 package xyz.gamars.game.handlers;
 
-import xyz.gamars.graphics.PanelManager;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

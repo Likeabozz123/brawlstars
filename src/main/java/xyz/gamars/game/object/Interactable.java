@@ -78,11 +78,16 @@ public class Interactable {
         this.collision = collision;
     }
 
-    public Rectangle getCollisionBounds () {
+    public Rectangle getCollisionBounds() {
         return collisionBounds;
     }
 
-    public int getCollisionBoundsDefaultX() { return collisionBoundsDefaultX;}
-    public int getCollisionBoundsDefaultY() { return collisionBoundsDefaultY;}
+    public int getCollisionBoundsDefaultX() {
+        return collisionBoundsDefaultX;
+    }
+
+    public int getCollisionBoundsDefaultY() {
+        return collisionBoundsDefaultY;
+    }
 
 }

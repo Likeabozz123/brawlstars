@@ -8,7 +8,6 @@ import xyz.gamars.util.ResourceFile;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -109,11 +108,9 @@ public class Player extends Entity implements IAnimatable {
             }
 
 
-
             gamePanel.getCollisionHandler().checkTile(this);
             gamePanel.getGrassHandler().checkTile(this);
             int objectIndex = gamePanel.getCollisionHandler().checkObjectIfHit(this, true);
-
 
 
             // if its colliding undo the movement changes
@@ -194,7 +191,6 @@ public class Player extends Entity implements IAnimatable {
     public void setInGrass(boolean inGrass) {
         this.inGrass = inGrass;
     }
-
 
 
     /**
@@ -294,7 +290,6 @@ public class Player extends Entity implements IAnimatable {
     public BufferedImage[] getRightImages() {
         return rightImages;
     }
-
 
 
 }

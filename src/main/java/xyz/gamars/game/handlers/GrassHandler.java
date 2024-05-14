@@ -9,7 +9,6 @@ import xyz.gamars.graphics.panels.GamePanel;
 public class GrassHandler {
 
 
-
     /**
      * Checks for collision between player and specific tiles
      *

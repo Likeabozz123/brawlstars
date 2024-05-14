@@ -1,7 +1,5 @@
 package xyz.gamars.game.layers;
 
-import xyz.gamars.graphics.panels.GamePanel;
-
 import java.util.ArrayList;
 
 public class LayerManager {

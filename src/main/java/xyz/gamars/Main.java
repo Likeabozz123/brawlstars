@@ -2,10 +2,6 @@ package xyz.gamars;
 
 import xyz.gamars.discord.TempDiscordRP;
 import xyz.gamars.graphics.PanelManager;
-import xyz.gamars.graphics.panels.GamePanel;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class Main {
 
@@ -34,8 +30,6 @@ public class Main {
         clientThread.start();
 */
         PanelManager panelManager = PanelManager.getPanelManager();
-
-
 
 
     }

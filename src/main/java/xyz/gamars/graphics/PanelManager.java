@@ -16,7 +16,7 @@ public class PanelManager {
 
     private GamePanel gamePanel;
 
-    public PanelManager() {
+    private PanelManager() {
         instantiateWindow();
         instantiatePanels();
         startWindow();
@@ -37,7 +37,7 @@ public class PanelManager {
         this.cardLayoutPanel = new JPanel(new CardLayout());
 
         MainScreenPanel mainScreenPanel = new MainScreenPanel(new JButton(new ImageIcon("src/main/resources/other/playButton.png")));
-        this.gamePanel = new GamePanel();
+        this.gamePanel = GamePanel.getGamePanel();
 
         // Add panels with names to the CardLayout
         // --> names because then we can go straight to specific panels instead of using next

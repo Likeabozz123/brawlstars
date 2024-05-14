@@ -1,6 +1,5 @@
 package xyz.gamars.graphics.panels;
 
-import xyz.gamars.game.entity.EntityDirection;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.handlers.CollisionHandler;
 import xyz.gamars.game.handlers.GrassHandler;
@@ -22,6 +21,8 @@ import java.util.ArrayList;
  * The GamePanel Class.
  */
 public class GamePanel extends JPanel implements Runnable {
+
+    private static GamePanel gamePanel = new GamePanel();
 
     // Pixel size of each texture of the tile
     private final int originalTileSize = 16;
@@ -52,9 +53,9 @@ public class GamePanel extends JPanel implements Runnable {
     private KeyHandler keyHandler = new KeyHandler();
     private MouseHandler mouseHandler = new MouseHandler();
 
-    private CollisionHandler collisionHandler = new CollisionHandler(this);
-    private GrassHandler grassHandler = new GrassHandler(this);
-    private InteractablePlacement interactablePlacement = new InteractablePlacement(this);
+    private CollisionHandler collisionHandler = new CollisionHandler();
+    private GrassHandler grassHandler = new GrassHandler();
+    private InteractablePlacement interactablePlacement = new InteractablePlacement();
 
     private LayerManager layerManager = new LayerManager();
 
@@ -63,14 +64,14 @@ public class GamePanel extends JPanel implements Runnable {
     private final int FPS = 60;
     private int currentFPS;
 
-    private Player player = new Player(this, keyHandler, 3);
+    private Player player;
 
     private ArrayList<Interactable> interactables = new ArrayList<>();
 
     /**
      * Constructs the game panel.
      */
-    public GamePanel() {
+    private GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
@@ -79,8 +80,13 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
+    public static GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
     public void setUpGame() {
-        layerManager.setupLayers(this);
+        this.player = new Player(keyHandler, 3);
+        layerManager.setupLayers();
         interactablePlacement.setInteractables();
     }
 
@@ -149,7 +155,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         for(Interactable interactable : interactables) {
-            interactable.draw(graphics2D, this);
+            interactable.draw(graphics2D);
         }
 
         // PLAYER

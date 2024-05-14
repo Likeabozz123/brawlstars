@@ -11,17 +11,6 @@ import xyz.gamars.graphics.panels.GamePanel;
 
 public class CollisionHandler {
 
-    private GamePanel gamePanel;
-
-
-    /**
-     * Constructs a CollisionHandler with the specified GamePanel
-     *
-     * @param gamePanel The GamePanel that uses the CollisionHandler
-     */
-    public CollisionHandler(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
-    }
 
     /**
      * Checks for collision between entity and specific tiles
@@ -29,6 +18,8 @@ public class CollisionHandler {
      * @param entity The entity for which collision detection is run and performed
      */
     public void checkTile(Entity entity) {
+        GamePanel gamePanel = GamePanel.getGamePanel();
+
         // Get and calculate the boundaries around the entity
         int colliderLeftX = entity.getWorldX() + entity.getCollisionBounds().x;
         int colliderRightX = entity.getWorldX() + entity.getCollisionBounds().x + entity.getCollisionBounds().width;
@@ -87,6 +78,8 @@ public class CollisionHandler {
     // receive an entity and check if entity is player or not as params
     //check if player is hitting any object, and if so, we return the index of the object
     public int checkObjectIfHit(Entity entity, boolean player) {
+
+        GamePanel gamePanel = GamePanel.getGamePanel();
         // create int
         int index = 999;
         for (int i = 0; i < gamePanel.getInteractableObject().size(); i++) {

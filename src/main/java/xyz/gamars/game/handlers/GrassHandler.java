@@ -1,6 +1,5 @@
 package xyz.gamars.game.handlers;
 
-import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.EntityDirection;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.layers.GrassTile;
@@ -10,17 +9,6 @@ import xyz.gamars.graphics.panels.GamePanel;
 public class GrassHandler {
 
 
-    private GamePanel gamePanel;
-
-
-    /**
-     * Constructs a CollisionHandler with the specified GamePanel
-     *
-     * @param gamePanel The GamePanel that uses the CollisionHandler
-     */
-    public GrassHandler(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
-    }
 
     /**
      * Checks for collision between player and specific tiles
@@ -28,6 +16,9 @@ public class GrassHandler {
      * @param player The player for which collision detection is run and performed
      */
     public void checkTile(Player player) {
+
+        GamePanel gamePanel = GamePanel.getGamePanel();
+
         // Get and calculate the boundaries around the player
         int colliderLeftX = player.getWorldX() + player.getCollisionBounds().x;
         int colliderRightX = player.getWorldX() + player.getCollisionBounds().x + player.getCollisionBounds().width;

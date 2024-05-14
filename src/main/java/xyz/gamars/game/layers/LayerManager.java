@@ -9,10 +9,10 @@ public class LayerManager {
     private ArrayList<Layer> belowPlayerLayers = new ArrayList<>();
     private ArrayList<Layer> abovePlayerLayers = new ArrayList<>();
 
-    public void setupLayers(GamePanel gamePanel) {
-        belowPlayerLayers.add(new TileLayer(gamePanel));
+    public void setupLayers() {
+        belowPlayerLayers.add(new TileLayer());
 
-        abovePlayerLayers.add(new GrassLayer(gamePanel));
+        abovePlayerLayers.add(new GrassLayer());
     }
 
 

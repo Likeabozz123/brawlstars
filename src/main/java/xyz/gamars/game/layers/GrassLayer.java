@@ -12,11 +12,9 @@ import java.util.Scanner;
 public class GrassLayer extends Layer {
 
     private Tile[][] tiles;
-    private GamePanel gamePanel;
 
-    public GrassLayer(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
-        this.tiles = new Tile[gamePanel.getMaxWorldWidth()][gamePanel.getMaxWorldHeight()];
+    public GrassLayer() {
+        this.tiles = new Tile[GamePanel.getGamePanel().getMaxWorldWidth()][GamePanel.getGamePanel().getMaxWorldHeight()];
         setupImages();
     }
 
@@ -24,8 +22,8 @@ public class GrassLayer extends Layer {
     public void setupImages() {
         try {
             Scanner scanner = new Scanner(new ResourceFile("maps/map_layer_1.txt"));
-            for (int y = 0; y < gamePanel.getMaxWorldHeight(); y++) {
-                for (int x = 0; x < gamePanel.getMaxWorldWidth(); x++) {
+            for (int y = 0; y < GamePanel.getGamePanel().getMaxWorldHeight(); y++) {
+                for (int x = 0; x < GamePanel.getGamePanel().getMaxWorldWidth(); x++) {
                     int tileIndex = scanner.nextInt();
 
                     // tile 0: grass
@@ -48,6 +46,7 @@ public class GrassLayer extends Layer {
 
     @Override
     public void draw(Graphics2D graphics2D) {
+        GamePanel gamePanel = GamePanel.getGamePanel();
         for (int x = 0; x < gamePanel.getMaxScreenWidth(); x++) {
             for (int y = 0; y < gamePanel.getMaxWorldHeight(); y++) {
                 int worldX = x * gamePanel.getTileSize();

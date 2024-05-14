@@ -26,7 +26,8 @@ public class Interactable {
         this.collisionBoundsDefaultY = collisionBounds.y;
     }
 
-    public void draw(Graphics2D graphics2D, GamePanel gamePanel) {
+    public void draw(Graphics2D graphics2D) {
+        GamePanel gamePanel = GamePanel.getGamePanel();
         int screenX = worldX - gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX();
         int screenY = worldY - gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY();
 

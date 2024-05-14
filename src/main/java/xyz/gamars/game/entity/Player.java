@@ -18,7 +18,6 @@ import java.util.logging.Logger;
  */
 public class Player extends Entity implements IAnimatable {
 
-    private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
     private final int screenX;
@@ -38,19 +37,17 @@ public class Player extends Entity implements IAnimatable {
     /**
      * Constructs a player entity with the specified game panel and key handler.
      *
-     * @param gamePanel  The game panel where player exists.
      * @param keyHandler The key handler for controlling the player.
      */
-    public Player(GamePanel gamePanel, KeyHandler keyHandler, int totalSpriteCount) {
-        super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3,
-                new Rectangle(gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3, (gamePanel.getTileSize() / 3) * 2, (gamePanel.getTileSize() / 3) * 2)
+    public Player(KeyHandler keyHandler, int totalSpriteCount) {
+        super(GamePanel.getGamePanel().getWorldWidth() / 2, GamePanel.getGamePanel().getWorldHeight() / 2, 3,
+                new Rectangle(GamePanel.getGamePanel().getTileSize() / 6, GamePanel.getGamePanel().getTileSize() / 3, (GamePanel.getGamePanel().getTileSize() / 3) * 2, (GamePanel.getGamePanel().getTileSize() / 3) * 2)
                 , EntityDirection.RIGHT);
 
-        this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         this.inGrass = false;
-        this.screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
-        this.screenY = gamePanel.getScreenHeight() / 2 - gamePanel.getTileSize() / 2;
+        this.screenX = GamePanel.getGamePanel().getScreenWidth() / 2 - GamePanel.getGamePanel().getTileSize() / 2;
+        this.screenY = GamePanel.getGamePanel().getScreenHeight() / 2 - GamePanel.getGamePanel().getTileSize() / 2;
 
         this.totalSpriteCount = totalSpriteCount;
         this.upImages = new BufferedImage[totalSpriteCount];
@@ -84,6 +81,7 @@ public class Player extends Entity implements IAnimatable {
      */
     public void update() {
         if (keyHandler.isUpPressed() || keyHandler.isDownPressed() || keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
+            GamePanel gamePanel = GamePanel.getGamePanel();
             if ((keyHandler.isUpPressed() && keyHandler.isLeftPressed())
                     || (keyHandler.isUpPressed() && keyHandler.isRightPressed())
                     || (keyHandler.isDownPressed() && keyHandler.isLeftPressed())
@@ -153,6 +151,7 @@ public class Player extends Entity implements IAnimatable {
      */
     public void draw(Graphics2D graphics2D) {
         BufferedImage image = null;
+        GamePanel gamePanel = GamePanel.getGamePanel();
 
         if (getEntityDirection() == EntityDirection.UP) {
             image = getUpImages()[getCurrentSpriteIndex()];

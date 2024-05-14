@@ -1,5 +1,6 @@
 package xyz.gamars.graphics.panels;
 
+import xyz.gamars.game.entity.EntityDirection;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.handlers.CollisionHandler;
 import xyz.gamars.game.handlers.GrassHandler;
@@ -62,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final int FPS = 60;
     private int currentFPS;
 
-    private Player player = new Player(this, keyHandler);
+    private Player player = new Player(this, keyHandler, 3);
 
     private ArrayList<Interactable> interactables = new ArrayList<>();
 

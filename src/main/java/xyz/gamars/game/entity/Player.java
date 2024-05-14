@@ -1,11 +1,14 @@
 package xyz.gamars.game.entity;
 
+import xyz.gamars.game.IAnimatable;
 import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -13,13 +16,22 @@ import java.util.logging.Logger;
 /**
  * The Player Class.
  */
-public class Player extends Entity {
+public class Player extends Entity implements IAnimatable {
 
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
     private final int screenX;
     private final int screenY;
+
+    private BufferedImage[] upImages;
+    private BufferedImage[] downImages;
+    private BufferedImage[] leftImages;
+    private BufferedImage[] rightImages;
+
+    private final int totalSpriteCount;
+    private int currentFrameCount;
+    private int currentSpriteIndex = 0;
 
     private boolean inGrass;
 
@@ -29,15 +41,22 @@ public class Player extends Entity {
      * @param gamePanel  The game panel where player exists.
      * @param keyHandler The key handler for controlling the player.
      */
-    public Player(GamePanel gamePanel, KeyHandler keyHandler) {
+    public Player(GamePanel gamePanel, KeyHandler keyHandler, int totalSpriteCount) {
         super(gamePanel.getWorldWidth() / 2, gamePanel.getWorldHeight() / 2, 3,
-                new Rectangle(gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3, (gamePanel.getTileSize() / 3) * 2, (gamePanel.getTileSize() / 3) * 2),
-                EntityDirection.RIGHT, 3);
+                new Rectangle(gamePanel.getTileSize() / 6, gamePanel.getTileSize() / 3, (gamePanel.getTileSize() / 3) * 2, (gamePanel.getTileSize() / 3) * 2)
+                , EntityDirection.RIGHT);
+
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         this.inGrass = false;
-        screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
-        screenY = gamePanel.getScreenHeight() / 2 - gamePanel.getTileSize() / 2;
+        this.screenX = gamePanel.getScreenWidth() / 2 - gamePanel.getTileSize() / 2;
+        this.screenY = gamePanel.getScreenHeight() / 2 - gamePanel.getTileSize() / 2;
+
+        this.totalSpriteCount = totalSpriteCount;
+        this.upImages = new BufferedImage[totalSpriteCount];
+        this.downImages = new BufferedImage[totalSpriteCount];
+        this.rightImages = new BufferedImage[totalSpriteCount];
+        this.leftImages = new BufferedImage[totalSpriteCount];
 
         loadPlayerImages();
     }
@@ -48,10 +67,10 @@ public class Player extends Entity {
     private void loadPlayerImages() {
         try {
             for (int spriteCount = 0; spriteCount < getTotalSpriteCount(); spriteCount++) {
-                setUpImage(spriteCount, new ResourceFile("player/up_" + spriteCount + ".png"));
-                setDownImages(spriteCount, new ResourceFile("player/down_" + spriteCount + ".png"));
-                setRightImages(spriteCount, new ResourceFile("player/right_" + spriteCount + ".png"));
-                setLeftImages(spriteCount, new ResourceFile("player/left_" + spriteCount + ".png"));
+                upImages[spriteCount] = ImageIO.read(new ResourceFile("player/up_" + spriteCount + ".png"));
+                downImages[spriteCount] = ImageIO.read(new ResourceFile("player/down_" + spriteCount + ".png"));
+                rightImages[spriteCount] = ImageIO.read(new ResourceFile("player/right_" + spriteCount + ".png"));
+                leftImages[spriteCount] = ImageIO.read(new ResourceFile("player/left_" + spriteCount + ".png"));
             }
         } catch (FileNotFoundException e) {
             Logger.getLogger("Brawlstars").severe("Player sprites are not found");
@@ -119,7 +138,6 @@ public class Player extends Entity {
                 }
             }
 
-
             incrementFrame();
             if (getCurrentFrameCount() > 12) {
                 incrementCurrentSpriteIndex();
@@ -177,4 +195,107 @@ public class Player extends Entity {
     public void setInGrass(boolean inGrass) {
         this.inGrass = inGrass;
     }
+
+
+
+    /**
+     * Gets the total number of sprites for animation.
+     *
+     * @return The total sprite count.
+     */
+    public int getTotalSpriteCount() {
+        return totalSpriteCount;
+    }
+
+    /**
+     * Gets the current frame count of the entity's animation.
+     *
+     * @return The current frame count.
+     */
+    public int getCurrentFrameCount() {
+        return currentFrameCount;
+    }
+
+    /**
+     * Increments the current frame count of the entity's animation.
+     */
+    public void incrementFrame() {
+        currentFrameCount++;
+    }
+
+    /**
+     * Sets the current frame count of the entity's animation.
+     *
+     * @param currentFrameCount The frame count to set.
+     */
+    public void setCurrentFrameCount(int currentFrameCount) {
+        this.currentFrameCount = currentFrameCount;
+    }
+
+    /**
+     * Gets the index of the current sprite in the animation.
+     *
+     * @return The current sprite index.
+     */
+    public int getCurrentSpriteIndex() {
+        return currentSpriteIndex;
+    }
+
+    /**
+     * Sets the index of the current sprite in the animation.
+     *
+     * @param currentSpriteIndex The sprite index to set.
+     */
+    public void setCurrentSpriteIndex(int currentSpriteIndex) {
+        this.currentSpriteIndex = currentSpriteIndex;
+    }
+
+    /**
+     * Increments the index of the current sprite in the animation.
+     */
+    public void incrementCurrentSpriteIndex() {
+        this.currentSpriteIndex++;
+        if (this.currentSpriteIndex >= totalSpriteCount) {
+            this.currentSpriteIndex = 0;
+        }
+    }
+
+    /**
+     * Gets the array of images for the entity facing upwards.
+     *
+     * @return The array of images.
+     */
+    public BufferedImage[] getUpImages() {
+        return upImages;
+    }
+
+    /**
+     * Gets the array of images for the entity facing downwards.
+     *
+     * @return The array of images.
+     */
+    public BufferedImage[] getDownImages() {
+        return downImages;
+    }
+
+    /**
+     * Gets the array of images for the entity facing leftwards.
+     *
+     * @return The array of images.
+     */
+    public BufferedImage[] getLeftImages() {
+        return leftImages;
+    }
+
+    /**
+     * Gets the array of images for the entity facing rightwards.
+     *
+     * @return The array of images.
+     */
+    public BufferedImage[] getRightImages() {
+        return rightImages;
+    }
+
+
+
 }

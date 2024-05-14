@@ -153,8 +153,9 @@ public class Player extends Entity implements IAnimatable, IUpdating {
                     throw new RuntimeException(e);
                 }
             }
-            currentBulletCooldown--;
         }
+        currentBulletCooldown--;
+        if (currentBulletCooldown < 0) currentBulletCooldown = 0;
     }
 
     /**

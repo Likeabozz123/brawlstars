@@ -112,7 +112,7 @@ public class CollisionHandler {
                             }
                         }
                     }
-                } else if (entity.getEntityDirection() == EntityDirection.DOWN) {
+                } if (entity.getEntityDirection() == EntityDirection.DOWN) {
                     entity.getCollisionBounds().y += entity.getSpeed();
                     if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
                         if (gamePanel.getInteractableObject().get(i).getCollision()) {
@@ -122,7 +122,7 @@ public class CollisionHandler {
                             index = i;
                         }
                     }
-                } else if (entity.getEntityDirection() == EntityDirection.LEFT) {
+                } if (entity.getEntityDirection() == EntityDirection.LEFT) {
                     entity.getCollisionBounds().x -= entity.getSpeed();
                     if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
                         if (gamePanel.getInteractableObject().get(i).getCollision()) {
@@ -132,7 +132,7 @@ public class CollisionHandler {
                             index = i;
                         }
                     }
-                } else if (entity.getEntityDirection() == EntityDirection.RIGHT) {
+                } if (entity.getEntityDirection() == EntityDirection.RIGHT) {
                     entity.getCollisionBounds().x += entity.getSpeed();
                     if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
                         if (gamePanel.getInteractableObject().get(i).getCollision()) {

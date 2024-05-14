@@ -85,22 +85,22 @@ public class CollisionHandler {
         GamePanel gamePanel = GamePanel.getGamePanel();
         // create int
         int index = 999;
-        for (int i = 0; i < gamePanel.getInteractableObject().size(); i++) {
-            if (gamePanel.getInteractableObject().get(i) != null) {
+        for (int i = 0; i < gamePanel.getInteractables().size(); i++) {
+            if (gamePanel.getInteractables().get(i) != null) {
                 //get entity's solid area position
                 entity.getCollisionBounds().x = entity.getWorldX() + entity.getCollisionBounds().x;
                 entity.getCollisionBounds().y = entity.getWorldY() + entity.getCollisionBounds().y;
                 //get interactable object's solid area position
-                gamePanel.getInteractableObject().get(i).getCollisionBounds().x = gamePanel.getInteractableObject().get(i).getWorldX() + gamePanel.getInteractableObject().get(i).getCollisionBounds().x;
-                gamePanel.getInteractableObject().get(i).getCollisionBounds().y = gamePanel.getInteractableObject().get(i).getWorldY() + gamePanel.getInteractableObject().get(i).getCollisionBounds().y;
+                gamePanel.getInteractables().get(i).getCollisionBounds().x = gamePanel.getInteractables().get(i).getWorldX() + gamePanel.getInteractables().get(i).getCollisionBounds().x;
+                gamePanel.getInteractables().get(i).getCollisionBounds().y = gamePanel.getInteractables().get(i).getWorldY() + gamePanel.getInteractables().get(i).getCollisionBounds().y;
 
                 // Check if both entity and interactable have valid collisionBounds
-                if (entity.getCollisionBounds() != null && gamePanel.getInteractableObject().get(i).getCollisionBounds() != null) {
+                if (entity.getCollisionBounds() != null && gamePanel.getInteractables().get(i).getCollisionBounds() != null) {
                     // Adjust entity position based on direction
                     if (entity.getEntityDirection() == EntityDirection.UP) {
                         entity.getCollisionBounds().y -= entity.getSpeed();
-                        if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
-                            if (gamePanel.getInteractableObject().get(i).getCollision()) {
+                        if (entity.getCollisionBounds().intersects(gamePanel.getInteractables().get(i).getCollisionBounds())) {
+                            if (!gamePanel.getInteractables().get(i).isCollidable()) {
                                 entity.setColliding(true);
                             }
                             if (player) {
@@ -111,8 +111,8 @@ public class CollisionHandler {
                 }
                 if (entity.getEntityDirection() == EntityDirection.DOWN) {
                     entity.getCollisionBounds().y += entity.getSpeed();
-                    if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
-                        if (gamePanel.getInteractableObject().get(i).getCollision()) {
+                    if (entity.getCollisionBounds().intersects(gamePanel.getInteractables().get(i).getCollisionBounds())) {
+                        if (!gamePanel.getInteractables().get(i).isCollidable()) {
                             entity.setColliding(true);
                         }
                         if (player) {
@@ -122,8 +122,8 @@ public class CollisionHandler {
                 }
                 if (entity.getEntityDirection() == EntityDirection.LEFT) {
                     entity.getCollisionBounds().x -= entity.getSpeed();
-                    if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
-                        if (gamePanel.getInteractableObject().get(i).getCollision()) {
+                    if (entity.getCollisionBounds().intersects(gamePanel.getInteractables().get(i).getCollisionBounds())) {
+                        if (!gamePanel.getInteractables().get(i).isCollidable()) {
                             entity.setColliding(true);
                         }
                         if (player) {
@@ -133,8 +133,8 @@ public class CollisionHandler {
                 }
                 if (entity.getEntityDirection() == EntityDirection.RIGHT) {
                     entity.getCollisionBounds().x += entity.getSpeed();
-                    if (entity.getCollisionBounds().intersects(gamePanel.getInteractableObject().get(i).getCollisionBounds())) {
-                        if (gamePanel.getInteractableObject().get(i).getCollision()) {
+                    if (entity.getCollisionBounds().intersects(gamePanel.getInteractables().get(i).getCollisionBounds())) {
+                        if (!gamePanel.getInteractables().get(i).isCollidable()) {
                             entity.setColliding(true);
                         }
                         if (player) {
@@ -142,10 +142,10 @@ public class CollisionHandler {
                         }
                     }
                 }
-                entity.getCollisionBounds().x = entity.getCollisionBoundsX();
-                entity.getCollisionBounds().y = entity.getCollisionBoundsY();
-                gamePanel.getInteractableObject().get(i).getCollisionBounds().x = gamePanel.getInteractableObject().get(i).getCollisionBoundsDefaultX();
-                gamePanel.getInteractableObject().get(i).getCollisionBounds().y = gamePanel.getInteractableObject().get(i).getCollisionBoundsDefaultY();
+                entity.getCollisionBounds().x = entity.getCollisionBoundsDefaultX();
+                entity.getCollisionBounds().y = entity.getCollisionBoundsDefaultY();
+                gamePanel.getInteractables().get(i).getCollisionBounds().x = gamePanel.getInteractables().get(i).getCollisionBoundsDefaultX();
+                gamePanel.getInteractables().get(i).getCollisionBounds().y = gamePanel.getInteractables().get(i).getCollisionBoundsDefaultY();
 
             }
         }

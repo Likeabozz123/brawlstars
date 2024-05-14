@@ -1,5 +1,7 @@
 package xyz.gamars.graphics.panels;
 
+import xyz.gamars.game.entity.IUpdating;
+import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.handlers.CollisionHandler;
 import xyz.gamars.game.handlers.GrassHandler;
@@ -9,8 +11,7 @@ import xyz.gamars.game.layers.GrassLayer;
 import xyz.gamars.game.layers.Layer;
 import xyz.gamars.game.layers.LayerManager;
 import xyz.gamars.game.layers.TileLayer;
-import xyz.gamars.game.object.Interactable;
-import xyz.gamars.game.object.InteractablePlacement;
+import xyz.gamars.game.entity.entities.EntityPlacement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private CollisionHandler collisionHandler = new CollisionHandler();
     private GrassHandler grassHandler = new GrassHandler();
-    private InteractablePlacement interactablePlacement = new InteractablePlacement();
+    private EntityPlacement entityPlacement = new EntityPlacement();
 
     private LayerManager layerManager = new LayerManager();
 
@@ -63,7 +64,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private Player player;
 
-    private ArrayList<Interactable> interactables = new ArrayList<>();
+    // private ArrayList<Interactable> interactables = new ArrayList<>();
+    private ArrayList<Entity> interactables = new ArrayList<>();
 
     /**
      * Constructs the game panel.
@@ -83,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         this.player = new Player(keyHandler, 3);
         layerManager.setupLayers();
-        interactablePlacement.setInteractables();
+        entityPlacement.setEntityPositions();
     }
 
     /**
@@ -133,6 +135,11 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public void update() {
         player.update();
+
+        for (int i = interactables.size() -  1; i >= 0; i--) {
+            Entity entity = interactables.get(i);
+            if (entity instanceof IUpdating) ((IUpdating) entity).update();
+        }
     }
 
     /**
@@ -150,7 +157,7 @@ public class GamePanel extends JPanel implements Runnable {
             layer.draw(graphics2D);
         }
 
-        for (Interactable interactable : interactables) {
+        for (Entity interactable : interactables) {
             interactable.draw(graphics2D);
         }
 
@@ -274,7 +281,7 @@ public class GamePanel extends JPanel implements Runnable {
         return (GrassLayer) this.layerManager.getAbovePlayerLayers().get(0);
     }
 
-    public ArrayList<Interactable> getInteractableObject() {
+    public ArrayList<Entity> getInteractables() {
         return interactables;
     }
 }

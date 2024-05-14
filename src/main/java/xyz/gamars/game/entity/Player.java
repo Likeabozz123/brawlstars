@@ -1,7 +1,7 @@
 package xyz.gamars.game.entity;
 
-import xyz.gamars.game.IAnimatable;
 import xyz.gamars.game.handlers.KeyHandler;
+import xyz.gamars.game.entity.entities.BulletEntity;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /**
  * The Player Class.
  */
-public class Player extends Entity implements IAnimatable {
+public class Player extends Entity implements IAnimatable, IUpdating {
 
     private KeyHandler keyHandler;
 
@@ -33,15 +33,19 @@ public class Player extends Entity implements IAnimatable {
 
     private boolean inGrass;
 
+    private final int BULLET_COOLDOWN = 20;
+    private int currentBulletCooldown = 0;
+
     /**
      * Constructs a player entity with the specified game panel and key handler.
      *
      * @param keyHandler The key handler for controlling the player.
      */
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
-        super(GamePanel.getGamePanel().getWorldWidth() / 2, GamePanel.getGamePanel().getWorldHeight() / 2, 3,
-                new Rectangle(GamePanel.getGamePanel().getTileSize() / 6, GamePanel.getGamePanel().getTileSize() / 3, (GamePanel.getGamePanel().getTileSize() / 3) * 2, (GamePanel.getGamePanel().getTileSize() / 3) * 2)
-                , EntityDirection.RIGHT);
+        super(GamePanel.getGamePanel().getWorldWidth() / 2, GamePanel.getGamePanel().getWorldHeight() / 2, 3,  null,
+                new Rectangle(GamePanel.getGamePanel().getTileSize() / 6, GamePanel.getGamePanel().getTileSize() / 3,
+                        (GamePanel.getGamePanel().getTileSize() / 3) * 2, (GamePanel.getGamePanel().getTileSize() / 3) * 2)
+                , EntityDirection.RIGHT, false);
 
         this.keyHandler = keyHandler;
         this.inGrass = false;
@@ -133,11 +137,23 @@ public class Player extends Entity implements IAnimatable {
                 }
             }
 
-            incrementFrame();
+            incrementCurrentFrame();
             if (getCurrentFrameCount() > 12) {
                 incrementCurrentSpriteIndex();
                 setCurrentFrameCount(0);
             }
+        }
+
+        if (keyHandler.isSpacePressed()) {
+            if (currentBulletCooldown <= 0) {
+                try {
+                    GamePanel.getGamePanel().getInteractables().add(new BulletEntity(getWorldX(), getWorldY(), getEntityDirection()));
+                    currentBulletCooldown = BULLET_COOLDOWN;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            currentBulletCooldown--;
         }
     }
 
@@ -146,24 +162,25 @@ public class Player extends Entity implements IAnimatable {
      *
      * @param graphics2D The graphics context to draw the player.
      */
+    @Override
     public void draw(Graphics2D graphics2D) {
-        BufferedImage image = null;
+        setImage(null);
         GamePanel gamePanel = GamePanel.getGamePanel();
 
         if (getEntityDirection() == EntityDirection.UP) {
-            image = getUpImages()[getCurrentSpriteIndex()];
+            setImage(getUpImages()[getCurrentSpriteIndex()]);
         } else if (getEntityDirection() == EntityDirection.DOWN) {
-            image = getDownImages()[getCurrentSpriteIndex()];
+            setImage(getDownImages()[getCurrentSpriteIndex()]);
         } else if (getEntityDirection() == EntityDirection.LEFT) {
-            image = getLeftImages()[getCurrentSpriteIndex()];
+            setImage( getLeftImages()[getCurrentSpriteIndex()]);
         } else if (getEntityDirection() == EntityDirection.RIGHT) {
-            image = getRightImages()[getCurrentSpriteIndex()];
+            setImage(getRightImages()[getCurrentSpriteIndex()]);
         }
 
         if (isInGrass()) {
             graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
         }
-        graphics2D.drawImage(image, getScreenX(), getScreenY(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        graphics2D.drawImage(getImage(), getScreenX(), getScreenY(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 
     /**
@@ -214,7 +231,7 @@ public class Player extends Entity implements IAnimatable {
     /**
      * Increments the current frame count of the entity's animation.
      */
-    public void incrementFrame() {
+    public void incrementCurrentFrame() {
         currentFrameCount++;
     }
 
@@ -291,5 +308,7 @@ public class Player extends Entity implements IAnimatable {
         return rightImages;
     }
 
-
+    public int getCurrentBulletCooldown() {
+        return currentBulletCooldown;
+    }
 }

@@ -1,6 +1,9 @@
 package xyz.gamars.game.entity;
 
+import xyz.gamars.graphics.panels.GamePanel;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * The Entity Class.
@@ -13,29 +16,33 @@ public class Entity {
 
     private Rectangle collisionBounds;
     private boolean colliding = false;
+    private boolean collidable;
 
     private int collisionBoundsDefaultX;
     private int collisionBoundsDefaultY;
 
-    private Enum entityDirection;
+    private EntityDirection entityDirection;
+
+    private BufferedImage image;
 
     /**
      * Constructs an Entity with specified parameters.
      *
-     * @param x                The initial x-coordinate of the entity in the world.
-     * @param y                The initial y-coordinate of the entity in the world.
+     * @param worldX                The initial worldX-coordinate of the entity in the world.
+     * @param worldY                The initial worldY-coordinate of the entity in the world.
      * @param speed            The speed of the entity.
      * @param entityDirection  The initial direction of the entity.
-     * @param totalSpriteCount The total number of sprites for animation.
      */
-    public Entity(int x, int y, int speed, Rectangle collisionBounds, EntityDirection entityDirection) {
-        this.worldX = x;
-        this.worldY = y;
+    public Entity(int worldX, int worldY, int speed, BufferedImage image, Rectangle collisionBounds, EntityDirection entityDirection, boolean collidable) {
+        this.worldX = worldX;
+        this.worldY = worldY;
         this.speed = speed;
+        this.image = image;
         this.collisionBounds = collisionBounds;
         this.collisionBoundsDefaultX = collisionBounds.x;
         this.collisionBoundsDefaultY = collisionBounds.y;
         this.entityDirection = entityDirection;
+        this.collidable = collidable;
     }
 
     /**
@@ -92,7 +99,6 @@ public class Entity {
         this.speed = speed;
     }
 
-
     /**
      * Increments the Y-coordinate of the entity by its speed.
      */
@@ -125,11 +131,11 @@ public class Entity {
         return collisionBounds;
     }
 
-    public int getCollisionBoundsX() {
+    public int getCollisionBoundsDefaultX() {
         return collisionBoundsDefaultX;
     }
 
-    public int getCollisionBoundsY() {
+    public int getCollisionBoundsDefaultY() {
         return collisionBoundsDefaultY;
     }
 
@@ -146,7 +152,7 @@ public class Entity {
      *
      * @return The direction.
      */
-    public Enum getEntityDirection() {
+    public EntityDirection getEntityDirection() {
         return entityDirection;
     }
 
@@ -155,7 +161,35 @@ public class Entity {
      *
      * @param entityDirection The direction to set.
      */
-    public void setEntityDirection(Enum entityDirection) {
+    public void setEntityDirection(EntityDirection entityDirection) {
         this.entityDirection = entityDirection;
     }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
+    public boolean isCollidable() {
+        return collidable;
+    }
+
+    public void draw(Graphics2D graphics2D) {
+        GamePanel gamePanel = GamePanel.getGamePanel();
+        int screenX = worldX - gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX();
+        int screenY = worldY - gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY();
+
+        if (worldX + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldX() - gamePanel.getPlayer().getScreenX() &&
+                worldX - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX() &&
+                worldY + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldY() - gamePanel.getPlayer().getScreenY() &&
+                worldY - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY()) {
+
+            graphics2D.drawImage(image, screenX, screenY,
+                    gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        }
+    }
+
 }

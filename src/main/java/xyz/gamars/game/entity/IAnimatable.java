@@ -1,4 +1,4 @@
-package xyz.gamars.game;
+package xyz.gamars.game.entity;
 
 import java.awt.image.BufferedImage;
 
@@ -8,7 +8,7 @@ public interface IAnimatable {
 
     int getCurrentFrameCount();
 
-    void incrementFrame();
+    void incrementCurrentFrame();
 
     void setCurrentFrameCount(int currentFrameCount);
 

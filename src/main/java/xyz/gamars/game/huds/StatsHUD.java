@@ -25,6 +25,7 @@ public class StatsHUD {
         graphics2D.drawString("Player Sprite Frame: " + player.getCurrentSpriteIndex(), 5, graphics2D.getFont().getSize() * 4);
         graphics2D.drawString("Collision: " + player.isColliding(), 5, graphics2D.getFont().getSize() * 5);
         graphics2D.drawString("In Grass: " + player.isInGrass(), 5, graphics2D.getFont().getSize() * 6);
+        graphics2D.drawString("Bullet Cooldown: " + player.getCurrentBulletCooldown(), 5, graphics2D.getFont().getSize() * 7);
     }
 
 }

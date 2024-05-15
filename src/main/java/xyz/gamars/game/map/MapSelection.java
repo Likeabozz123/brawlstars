@@ -34,4 +34,8 @@ public enum MapSelection {
     public String getFolder() {
         return folder;
     }
+
+    public String getMapName() {
+        return name().charAt(0) + name().substring(1).toLowerCase();
+    }
 }

@@ -28,6 +28,7 @@ public class StatsHUD {
         graphics2D.drawString("In Grass: " + player.isInGrass(), 5, graphics2D.getFont().getSize() * 6);
         graphics2D.drawString("Bullet Cooldown: " + player.getCurrentBulletCooldown(), 5, graphics2D.getFont().getSize() * 7);
         graphics2D.drawString("Interactables: " + GamePanel.getGamePanel().getInteractables(), 5, graphics2D.getFont().getSize() * 8);
+        graphics2D.drawString("Map: " + GamePanel.getGamePanel().getMapSelection().getMapName(), 5, graphics2D.getFont().getSize() * 9);
     }
 
 }

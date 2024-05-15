@@ -44,13 +44,17 @@ public class TileLayer extends Layer {
                     // tile 2: grass
                     // tile 3: crate
                     boolean collidable = true;
-                    switch (tileIndex) {
-                        case 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13:
-                            collidable = false;
-                            break;
-                        default:
-                            collidable = true;
-                            break;
+                    switch (GamePanel.getGamePanel().getMapSelection()) {
+                        case UNDERGROUND -> {
+                            switch (tileIndex) {
+                                case 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13:
+                                    collidable = false;
+                                    break;
+                                default:
+                                    collidable = true;
+                                    break;
+                            }
+                        }
                     }
                     tiles[x][y] = new Tile( x * GamePanel.getGamePanel().getTileSize(),
                                             y * GamePanel.getGamePanel().getTileSize(),

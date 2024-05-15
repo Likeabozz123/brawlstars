@@ -15,7 +15,6 @@ public class KeyHandler implements KeyListener {
     private boolean spacePressed;
 
 
-
     @Override
     public void keyTyped(KeyEvent e) {
         // This method not used

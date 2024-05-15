@@ -28,10 +28,10 @@ public class Entity {
     /**
      * Constructs an Entity with specified parameters.
      *
-     * @param worldX                The initial worldX-coordinate of the entity in the world.
-     * @param worldY                The initial worldY-coordinate of the entity in the world.
-     * @param speed            The speed of the entity.
-     * @param entityDirection  The initial direction of the entity.
+     * @param worldX          The initial worldX-coordinate of the entity in the world.
+     * @param worldY          The initial worldY-coordinate of the entity in the world.
+     * @param speed           The speed of the entity.
+     * @param entityDirection The initial direction of the entity.
      */
     public Entity(int worldX, int worldY, int speed, BufferedImage image, Rectangle collisionBounds, EntityDirection entityDirection, boolean collidable) {
         this.worldX = worldX;
@@ -43,8 +43,6 @@ public class Entity {
         this.collisionBoundsDefaultY = collisionBounds.y;
         this.entityDirection = entityDirection;
         this.collidable = collidable;
-        ID++;
-        this.entityID = ID;
     }
 
     /**
@@ -200,7 +198,6 @@ public class Entity {
             graphics2D.setColor(Color.MAGENTA);
         }
     }
-
 
 
 }

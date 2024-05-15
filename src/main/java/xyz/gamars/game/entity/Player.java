@@ -2,9 +2,8 @@ package xyz.gamars.game.entity;
 
 import xyz.gamars.game.entity.components.IAnimatable;
 import xyz.gamars.game.entity.components.IUpdating;
-import xyz.gamars.game.entity.entities.CrateEntity;
-import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.game.entity.entities.BulletEntity;
+import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -45,7 +44,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * @param keyHandler The key handler for controlling the player.
      */
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
-        super(GamePanel.getGamePanel().getWorldWidth() / 2, GamePanel.getGamePanel().getWorldHeight() / 2, 3,  null,
+        super(GamePanel.getGamePanel().getWorldWidth() / 2, GamePanel.getGamePanel().getWorldHeight() / 2, 3, null,
                 new Rectangle(GamePanel.getGamePanel().getTileSize() / 6, GamePanel.getGamePanel().getTileSize() / 3,
                         (GamePanel.getGamePanel().getTileSize() / 3) * 2, (GamePanel.getGamePanel().getTileSize() / 3) * 2)
                 , EntityDirection.RIGHT, false);
@@ -178,7 +177,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         } else if (getEntityDirection() == EntityDirection.DOWN) {
             setImage(getDownImages()[getCurrentSpriteIndex()]);
         } else if (getEntityDirection() == EntityDirection.LEFT) {
-            setImage( getLeftImages()[getCurrentSpriteIndex()]);
+            setImage(getLeftImages()[getCurrentSpriteIndex()]);
         } else if (getEntityDirection() == EntityDirection.RIGHT) {
             setImage(getRightImages()[getCurrentSpriteIndex()]);
         }

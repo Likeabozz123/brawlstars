@@ -13,7 +13,6 @@ public class EntityPlacement {
             gamePanel.getInteractables().add(new CrateEntity(8 * gamePanel.getTileSize(), 8 * gamePanel.getTileSize()));
 
 
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

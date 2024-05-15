@@ -14,8 +14,8 @@ public class CrateEntity extends Entity {
     /**
      * Constructs an Entity with specified parameters.
      *
-     * @param worldX               The initial worldX-coordinate of the entity in the world.
-     * @param worldY               The initial worldY-coordinate of the entity in the world.
+     * @param worldX The initial worldX-coordinate of the entity in the world.
+     * @param worldY The initial worldY-coordinate of the entity in the world.
      */
     public CrateEntity(int worldX, int worldY) throws IOException {
         super(worldX, worldY, 0, ImageIO.read(new ResourceFile("tiles/tile_3_layer_0.png")),

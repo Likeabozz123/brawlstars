@@ -1,8 +1,9 @@
 package xyz.gamars.graphics.panels;
 
-import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.Player;
+import xyz.gamars.game.entity.components.IUpdating;
+import xyz.gamars.game.entity.entities.EntityPlacement;
 import xyz.gamars.game.handlers.CollisionHandler;
 import xyz.gamars.game.handlers.GrassHandler;
 import xyz.gamars.game.handlers.KeyHandler;
@@ -11,7 +12,6 @@ import xyz.gamars.game.layers.GrassLayer;
 import xyz.gamars.game.layers.Layer;
 import xyz.gamars.game.layers.LayerManager;
 import xyz.gamars.game.layers.TileLayer;
-import xyz.gamars.game.entity.entities.EntityPlacement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -136,7 +136,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         player.update();
 
-        for (int i = interactables.size() -  1; i >= 0; i--) {
+        for (int i = interactables.size() - 1; i >= 0; i--) {
             Entity entity = interactables.get(i);
             if (entity instanceof IUpdating) ((IUpdating) entity).update();
         }

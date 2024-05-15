@@ -1,16 +1,15 @@
 package xyz.gamars.game.entity.entities;
 
-import xyz.gamars.game.entity.components.IExpireable;
-import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.EntityDirection;
+import xyz.gamars.game.entity.components.IExpireable;
+import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class BulletEntity extends Entity implements IUpdating, IExpireable {
 
@@ -20,8 +19,8 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
     /**
      * Constructs an Entity with specified parameters.
      *
-     * @param worldX          The initial worldX-coordinate of the entity in the world.
-     * @param worldY          The initial worldY-coordinate of the entity in the world.
+     * @param worldX The initial worldX-coordinate of the entity in the world.
+     * @param worldY The initial worldY-coordinate of the entity in the world.
      */
     public BulletEntity(int worldX, int worldY, EntityDirection entityDirection) throws IOException {
         super(worldX, worldY, 4, ImageIO.read(new ResourceFile("tiles/tile_3_layer_0.png")),
@@ -41,7 +40,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
             incrementX();
         }
         lifespan--;
-        if (lifespan <= 0) die();
+        if (lifespan <= 0) die();w
         handleCollisions();
 
     }
@@ -56,7 +55,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
     }
 
     public void handleCollisions() {
-        if(isColliding()) {
+        if (isColliding()) {
             die();
         }
     }

@@ -1,6 +1,6 @@
 package xyz.gamars.game.entity;
 
-import xyz.gamars.game.layers.Tile;
+import xyz.gamars.game.layers.tiles.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 
 import java.awt.*;

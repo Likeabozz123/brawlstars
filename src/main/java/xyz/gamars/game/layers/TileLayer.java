@@ -1,5 +1,7 @@
 package xyz.gamars.game.layers;
 
+import xyz.gamars.game.layers.tiles.Tile;
+import xyz.gamars.game.map.MapSelection;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -30,7 +32,8 @@ public class TileLayer extends Layer {
     @Override
     public void setupImages() {
         try {
-            Scanner scanner = new Scanner(new ResourceFile("maps/map_layer_0.txt"));
+            Scanner scanner = new Scanner(new ResourceFile("maps/map_" + GamePanel.getGamePanel().getMapSelection().getMapID() + "_layer_0.txt"));
+
             for (int y = 0; y < GamePanel.getGamePanel().getMaxWorldHeight(); y++) {
                 for (int x = 0; x < GamePanel.getGamePanel().getMaxWorldWidth(); x++) {
                     int tileIndex = scanner.nextInt();
@@ -40,18 +43,22 @@ public class TileLayer extends Layer {
                     // tile 1: bricks
                     // tile 2: grass
                     // tile 3: crate
-
-                    if (tileIndex == 1) {
-                        tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_0.png")), false);
-                    } else if (tileIndex == -1) {
-                        tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), null, true);
-                    } else {
-                        tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_0.png")), true);
+                    boolean collidable = true;
+                    switch (tileIndex) {
+                        case 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13:
+                            collidable = false;
+                            break;
+                        default:
+                            collidable = true;
+                            break;
                     }
+                    tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize() , y * GamePanel.getGamePanel().getTileSize(),
+                            ImageIO.read(new ResourceFile("tiles/" + GamePanel.getGamePanel().getMapSelection().getFolder() + "/tile_" + tileIndex + "_layer_0.png")), collidable);
+
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Can not find map_layer_0.txt");
+            System.out.println("Can not find map file");
             throw new RuntimeException(e);
         } catch (IOException e) {
             System.out.println("Can not find tile image");
@@ -82,6 +89,7 @@ public class TileLayer extends Layer {
                     if (tiles[x][y] != null) {
                         graphics2D.drawImage(tiles[x][y].getImage(), screenX, screenY,
                                 gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+
                     }
                 }
 

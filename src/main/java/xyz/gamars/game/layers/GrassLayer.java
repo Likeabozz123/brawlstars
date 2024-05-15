@@ -1,5 +1,8 @@
 package xyz.gamars.game.layers;
 
+import xyz.gamars.game.layers.tiles.EmptyTile;
+import xyz.gamars.game.layers.tiles.GrassTile;
+import xyz.gamars.game.layers.tiles.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -21,7 +24,8 @@ public class GrassLayer extends Layer {
     @Override
     public void setupImages() {
         try {
-            Scanner scanner = new Scanner(new ResourceFile("maps/map_layer_1.txt"));
+            Scanner scanner = new Scanner(new ResourceFile("maps/map_" + GamePanel.getGamePanel().getMapSelection().getMapID() + "_layer_1.txt"));
+
             for (int y = 0; y < GamePanel.getGamePanel().getMaxWorldHeight(); y++) {
                 for (int x = 0; x < GamePanel.getGamePanel().getMaxWorldWidth(); x++) {
                     int tileIndex = scanner.nextInt();
@@ -29,7 +33,9 @@ public class GrassLayer extends Layer {
                     // tile 0: grass
 
                     if (tileIndex != -1) {
-                        tiles[x][y] = new GrassTile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_1.png")), false);
+                        tiles[x][y] = new GrassTile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(),
+                                ImageIO.read(new ResourceFile("tiles/" + GamePanel.getGamePanel().getMapSelection().getFolder() + "/tile_" + tileIndex + "_layer_1.png")), true);
+
                     } else {
                         tiles[x][y] = new EmptyTile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize());
                     }

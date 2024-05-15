@@ -4,7 +4,8 @@ import xyz.gamars.game.entity.components.IAnimatable;
 import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.game.entity.entities.BulletEntity;
 import xyz.gamars.game.handlers.KeyHandler;
-import xyz.gamars.game.layers.Tile;
+import xyz.gamars.game.layers.tiles.GrassTile;
+import xyz.gamars.game.layers.tiles.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -45,7 +46,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * @param keyHandler The key handler for controlling the player.
      */
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
-        super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 6, 3, 20, null,
+        super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 7, 3, 20, null,
                 new Rectangle((GamePanel.getGamePanel().getTileSize() * 8) + (GamePanel.getGamePanel().getTileSize() / 4) - 3,
                         (GamePanel.getGamePanel().getTileSize() * 6) + (GamePanel.getGamePanel().getTileSize() / 3) - 1,
                         (GamePanel.getGamePanel().getTileSize() / 3) * 2,
@@ -214,7 +215,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         for (Tile[] tiles : gamePanel.getGrassLayer().getTiles()) {
             for (Tile tile : tiles) {
                 if (this.getCollisionBounds().intersects(tile.getCollisionBounds())) {
-                    if (!tile.isCollidable()) return tile;
+                    if (tile instanceof GrassTile) return tile;
                 }
             }
         }

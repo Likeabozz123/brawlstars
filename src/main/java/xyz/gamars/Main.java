@@ -1,6 +1,6 @@
 package xyz.gamars;
 
-import xyz.gamars.discord.TempDiscordRP;
+import xyz.gamars.discord.DiscordRP;
 import xyz.gamars.graphics.PanelManager;
 
 public class Main {
@@ -10,8 +10,8 @@ public class Main {
         Thread discordRPThread = new Thread() {
             @Override
             public void run() {
-                TempDiscordRP tempDiscordRP = new TempDiscordRP();
-                tempDiscordRP.start();
+                DiscordRP discordRP = new DiscordRP();
+                discordRP.start();
             }
         };
         discordRPThread.start();

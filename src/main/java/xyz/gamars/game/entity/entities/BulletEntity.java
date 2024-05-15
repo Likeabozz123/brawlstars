@@ -4,7 +4,7 @@ import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.EntityDirection;
 import xyz.gamars.game.entity.components.IExpireable;
 import xyz.gamars.game.entity.components.IUpdating;
-import xyz.gamars.game.layers.Tile;
+import xyz.gamars.game.layers.tiles.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 

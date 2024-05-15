@@ -1,4 +1,4 @@
-package xyz.gamars.game.layers;
+package xyz.gamars.game.layers.tiles;
 
 import xyz.gamars.graphics.panels.GamePanel;
 
@@ -24,7 +24,7 @@ public class Tile {
     public Tile(int worldX, int worldY, BufferedImage image, boolean collidable) {
         this.image = image;
         this.collidable = collidable;
-        this.collisionBounds = new Rectangle(worldX, worldY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
+        this.collisionBounds = new Rectangle(worldX, worldY - GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
     }
 
     /**

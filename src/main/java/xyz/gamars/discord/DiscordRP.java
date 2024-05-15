@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 
-public class TempDiscordRP {
+public class DiscordRP {
 
     public void start() {
 

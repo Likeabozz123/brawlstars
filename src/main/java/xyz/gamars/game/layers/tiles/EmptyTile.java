@@ -1,4 +1,4 @@
-package xyz.gamars.game.layers;
+package xyz.gamars.game.layers.tiles;
 
 public class EmptyTile extends Tile {
 

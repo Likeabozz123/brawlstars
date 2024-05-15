@@ -3,13 +3,14 @@ package xyz.gamars.graphics.panels;
 import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.entity.components.IUpdating;
-import xyz.gamars.game.entity.entities.EntityPlacement;
+import xyz.gamars.game.entity.EntityPlacement;
 import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.game.huds.StatsHUD;
 import xyz.gamars.game.layers.GrassLayer;
 import xyz.gamars.game.layers.Layer;
 import xyz.gamars.game.layers.LayerManager;
 import xyz.gamars.game.layers.TileLayer;
+import xyz.gamars.game.map.MapSelection;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,9 +38,11 @@ public class GamePanel extends JPanel implements Runnable {
     private final int screenWidth = tileSize * maxScreenWidth; //768 pix
     private final int screenHeight = tileSize * maxScreenHeight; // 576 pix
 
+    private MapSelection mapSelection = MapSelection.UNDERGROUND;
+
     // The size of the world in tiles
-    private final int maxWorldWidth = 16;
-    private final int maxWorldHeight = 12;
+    private final int maxWorldWidth = mapSelection.getMaxWorldWidth();
+    private final int maxWorldHeight = mapSelection.getMaxWorldHeight();
 
     // The actual pixel size of the world
     private final int worldWidth = tileSize * maxWorldWidth;
@@ -48,11 +51,8 @@ public class GamePanel extends JPanel implements Runnable {
     private Thread gameThread;
 
     private KeyHandler keyHandler = new KeyHandler();
-
     private EntityPlacement entityPlacement = new EntityPlacement();
-
     private LayerManager layerManager = new LayerManager();
-
     private StatsHUD statsHUD = new StatsHUD();
 
     private final int FPS = 60;
@@ -60,7 +60,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     private Player player;
 
-    // private ArrayList<Interactable> interactables = new ArrayList<>();
     private ArrayList<Entity> interactables = new ArrayList<>();
 
     /**
@@ -260,7 +259,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player getPlayer() {
         return player;
     }
-    
+
 
     public TileLayer getTileLayer() {
         return (TileLayer) this.layerManager.getBelowPlayerLayers().get(0);
@@ -272,5 +271,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public ArrayList<Entity> getInteractables() {
         return interactables;
+    }
+
+    public MapSelection getMapSelection() {
+        return mapSelection;
     }
 }

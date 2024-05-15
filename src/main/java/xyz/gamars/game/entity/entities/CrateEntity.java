@@ -25,6 +25,6 @@ public class CrateEntity extends Entity {
 
     @Override
     public String toString() {
-        return "CrateEntity{position=" + getWorldX() + ", " + getWorldY() + "entityID=" + getEntityID() + "}";
+        return "CrateEntity{position=" + getWorldX() + ", " + getWorldY() + "}";
     }
 }

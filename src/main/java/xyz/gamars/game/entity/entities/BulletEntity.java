@@ -40,7 +40,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
             incrementX();
         }
         lifespan--;
-        if (lifespan <= 0) die();w
+        if (lifespan <= 0) die();
         handleCollisions();
 
     }

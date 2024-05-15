@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 /**
  * The Player Class.
+ * @author Daryan, Vishak, Sai
  */
 public class Player extends Entity implements IAnimatable, IUpdating {
 
@@ -44,6 +45,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Constructs a player entity with the specified game panel and key handler.
      *
      * @param keyHandler The key handler for controlling the player.
+     * @author Daryan, Vishak, Sai
      */
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
         super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 7, 3, 20, null,
@@ -70,6 +72,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Loads the player images from resources.
+     * @author Daryan, Vishak, Sai
      */
     private void loadPlayerImages() {
         try {
@@ -88,6 +91,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Updates the player's position and animation frame based on user input.
+     * @author Daryan, Vishak, Sai
      */
     public void update() {
         if (keyHandler.isUpPressed() || keyHandler.isDownPressed() || keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
@@ -168,6 +172,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Draws the player on the screen.
      *
      * @param graphics2D The graphics context to draw the player.
+     * @author Daryan, Vishak, Sai
      */
     @Override
     public void draw(Graphics2D graphics2D) {
@@ -200,7 +205,10 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         graphics2D.drawRect(screenX, screenY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
     }
 
-
+    /**
+     * Updates the collision state of the player based on collisions with grass tiles.
+     * @author Daryan, Vishak, Sai
+     */
     @Override
     public void handleCollisions() {
         super.handleCollisions();
@@ -210,7 +218,13 @@ public class Player extends Entity implements IAnimatable, IUpdating {
             inGrass = true;
         }
     }
-
+    /**
+     * Finds and returns the grass tile that the player is currently colliding with.
+     * If the player is not colliding with any grass tile, null is returned.
+     *
+     * @return the grass tile that the player is colliding with, or null if there is no collision.
+     * @author Daryan, Vishak, Sai
+     */
     public Tile getCollidingGrass() {
         GamePanel gamePanel = GamePanel.getGamePanel();
         for (Tile[] tiles : gamePanel.getGrassLayer().getTiles()) {
@@ -258,6 +272,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the x-coordinate of the player's position on the screen.
      *
      * @return The x-coordinate of the player's position.
+     * @author Daryan, Vishak, Sai
      */
     public int getScreenX() {
         return screenX;
@@ -267,6 +282,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the y-coordinate of the player's position on the screen.
      *
      * @return The y-coordinate of the player's position.
+     * @author Daryan, Vishak, Sai
      */
     public int getScreenY() {
         return screenY;
@@ -284,6 +300,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the total number of sprites for animation.
      *
      * @return The total sprite count.
+     * @author Daryan, Vishak, Sai
      */
     public int getTotalSpriteCount() {
         return totalSpriteCount;
@@ -293,6 +310,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the current frame count of the entity's animation.
      *
      * @return The current frame count.
+     * @author Daryan, Vishak, Sai
      */
     public int getCurrentFrameCount() {
         return currentFrameCount;
@@ -300,6 +318,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Increments the current frame count of the entity's animation.
+     * @author Daryan, Vishak, Sai
      */
     public void incrementCurrentFrame() {
         currentFrameCount++;
@@ -309,6 +328,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Sets the current frame count of the entity's animation.
      *
      * @param currentFrameCount The frame count to set.
+     * @author Daryan, Vishak, Sai
      */
     public void setCurrentFrameCount(int currentFrameCount) {
         this.currentFrameCount = currentFrameCount;
@@ -318,6 +338,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the index of the current sprite in the animation.
      *
      * @return The current sprite index.
+     * @author Daryan, Vishak, Sai
      */
     public int getCurrentSpriteIndex() {
         return currentSpriteIndex;
@@ -327,6 +348,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Sets the index of the current sprite in the animation.
      *
      * @param currentSpriteIndex The sprite index to set.
+     * @author Daryan, Vishak, Sai
      */
     public void setCurrentSpriteIndex(int currentSpriteIndex) {
         this.currentSpriteIndex = currentSpriteIndex;
@@ -334,6 +356,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Increments the index of the current sprite in the animation.
+     * @author Daryan, Vishak, Sai
      */
     public void incrementCurrentSpriteIndex() {
         this.currentSpriteIndex++;
@@ -346,6 +369,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the array of images for the entity facing upwards.
      *
      * @return The array of images.
+     * @author Daryan, Vishak, Sai
      */
     public BufferedImage[] getUpImages() {
         return upImages;
@@ -355,6 +379,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the array of images for the entity facing downwards.
      *
      * @return The array of images.
+     * @author Daryan, Vishak, Sai
      */
     public BufferedImage[] getDownImages() {
         return downImages;
@@ -364,6 +389,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the array of images for the entity facing leftwards.
      *
      * @return The array of images.
+     * @author Daryan, Vishak, Sai
      */
     public BufferedImage[] getLeftImages() {
         return leftImages;
@@ -373,11 +399,17 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * Gets the array of images for the entity facing rightwards.
      *
      * @return The array of images.
+     * @author Daryan, Vishak, Sai
      */
     public BufferedImage[] getRightImages() {
         return rightImages;
     }
 
+    /**
+     * Gets the bullet cooldown time on the HUD
+     * @return the current bullet cooldown time
+     * @author Daryan, Vishak, Sai
+     */
     public int getCurrentBulletCooldown() {
         return currentBulletCooldown;
     }

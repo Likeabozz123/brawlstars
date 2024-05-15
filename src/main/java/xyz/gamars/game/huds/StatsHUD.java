@@ -7,6 +7,7 @@ import java.awt.*;
 
 /**
  * The StatsHUD class handles how the HUD renders on screen for the user.
+ * @author Daryan, Vishak, Sai
  */
 public class StatsHUD {
 
@@ -16,6 +17,7 @@ public class StatsHUD {
      * @param graphics2D The Graphics2D object to draw on
      * @param FPS        The current FPS
      * @param player     The player object that the HUD retrieves and displays information about
+     * @author Daryan, Vishak, Sai
      */
     public void draw(Graphics2D graphics2D, int FPS, Player player) {
         graphics2D.setFont(new Font("Arial", Font.BOLD, 16));

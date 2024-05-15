@@ -14,6 +14,7 @@ public class PongPacket implements Packet {
      * Returns message of the packet
      *
      * @return message
+     * @author Daryan, Vishak, Sai
      */
     public String getMessage() {
         return message;

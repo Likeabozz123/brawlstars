@@ -5,9 +5,17 @@ import xyz.gamars.graphics.panels.GamePanel;
 
 import java.io.IOException;
 
+/**
+ *  The EntityPlacement class handles the initial placement of entities in the game world.
+ *  @author Daryan, Vishak, Sai
+ */
 public class EntityPlacement {
-
+    /**
+     * Sets the initial positions of entities in the game world.
+     * @author Daryan, Vishak, Sai
+     */
     public void setEntityPositions() {
+
         GamePanel gamePanel = GamePanel.getGamePanel();
 
         try {

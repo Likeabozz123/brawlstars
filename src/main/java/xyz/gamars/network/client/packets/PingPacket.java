@@ -14,6 +14,7 @@ public class PingPacket implements Packet {
      * Returns what the message of the packet is
      *
      * @return message
+     * @author Daryan, Vishak, Sai
      */
     public String getMessage() {
         return message;

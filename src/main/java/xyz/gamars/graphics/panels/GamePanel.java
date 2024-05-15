@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * The GamePanel Class.
+ * @author Daryan, Vishak, Sai
  */
 public class GamePanel extends JPanel implements Runnable {
 
@@ -64,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * Constructs the game panel.
+     * @author Daryan, Vishak, Sai
      */
     private GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -72,11 +74,19 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
     }
-
+    /**
+     * Retrieves the singleton instance of the GamePanel class.
+     *
+     * @return The singleton instance of GamePanel.
+     * @author Daryan, Vishak, Sai
+     */
     public static GamePanel getGamePanel() {
         return gamePanel;
     }
-
+    /**
+     * Sets up the game by initializing the player, layer manager, and entity positions.
+     * @author Daryan, Vishak, Sai
+     */
     public void setUpGame() {
         this.player = new Player(keyHandler, 3);
         layerManager.setupLayers();
@@ -85,6 +95,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * Starts the game thread.
+     * @author Daryan, Vishak, Sai
      */
     public void startGameThread() {
         gameThread = new Thread(this);
@@ -93,6 +104,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * The main game loop.
+     * @author Daryan, Vishak, Sai
      */
     @Override
     public void run() {
@@ -127,6 +139,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * Updates game logic.
+     * @author Daryan, Vishak, Sai
      */
     public void update() {
         player.update();
@@ -141,6 +154,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Renders graphics.
      *
      * @param graphics The graphics context.
+     * @author Daryan, Vishak, Sai
      */
     @Override
     public void paintComponent(Graphics graphics) {
@@ -174,6 +188,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the tile size.
      *
      * @return The size of a single tile.
+     * @author Daryan, Vishak, Sai
      */
     public int getTileSize() {
         return tileSize;
@@ -183,6 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the max screen width (in tiles).
      *
      * @return The maximum number of tiles that fit on the screen.
+     * @author Daryan, Vishak, Sai
      */
     public int getMaxScreenWidth() {
         return maxScreenWidth;
@@ -192,6 +208,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the max screen height (in tiles).
      *
      * @return The maximum number of tiles that fit on the screen.
+     * @author Daryan, Vishak, Sai
      */
     public int getMaxScreenHeight() {
         return maxScreenHeight;
@@ -201,6 +218,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the screen width.
      *
      * @return The width of the screen.
+     * @author Daryan, Vishak, Sai
      */
     public int getScreenWidth() {
         return screenWidth;
@@ -210,6 +228,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the screen height.
      *
      * @return The height of the screen.
+     * @author Daryan, Vishak, Sai
      */
     public int getScreenHeight() {
         return screenHeight;
@@ -219,6 +238,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the max width of the world (in tiles).
      *
      * @return The maximum number of columns in the game world.
+     * @author Daryan, Vishak, Sai
      */
     public int getMaxWorldWidth() {
         return maxWorldWidth;
@@ -228,6 +248,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the max height of the world (in tiles).
      *
      * @return The maximum number of rows in the game world.
+     * @author Daryan, Vishak, Sai
      */
     public int getMaxWorldHeight() {
         return maxWorldHeight;
@@ -237,6 +258,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the width of the game world (in pixels).
      *
      * @return The width of the game world.
+     * @author Daryan, Vishak, Sai
      */
     public int getWorldWidth() {
         return worldWidth;
@@ -246,6 +268,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the height of the game world (in pixels).
      *
      * @return The height of the game world.
+     * @author Daryan, Vishak, Sai
      */
     public int getWorldHeight() {
         return worldHeight;
@@ -255,20 +278,36 @@ public class GamePanel extends JPanel implements Runnable {
      * Gets the player object.
      *
      * @return The player object.
+     * @author Daryan, Vishak, Sai
      */
     public Player getPlayer() {
         return player;
     }
 
-
+    /**
+     * Retrieves the TileLayer object, which represents the layer containing tile elements.
+     *
+     * @return The TileLayer object.
+     * @author Daryan, Vishak, Sai
+     */
     public TileLayer getTileLayer() {
         return (TileLayer) this.layerManager.getBelowPlayerLayers().get(0);
     }
-
+    /**
+     * Retrieves the GrassLayer object, which represents the layer containing grass elements.
+     *
+     * @return The GrassLayer object.
+     * @author Daryan, Vishak, Sai
+     */
     public GrassLayer getGrassLayer() {
         return (GrassLayer) this.layerManager.getAbovePlayerLayers().get(0);
     }
-
+    /**
+     * Retrieves the list of interactable entities in the game.
+     *
+     * @return An ArrayList containing the interactable entities.
+     * @author Daryan, Vishak, Sai
+     */
     public ArrayList<Entity> getInteractables() {
         return interactables;
     }

@@ -16,23 +16,40 @@ public class PanelManager {
 
     private GamePanel gamePanel;
 
+    /**
+     * Constructs the PanelManager instance, instantiates the window, panels, and starts the window.
+     * @author Daryan, Vishak, Sai
+     */
     private PanelManager() {
         instantiateWindow();
         instantiatePanels();
         startWindow();
     }
 
+    /**
+     * Retrieves the singleton instance of PanelManager.
+     *
+     * @return The PanelManager instance.
+     * @author Daryan, Vishak, Sai
+     */
     public static PanelManager getPanelManager() {
         return panelManager;
     }
 
+    /**
+     * Instantiates the main window of the game.
+     * @author Daryan, Vishak, Sai
+     */
     private void instantiateWindow() {
         this.window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("Brawlstars");
     }
-
+    /**
+     * Instantiates the panels of the game.
+     * @author Daryan, Vishak, Sai
+     */
     private void instantiatePanels() {
         this.cardLayoutPanel = new JPanel(new CardLayout());
 
@@ -47,13 +64,19 @@ public class PanelManager {
         this.window.add(cardLayoutPanel);
         this.panels = (CardLayout) cardLayoutPanel.getLayout();
     }
-
+    /**
+     * Starts the main window of the game.
+     * @author Daryan, Vishak, Sai
+     */
     private void startWindow() {
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
-
+    /**
+     * Switches to the game panel.
+     * @author Daryan, Vishak, Sai
+     */
     // Method to switch to the game panel
     public void switchToGamePanel() {
         panels.show(cardLayoutPanel, "gamePanel"); //Instead of using next
@@ -63,11 +86,22 @@ public class PanelManager {
         gamePanel.setUpGame();
         gamePanel.startGameThread();
     }
-
+    /**
+     * Retrieves the CardLayout object managing panels.
+     *
+     * @return The CardLayout object.
+     * @author Daryan, Vishak, Sai
+     */
     public CardLayout getPanels() {
         return panels;
     }
 
+    /**
+     * Retrieves the panel containing cards.
+     *
+     * @return The JPanel containing cards.
+     * @author Daryan, Vishak, Sai
+     */
     public JPanel getCardLayoutPanel() {
         return cardLayoutPanel;
     }

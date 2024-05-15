@@ -17,8 +17,7 @@ public class TileLayer extends Layer {
 
     /**
      * Constructs a TileManager with the specified game panel.
-     *
-     * @param gamePanel The game panel to associate with the tile manager.
+     * @author Daryan, Vishak, Sai
      */
     public TileLayer() {
         tiles = new Tile[GamePanel.getGamePanel().getMaxWorldWidth()][GamePanel.getGamePanel().getMaxWorldHeight()];
@@ -28,6 +27,7 @@ public class TileLayer extends Layer {
 
     /**
      * Sets up tiles based on data from the map_layer_0.txt file.
+     * @author Daryan, Vishak, Sai
      */
     @Override
     public void setupImages() {
@@ -75,6 +75,7 @@ public class TileLayer extends Layer {
      * Draws the visible tiles on the screen.
      *
      * @param graphics2D The graphics context to draw the tiles.
+     * @author Daryan, Vishak, Sai
      */
     @Override
     public void draw(Graphics2D graphics2D) {
@@ -102,7 +103,11 @@ public class TileLayer extends Layer {
         }
     }
 
-
+    /**
+     * returns all tiles found
+     * @return the 2d array of tiles
+     * @author Daryan, Vishak, Sai
+     */
     public Tile[][] getTiles() {
         return tiles;
     }

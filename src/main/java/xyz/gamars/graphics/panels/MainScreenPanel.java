@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Represents the main screen panel of the game.
+ */
 public class MainScreenPanel extends JPanel {
 
     private JButton playButton;
@@ -15,6 +18,12 @@ public class MainScreenPanel extends JPanel {
     private ImageIcon settingsIcon;
     private JButton displaySettings;
 
+    /**
+     * Constructs the main screen panel.
+     *
+     * @param playButton The button for starting the game.
+     * @author Daryan, Vishak, Sai
+     */
     public MainScreenPanel(JButton playButton) {
         this.setBackground(Color.BLUE);
         this.setLayout(null); // Use null layout
@@ -66,6 +75,12 @@ public class MainScreenPanel extends JPanel {
         this.add(displayPlayer); // Add player icon button directly to the panel
     }
 
+    /**
+     * Overrides the paintComponent method to customize the appearance of the panel.
+     *
+     * @param graphics The graphics context to paint.
+     * @author Daryan, Vishak, Sai
+     */
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);

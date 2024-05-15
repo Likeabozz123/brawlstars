@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 /**
  * The KeyHandler Class.
+ * @author Daryan, Vishak, Sai
  */
 public class KeyHandler implements KeyListener {
 
@@ -24,6 +25,7 @@ public class KeyHandler implements KeyListener {
      * Handles the event when a key is pressed.
      *
      * @param e The KeyEvent representing the key press event.
+     *  @author Daryan, Vishak, Sai
      */
     @Override
     public void keyPressed(KeyEvent e) {
@@ -43,6 +45,7 @@ public class KeyHandler implements KeyListener {
      * Handles the event when a key is released.
      *
      * @param e The KeyEvent representing the key release event.
+     * @author Daryan, Vishak, Sai
      */
     @Override
     public void keyReleased(KeyEvent e) {
@@ -61,6 +64,7 @@ public class KeyHandler implements KeyListener {
      * Checks if the up arrow key is pressed.
      *
      * @return true if the up arrow key is pressed, false otherwise.
+     * @author Daryan, Vishak, Sai
      */
     public boolean isUpPressed() {
         return upPressed;
@@ -70,6 +74,7 @@ public class KeyHandler implements KeyListener {
      * Checks if the down arrow key is pressed.
      *
      * @return true if the down arrow key is pressed, false otherwise.
+     * @author Daryan, Vishak, Sai
      */
     public boolean isDownPressed() {
         return downPressed;
@@ -79,6 +84,7 @@ public class KeyHandler implements KeyListener {
      * Checks if the right arrow key is pressed.
      *
      * @return true if the right arrow key is pressed, false otherwise.
+     * @author Daryan, Vishak, Sai
      */
     public boolean isRightPressed() {
         return rightPressed;
@@ -88,11 +94,18 @@ public class KeyHandler implements KeyListener {
      * Checks if the left arrow key is pressed.
      *
      * @return true if the left arrow key is pressed, false otherwise.
+     * @author Daryan, Vishak, Sai
      */
     public boolean isLeftPressed() {
         return leftPressed;
     }
 
+    /**
+     * Checks if the space bar is pressed.
+     *
+     * @return true if the space bar is pressed, false otherwise
+     * @author Daryan, Vishak, Sai
+     */
     public boolean isSpacePressed() {
         return spacePressed;
     }

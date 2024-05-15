@@ -23,6 +23,7 @@ public class Tile {
      *
      * @param image      The image representing the tile.
      * @param collidable Indicates whether the tile is collidable or not.
+     * @author Daryan, Vishak, Sai
      */
     public Tile(int worldX, int worldY, BufferedImage image, boolean collidable) {
         this.worldX = worldX;
@@ -36,6 +37,7 @@ public class Tile {
      * Gets the image of the tile.
      *
      * @return The image of the tile.
+     * @author Daryan, Vishak, Sai
      */
     public BufferedImage getImage() {
         return image;
@@ -45,11 +47,16 @@ public class Tile {
      * Checks if the tile is collidable.
      *
      * @return True if the tile is collidable, false otherwise.
+     * @author Daryan, Vishak, Sai
      */
     public boolean isCollidable() {
         return collidable;
     }
 
+    /**
+     * Represents the collision bounds of an object.
+     * @author Daryan, Vishak, Sai
+     */
     public Rectangle getCollisionBounds() {
         return collisionBounds;
     }

@@ -9,6 +9,11 @@ public class Network {
 
     public static final int PORT = 54555;
 
+    /**
+     * Registers all classes, so they're serialized to send as a packet
+     * @param endPoint The endpoint to register classes with.
+     * @author Daryan, Vishak, Sai
+     */
     public static void register(EndPoint endPoint) {
         Kryo kryo = endPoint.getKryo();
 

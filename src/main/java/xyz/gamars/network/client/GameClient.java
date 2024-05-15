@@ -19,6 +19,7 @@ public class GameClient {
 
     /**
      * Starts the client
+     * @author Daryan, Vishak, Sai
      */
     public void start() {
         client.start();
@@ -27,6 +28,7 @@ public class GameClient {
 
     /**
      * Connects the client to the server
+     * @author Daryan, Vishak, Sai
      */
     public void connect() {
         try {
@@ -38,6 +40,7 @@ public class GameClient {
 
     /**
      * Closes the client
+     * @author Daryan, Vishak, Sai
      */
     public void close() {
         client.close();
@@ -45,8 +48,8 @@ public class GameClient {
 
     /**
      * Adds a listener to the client
-     *
      * @param listener listener
+     * @author Daryan, Vishak, Sai
      */
     public void addListener(Listener listener) {
         client.addListener(listener);
@@ -56,6 +59,7 @@ public class GameClient {
      * Sends a TCP packet to the server
      *
      * @param packet packet
+     * @author Daryan, Vishak, Sai
      */
     public void sendPacketTCP(Packet packet) {
         client.sendTCP(packet);
@@ -65,6 +69,7 @@ public class GameClient {
      * Sends a UDP packet to the server
      *
      * @param packet packet
+     * @author Daryan, Vishak, Sai
      */
     public void sendPacketUDP(Packet packet) {
         client.sendUDP(packet);
@@ -72,6 +77,7 @@ public class GameClient {
 
     /**
      * Returns whether the client is connected to the server
+     * @author Daryan, Vishak, Sai
      */
     public boolean isConnected() {
         return client.isConnected();

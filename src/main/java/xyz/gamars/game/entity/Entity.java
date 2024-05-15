@@ -32,10 +32,16 @@ public class Entity {
     /**
      * Constructs an Entity with specified parameters.
      *
-     * @param worldX          The initial worldX-coordinate of the entity in the world.
-     * @param worldY          The initial worldY-coordinate of the entity in the world.
-     * @param speed           The speed of the entity.
+     *
+     * @param worldX          The initial world X-coordinate of the entity.
+     * @param worldY          The initial world Y-coordinate of the entity.
+     * @param speed           The movement speed of the entity.
+     * @param maxHealth       The maximum health points of the entity.
+     * @param image           The image representing the entity.
+     * @param collisionBounds The bounding box used for collision detection.
      * @param entityDirection The initial direction of the entity.
+     * @param collidable      Determines if the entity can collide with other entities or tiles.
+     * @author Daryan, Vishak, Sai
      */
     public Entity(int worldX, int worldY, int speed, int maxHealth, BufferedImage image, Rectangle collisionBounds, EntityDirection entityDirection, boolean collidable) {
         this.worldX = worldX;
@@ -55,6 +61,7 @@ public class Entity {
      * Gets the world X-coordinate of the entity.
      *
      * @return The world X-coordinate.
+     * @author Daryan, Vishak, Sai
      */
     public int getWorldX() {
         return worldX;
@@ -64,6 +71,7 @@ public class Entity {
      * Gets the world Y-coordinate of the entity.
      *
      * @return The world Y-coordinate.
+     * @author Daryan, Vishak, Sai
      */
     public int getWorldY() {
         return worldY;
@@ -73,6 +81,7 @@ public class Entity {
      * Gets the speed of the entity.
      *
      * @return The speed.
+     * @author Daryan, Vishak, Sai
      */
     public int getSpeed() {
         return speed;
@@ -82,6 +91,7 @@ public class Entity {
      * Sets the world X-coordinate of the entity.
      *
      * @param worldX The world X-coordinate to set.
+     * @author Daryan, Vishak, Sai
      */
     public void setWorldX(int worldX) {
         this.worldX = worldX;
@@ -91,6 +101,7 @@ public class Entity {
      * Sets the world Y-coordinate of the entity.
      *
      * @param worldY The world Y-coordinate to set.
+     * @author Daryan, Vishak, Sai
      */
     public void setWorldY(int worldY) {
         this.worldY = worldY;
@@ -100,6 +111,7 @@ public class Entity {
      * Sets the speed of the entity.
      *
      * @param speed The speed to set.
+     * @author Daryan, Vishak, Sai
      */
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -107,6 +119,7 @@ public class Entity {
 
     /**
      * Increments the Y-coordinate of the entity by its speed.
+     * @author Daryan, Vishak, Sai
      */
     public void incrementY() {
         worldY += speed;
@@ -115,6 +128,7 @@ public class Entity {
 
     /**
      * Decrements the Y-coordinate of the entity by its speed.
+     * @author Daryan, Vishak, Sai
      */
     public void decrementY() {
         worldY -= speed;
@@ -123,6 +137,7 @@ public class Entity {
 
     /**
      * Increments the X-coordinate of the entity by its speed.
+     * @author Daryan, Vishak, Sai
      */
     public void incrementX() {
         worldX += speed;
@@ -131,28 +146,56 @@ public class Entity {
 
     /**
      * Decrements the X-coordinate of the entity by its speed.
+     * @author Daryan, Vishak, Sai
      */
     public void decrementX() {
         worldX -= speed;
         collisionBounds.x -= speed;
     }
 
+    /**
+     * Gets the area of rectangle
+     * @return the collision bounds
+     * @author Daryan, Vishak, Sai
+     */
     public Rectangle getCollisionBounds() {
         return collisionBounds;
     }
 
+    /**
+     * Gets the default X-coordinate of the collision bounds.
+     *
+     * @return The default X-coordinate of the collision bounds.
+     */
     public int getCollisionBoundsDefaultX() {
         return collisionBoundsDefaultX;
     }
-
+    /**
+     * Gets the default Y-coordinate of the collision bounds.
+     *
+     * @return The default Y-coordinate of the collision bounds.
+     * @author Daryan, Vishak, Sai
+     */
     public int getCollisionBoundsDefaultY() {
         return collisionBoundsDefaultY;
     }
 
+    /**
+     * Checks if the entity is currently colliding with other entities or tiles.
+     *
+     * @return true if the entity is colliding, false otherwise.
+     * @author Daryan, Vishak, Sai
+     */
     public boolean isColliding() {
         return colliding;
     }
 
+    /**
+     * Sets the collision state of the entity.
+     *
+     * @param colliding true if the entity is colliding, false otherwise.
+     * @author Daryan, Vishak, Sai
+     */
     public void setColliding(boolean colliding) {
         this.colliding = colliding;
     }
@@ -160,7 +203,8 @@ public class Entity {
     /**
      * Gets the direction of the entity.
      *
-     * @return The direction.
+     * @return The direction of the entity.
+     * @author Daryan, Vishak, Sai
      */
     public EntityDirection getEntityDirection() {
         return entityDirection;
@@ -169,48 +213,89 @@ public class Entity {
     /**
      * Sets the direction of the entity.
      *
-     * @param entityDirection The direction to set.
+     * @param entityDirection The direction to set for the entity.
+     * @author Daryan, Vishak, Sai
      */
     public void setEntityDirection(EntityDirection entityDirection) {
         this.entityDirection = entityDirection;
     }
-
+    /**
+     * Gets the image representing the entity.
+     *
+     * @return The image representing the entity.
+     * @author Daryan, Vishak, Sai
+     */
     public BufferedImage getImage() {
         return image;
     }
-
+    /**
+     * Sets the image representing the entity.
+     *
+     * @param image The image to set for the entity.
+     * @author Daryan, Vishak, Sai
+     */
     public void setImage(BufferedImage image) {
         this.image = image;
     }
-
+    /**
+     * Checks if the entity is collidable.
+     *
+     * @return true if the entity is collidable, false otherwise.
+     * @author Daryan, Vishak, Sai
+     */
     public boolean isCollidable() {
         return collidable;
     }
-
+    /**
+     * Gets the maximum health points of the entity.
+     *
+     * @return The maximum health points of the entity.
+     * @author Daryan, Vishak, Sai
+     */
     public int getCurrentHealth() {
         return currentHealth;
     }
 
+    /**
+     * sets health of entity to inputted value
+     * @param currentHealth
+     * @author Daryan, Vishak, Sai
+     */
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
         if (currentHealth <= 0) currentHealth = 0;
         if (currentHealth >= maxHealth) currentHealth = maxHealth;
     }
-
+    /**
+     * Increases health of entity
+     * @author Daryan, Vishak, Sai
+     */
     public void incrementHealth() {
         this.currentHealth++;
         if (this.currentHealth >= maxHealth) currentHealth = maxHealth;
     }
 
+    /**
+     * Decrements health of entity
+     * @author Daryan, Vishak, Sai
+     */
     public void decrementHealth() {
         this.currentHealth--;
         if (this.currentHealth <= 0) currentHealth = 0;
     }
+    // Getters and setters omitted for brevity
 
+    /**
+     * Updates the collision state of the entity based on collisions with other entities or tiles.
+     * @author Daryan, Vishak, Sai
+     */
     public int getMaxHealth() {
         return maxHealth;
     }
-
+    /**
+     * Updates the collision state of the entity based on collisions with other entities or tiles.
+     * @author Daryan, Vishak, Sai
+     */
     public void handleCollisions() {
         colliding = false;
         Entity interactable = getCollidingEntity();
@@ -221,8 +306,12 @@ public class Entity {
             colliding = true;
         }
     }
-
-
+    /**
+     * Checks for collision with other entities and returns the colliding entity.
+     *
+     * @return The colliding entity, or null if no collision occurs.
+     * @author Daryan, Vishak, Sai
+     */
     public Entity getCollidingEntity() {
         // either colliding with another entity
         // or colliding with a tile that does no  t allow collisions
@@ -238,7 +327,12 @@ public class Entity {
 
         return null;
     }
-
+    /**
+     * Checks for collision with tiles and returns the colliding tile.
+     *
+     * @return The colliding tile, or null if no collision occurs.
+     * @author Daryan, Vishak, Sai
+     */
     public Tile getCollidingTile() {
         GamePanel gamePanel = GamePanel.getGamePanel();
         for (Tile[] tiles : gamePanel.getTileLayer().getTiles()) {
@@ -251,7 +345,12 @@ public class Entity {
         return null;
     }
 
-
+    /**
+     * Draws the entity on the screen.
+     *
+     * @param graphics2D The graphics context to draw on.
+     * @author Daryan, Vishak, Sai
+     */
     public void draw(Graphics2D graphics2D) {
         GamePanel gamePanel = GamePanel.getGamePanel();
         int screenX = worldX - gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX();

@@ -12,6 +12,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ *
+ * Represents a bullet entity in the game.
+ * Bullets are fired by players and enemies and move in a straight line until they collide with an obstacle or expire
+ * @author Daryan, Vishak, Sai
+ */
 public class BulletEntity extends Entity implements IUpdating, IExpireable {
 
 
@@ -19,7 +25,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
 
     /**
      * Constructs an Entity with specified parameters.
-     *
+     * @author Daryan, Vishak, Sai
      * @param worldX The initial worldX-coordinate of the entity in the world.
      * @param worldY The initial worldY-coordinate of the entity in the world.
      */
@@ -31,8 +37,13 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
                                             GamePanel.getGamePanel().getTileSize() - (7 * GamePanel.getGamePanel().getScale())),
                 entityDirection, true);
     }
+    /**
+     * Updates the position and lifespan of the bullet entity.
+     * Moves the bullet according to its firing direction and decrements its lifespan.
+     * If the lifespan reaches zero, the bullet expires and is removed from the game.
+     * @author Daryan, Vishak, Sai
+     */
 
-    @Override
     public void update() {
         if (getEntityDirection() == EntityDirection.UP) {
             decrementY();
@@ -48,16 +59,28 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
         handleCollisions();
 
     }
-
+    /**
+     * Removes the bullet entity from the game when it expires.
+     * @author Daryan, Vishak, Sai
+     */
     @Override
     public void die() {
         GamePanel.getGamePanel().getInteractables().remove(this);
     }
-
+    /**
+     * Gets the remaining lifespan of the bullet entity
+     *
+     * @return The remaining lifespan of the bullet entity in frames
+     * @author Daryan, Vishak, Sai
+     */
     public int getLifespan() {
         return lifespan;
     }
-
+    /**
+     * Checks if the bullet entity is colliding with any other entities or non-collidable tiles in the game
+     * @author Daryan, Vishak, Sai
+     * @return true if the bullet is colliding, false otherwise.
+     */
     public void handleCollisions() {
         Entity interactable = getCollidingEntity();
         Tile tile = getCollidingTile();
@@ -68,7 +91,32 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
             die();
         }
     }
+    /**
+     * Handles collisions of the bullet entity with other entities or tiles.
+     * If a collision occurs, the bullet is removed from the game.
+     * @author Daryan, Vishak, Sai
+     */
+    public boolean isColliding() {
 
+        // either colliding with another entity
+        // or colliding with a tile that does not allow collisions
+
+        GamePanel gamePanel = GamePanel.getGamePanel();
+        for (Entity interactable : gamePanel.getInteractables()) {
+            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
+                if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
+                    if (!interactable.isCollidable()) return true;
+                }
+            }
+        }
+        return false;
+    }
+    /**
+     * Returns a string representation of the bullet entity, including its remaining lifespan.
+     *
+     * @return A string representation of the bullet entity.
+     * @author Daryan, Vishak, Sai
+     */
     @Override
     public String toString() {
         return "BulletEntity{" +

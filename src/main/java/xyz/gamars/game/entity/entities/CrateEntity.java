@@ -17,6 +17,7 @@ public class CrateEntity extends Entity implements IUpdating {
      *
      * @param worldX The initial worldX-coordinate of the entity in the world.
      * @param worldY The initial worldY-coordinate of the entity in the world.
+     * @author Daryan, Vishak, Sai
      */
     public CrateEntity(int worldX, int worldY) throws IOException {
         super(worldX, worldY, 0, 5, ImageIO.read(new ResourceFile("tiles/tile_3_layer_0.png")),
@@ -27,21 +28,40 @@ public class CrateEntity extends Entity implements IUpdating {
                 EntityDirection.NONE, false);
 
     }
-
+    /**
+     * Returns a string representation of the CrateEntity, indicating its position.
+     *
+     * @return A string representation of the CrateEntity.
+     * @author Daryan, Vishak, Sai
+     */
     @Override
     public String toString() {
         return "CrateEntity{position=" + getWorldX() + ", " + getWorldY() + "}";
     }
 
+    /**
+     * Updates the state of the CrateEntity.
+     * This method checks if a CrateEntity's health is zero and if it is, the crate dies.
+     * @author Daryan, Vishak, Sai
+     */
     @Override
     public void update() {
         if (getCurrentHealth() <= 0) die();
     }
-
+    /**
+     * Handles the destruction of the CrateEntity when its health reaches zero
+     * @author Daryan, Vishak, Sai
+     */
     public void die() {
         GamePanel.getGamePanel().getInteractables().remove(this);
     }
 
+    /**
+     * Draws the CrateEntity on the screen.
+     *
+     * @param graphics2D The Graphics2D object used for drawing.
+     * @author Daryan, Vishak, Sai
+     */
     @Override
     public void draw(Graphics2D graphics2D) {
         super.draw(graphics2D);

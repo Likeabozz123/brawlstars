@@ -276,4 +276,8 @@ public class GamePanel extends JPanel implements Runnable {
     public MapSelection getMapSelection() {
         return mapSelection;
     }
+
+    public int getScale() {
+        return scale;
+    }
 }

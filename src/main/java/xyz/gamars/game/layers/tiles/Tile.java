@@ -10,6 +10,9 @@ import java.awt.image.BufferedImage;
  */
 public class Tile {
 
+    private int worldX;
+    private int worldY;
+
     private BufferedImage image;
     private boolean collidable;
 
@@ -22,9 +25,11 @@ public class Tile {
      * @param collidable Indicates whether the tile is collidable or not.
      */
     public Tile(int worldX, int worldY, BufferedImage image, boolean collidable) {
+        this.worldX = worldX;
+        this.worldY = worldY;
         this.image = image;
         this.collidable = collidable;
-        this.collisionBounds = new Rectangle(worldX, worldY - GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
+        this.collisionBounds = new Rectangle(worldX, worldY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
     }
 
     /**
@@ -47,5 +52,13 @@ public class Tile {
 
     public Rectangle getCollisionBounds() {
         return collisionBounds;
+    }
+
+    public int getWorldX() {
+        return worldX;
+    }
+
+    public int getWorldY() {
+        return worldY;
     }
 }

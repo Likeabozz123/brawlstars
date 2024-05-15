@@ -267,10 +267,11 @@ public class Entity {
             graphics2D.setColor(Color.RED);
 
             if (getCollisionBounds().width < gamePanel.getTileSize() || getCollisionBounds().height < gamePanel.getTileSize()) {
-                graphics2D.drawRect(screenX + collisionBounds.width / 2, screenY + collisionBounds.height / 2, collisionBounds.width, collisionBounds.height);
+                graphics2D.drawRect(screenX + (4 * GamePanel.getGamePanel().getScale()), screenY + (3 * GamePanel.getGamePanel().getScale()), collisionBounds.width, collisionBounds.height);
             } else {
                 graphics2D.drawRect(screenX, screenY, collisionBounds.width, collisionBounds.height);
             }
+            // graphics2D.drawRect(screenX - GamePanel.getGamePanel().getTileSize() - collisionBounds.x, screenY - GamePanel.getGamePanel().getTileSize() - collisionBounds.y, collisionBounds.width, collisionBounds.height);
 
             graphics2D.setColor(Color.MAGENTA);
         }

@@ -52,7 +52,8 @@ public class TileLayer extends Layer {
                             collidable = true;
                             break;
                     }
-                    tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize() , y * GamePanel.getGamePanel().getTileSize(),
+                    tiles[x][y] = new Tile( x * GamePanel.getGamePanel().getTileSize(),
+                                            y * GamePanel.getGamePanel().getTileSize(),
                             ImageIO.read(new ResourceFile("tiles/" + GamePanel.getGamePanel().getMapSelection().getFolder() + "/tile_" + tileIndex + "_layer_0.png")), collidable);
 
                 }

@@ -14,6 +14,9 @@ public class Entity {
     private int worldY;
     private int speed;
 
+    private int maxHealth;
+    private int currentHealth;
+
     private Rectangle collisionBounds;
     private boolean colliding = false;
     private boolean collidable;
@@ -33,10 +36,12 @@ public class Entity {
      * @param speed           The speed of the entity.
      * @param entityDirection The initial direction of the entity.
      */
-    public Entity(int worldX, int worldY, int speed, BufferedImage image, Rectangle collisionBounds, EntityDirection entityDirection, boolean collidable) {
+    public Entity(int worldX, int worldY, int speed, int maxHealth, BufferedImage image, Rectangle collisionBounds, EntityDirection entityDirection, boolean collidable) {
         this.worldX = worldX;
         this.worldY = worldY;
         this.speed = speed;
+        this.maxHealth = maxHealth;
+        this.currentHealth = maxHealth;
         this.image = image;
         this.collisionBounds = collisionBounds;
         this.collisionBoundsDefaultX = collisionBounds.x;
@@ -179,6 +184,30 @@ public class Entity {
 
     public boolean isCollidable() {
         return collidable;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+        if (currentHealth <= 0) currentHealth = 0;
+        if (currentHealth >= maxHealth) currentHealth = maxHealth;
+    }
+
+    public void incrementHealth() {
+        this.currentHealth++;
+        if (this.currentHealth >= maxHealth) currentHealth = maxHealth;
+    }
+
+    public void decrementHealth() {
+        this.currentHealth--;
+        if (this.currentHealth <= 0) currentHealth = 0;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
     public void draw(Graphics2D graphics2D) {

@@ -23,7 +23,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
      * @param worldY The initial worldY-coordinate of the entity in the world.
      */
     public BulletEntity(int worldX, int worldY, EntityDirection entityDirection) throws IOException {
-        super(worldX, worldY, 4, ImageIO.read(new ResourceFile("player/bullet.png")),
+        super(worldX, worldY, 4, 0, ImageIO.read(new ResourceFile("player/bullet.png")),
                 new Rectangle(worldX + GamePanel.getGamePanel().getTileSize() / 4,
                         worldY + GamePanel.getGamePanel().getTileSize() / 4,
                         GamePanel.getGamePanel().getTileSize() / 2,
@@ -60,7 +60,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
     public void handleCollisions() {
         if (isColliding()) {
             die();
-
+            getCollidingEntity().decrementHealth();
         }
     }
 
@@ -80,6 +80,18 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
         return false;
     }
 
+
+    public Entity getCollidingEntity() {
+        GamePanel gamePanel = GamePanel.getGamePanel();
+        for (Entity interactable : gamePanel.getInteractables()) {
+            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
+                if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
+                    if (!interactable.isCollidable()) return interactable;
+                }
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {

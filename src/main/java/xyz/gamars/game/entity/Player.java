@@ -45,7 +45,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * @param keyHandler The key handler for controlling the player.
      */
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
-        super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 6, 3, null,
+        super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 6, 3, 20, null,
                 new Rectangle((GamePanel.getGamePanel().getTileSize() * 8) + (GamePanel.getGamePanel().getTileSize() / 4) - 3,
                         (GamePanel.getGamePanel().getTileSize() * 6) + (GamePanel.getGamePanel().getTileSize() / 3) - 1,
                         (GamePanel.getGamePanel().getTileSize() / 3) * 2,

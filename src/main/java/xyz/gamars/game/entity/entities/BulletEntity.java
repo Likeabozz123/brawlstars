@@ -4,6 +4,7 @@ import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.EntityDirection;
 import xyz.gamars.game.entity.components.IExpireable;
 import xyz.gamars.game.entity.components.IUpdating;
+import xyz.gamars.game.layers.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -58,39 +59,14 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
     }
 
     public void handleCollisions() {
-        if (isColliding()) {
+        Entity interactable = getCollidingEntity();
+        Tile tile = getCollidingTile();
+        if (interactable != null) {
             die();
-            getCollidingEntity().decrementHealth();
+            interactable.decrementHealth();
+        } else if (tile != null) {
+            die();
         }
-    }
-
-    public boolean isColliding() {
-
-        // either colliding with another entity
-        // or colliding with a tile that does no  t allow collisions
-
-        GamePanel gamePanel = GamePanel.getGamePanel();
-        for (Entity interactable : gamePanel.getInteractables()) {
-            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
-                if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
-                    if (!interactable.isCollidable()) return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
-    public Entity getCollidingEntity() {
-        GamePanel gamePanel = GamePanel.getGamePanel();
-        for (Entity interactable : gamePanel.getInteractables()) {
-            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
-                if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
-                    if (!interactable.isCollidable()) return interactable;
-                }
-            }
-        }
-        return null;
     }
 
     @Override

@@ -53,7 +53,7 @@ public class CrateEntity extends Entity implements IUpdating {
         if (getWorldX() + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldX() - gamePanel.getPlayer().getScreenX() &&
                 getWorldX() - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX() &&
                 getWorldY() + gamePanel.getTileSize() > gamePanel.getPlayer().getWorldY() - gamePanel.getPlayer().getScreenY() &&
-                getWorldY()  - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY()) {
+                getWorldY() - gamePanel.getTileSize() < gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY()) {
 
             graphics2D.setFont(new Font("Arial", Font.BOLD, 16));
             graphics2D.setColor(Color.MAGENTA);

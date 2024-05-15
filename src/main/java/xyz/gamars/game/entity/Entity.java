@@ -1,5 +1,6 @@
 package xyz.gamars.game.entity;
 
+import xyz.gamars.game.layers.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 
 import java.awt.*;
@@ -209,6 +210,47 @@ public class Entity {
     public int getMaxHealth() {
         return maxHealth;
     }
+
+    public void handleCollisions() {
+        colliding = false;
+        Entity interactable = getCollidingEntity();
+        Tile tile = getCollidingTile();
+        if (interactable != null) {
+            colliding = true;
+        } else if (tile != null) {
+            colliding = true;
+        }
+    }
+
+
+    public Entity getCollidingEntity() {
+        // either colliding with another entity
+        // or colliding with a tile that does no  t allow collisions
+
+        GamePanel gamePanel = GamePanel.getGamePanel();
+        for (Entity interactable : gamePanel.getInteractables()) {
+            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
+                if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
+                    if (!interactable.isCollidable()) return interactable;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public Tile getCollidingTile() {
+        GamePanel gamePanel = GamePanel.getGamePanel();
+        for (Tile[] tiles : gamePanel.getTileLayer().getTiles()) {
+            for (Tile tile : tiles) {
+                if (this.getCollisionBounds().intersects(tile.getCollisionBounds())) {
+                    if (!tile.isCollidable()) return tile;
+                }
+            }
+        }
+        return null;
+    }
+
 
     public void draw(Graphics2D graphics2D) {
         GamePanel gamePanel = GamePanel.getGamePanel();

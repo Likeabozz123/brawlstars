@@ -117,6 +117,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
                 decrementX();
             }
 
+            handleCollisions();
 
             // if its colliding undo the movement changes
             if (isColliding()) {
@@ -197,26 +198,29 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         graphics2D.drawRect(screenX, screenY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
     }
 
-    @Override
-    public boolean isColliding() {
 
+    @Override
+    public void handleCollisions() {
+        super.handleCollisions();
+        inGrass = false;
+        Tile grass = getCollidingGrass();
+        if (grass != null) {
+            inGrass = true;
+        }
+    }
+
+    public Tile getCollidingGrass() {
         GamePanel gamePanel = GamePanel.getGamePanel();
-        for (Tile[] tiles : gamePanel.getTileLayer().getTiles()) {
+        for (Tile[] tiles : gamePanel.getGrassLayer().getTiles()) {
             for (Tile tile : tiles) {
                 if (this.getCollisionBounds().intersects(tile.getCollisionBounds())) {
-                    if (!tile.isCollidable()) return true;
+                    if (!tile.isCollidable()) return tile;
                 }
             }
         }
-
-        for (Entity interactable : gamePanel.getInteractables()) {
-            if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
-                if (!interactable.isCollidable()) return true;
-            }
-        }
-
-        return false;
+        return null;
     }
+
 
     /**
      * Gets the x-coordinate of the player's position on the screen.

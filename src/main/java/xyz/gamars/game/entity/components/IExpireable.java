@@ -1,4 +1,4 @@
-package xyz.gamars.game.entity;
+package xyz.gamars.game.entity.components;
 
 public interface IExpireable {
 

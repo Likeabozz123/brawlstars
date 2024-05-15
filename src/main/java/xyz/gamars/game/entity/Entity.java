@@ -43,6 +43,8 @@ public class Entity {
         this.collisionBoundsDefaultY = collisionBounds.y;
         this.entityDirection = entityDirection;
         this.collidable = collidable;
+        ID++;
+        this.entityID = ID;
     }
 
     /**
@@ -104,6 +106,7 @@ public class Entity {
      */
     public void incrementY() {
         worldY += speed;
+        collisionBounds.y += speed;
     }
 
     /**
@@ -111,6 +114,7 @@ public class Entity {
      */
     public void decrementY() {
         worldY -= speed;
+        collisionBounds.y -= speed;
     }
 
     /**
@@ -118,6 +122,7 @@ public class Entity {
      */
     public void incrementX() {
         worldX += speed;
+        collisionBounds.x += speed;
     }
 
     /**
@@ -125,6 +130,7 @@ public class Entity {
      */
     public void decrementX() {
         worldX -= speed;
+        collisionBounds.x -= speed;
     }
 
     public Rectangle getCollisionBounds() {
@@ -189,7 +195,12 @@ public class Entity {
 
             graphics2D.drawImage(image, screenX, screenY,
                     gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.setColor(Color.RED);
+            graphics2D.drawRect(screenX, screenY, collisionBounds.width, collisionBounds.height);
+            graphics2D.setColor(Color.MAGENTA);
         }
     }
+
+
 
 }

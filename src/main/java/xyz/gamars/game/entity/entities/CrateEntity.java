@@ -19,8 +19,12 @@ public class CrateEntity extends Entity {
      */
     public CrateEntity(int worldX, int worldY) throws IOException {
         super(worldX, worldY, 0, ImageIO.read(new ResourceFile("tiles/tile_3_layer_0.png")),
-                new Rectangle(0, 0, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize()),
+                new Rectangle(worldX, worldY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize()),
                 EntityDirection.NONE, false);
     }
 
+    @Override
+    public String toString() {
+        return "CrateEntity{position=" + getWorldX() + ", " + getWorldY() + "entityID=" + getEntityID() + "}";
+    }
 }

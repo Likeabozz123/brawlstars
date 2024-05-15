@@ -1,7 +1,7 @@
 package xyz.gamars.game.entity.entities;
 
-import xyz.gamars.game.entity.IExpireable;
-import xyz.gamars.game.entity.IUpdating;
+import xyz.gamars.game.entity.components.IExpireable;
+import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.EntityDirection;
 import xyz.gamars.graphics.panels.GamePanel;
@@ -10,6 +10,7 @@ import xyz.gamars.util.ResourceFile;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class BulletEntity extends Entity implements IUpdating, IExpireable {
 
@@ -24,7 +25,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
      */
     public BulletEntity(int worldX, int worldY, EntityDirection entityDirection) throws IOException {
         super(worldX, worldY, 4, ImageIO.read(new ResourceFile("tiles/tile_3_layer_0.png")),
-                new Rectangle(0, 0, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize()),
+                new Rectangle(worldX, worldY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize()),
                 entityDirection, true);
     }
 
@@ -41,6 +42,8 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
         }
         lifespan--;
         if (lifespan <= 0) die();
+        handleCollisions();
+
     }
 
     @Override
@@ -50,5 +53,34 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
 
     public int getLifespan() {
         return lifespan;
+    }
+
+    public void handleCollisions() {
+        if(isColliding()) {
+            die();
+        }
+    }
+
+    public boolean isColliding() {
+
+        // either colliding with another entity
+        // or colliding with a tile that does not allow collisions
+
+        GamePanel gamePanel = GamePanel.getGamePanel();
+        for (Entity interactable : gamePanel.getInteractables()) {
+            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
+                if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
+                    if (!interactable.isCollidable()) return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "BulletEntity{" +
+                "lifespan=" + lifespan +
+                '}';
     }
 }

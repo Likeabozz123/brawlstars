@@ -1,5 +1,8 @@
 package xyz.gamars.game.entity;
 
+import xyz.gamars.game.entity.components.IAnimatable;
+import xyz.gamars.game.entity.components.IUpdating;
+import xyz.gamars.game.entity.entities.CrateEntity;
 import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.game.entity.entities.BulletEntity;
 import xyz.gamars.graphics.panels.GamePanel;
@@ -156,6 +159,8 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         }
         currentBulletCooldown--;
         if (currentBulletCooldown < 0) currentBulletCooldown = 0;
+
+
     }
 
     /**

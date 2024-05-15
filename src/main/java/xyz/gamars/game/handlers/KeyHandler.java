@@ -14,6 +14,8 @@ public class KeyHandler implements KeyListener {
     private boolean leftPressed;
     private boolean spacePressed;
 
+
+
     @Override
     public void keyTyped(KeyEvent e) {
         // This method not used
@@ -35,6 +37,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_SPACE) spacePressed = true;
 
+
     }
 
     /**
@@ -52,6 +55,7 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_A) leftPressed = false;
 
         if (keyCode == KeyEvent.VK_SPACE) spacePressed = false;
+
     }
 
     /**
@@ -93,4 +97,5 @@ public class KeyHandler implements KeyListener {
     public boolean isSpacePressed() {
         return spacePressed;
     }
+
 }

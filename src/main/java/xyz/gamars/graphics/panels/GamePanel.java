@@ -1,6 +1,6 @@
 package xyz.gamars.graphics.panels;
 
-import xyz.gamars.game.entity.IUpdating;
+import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.handlers.CollisionHandler;

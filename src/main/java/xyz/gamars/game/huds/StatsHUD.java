@@ -1,6 +1,7 @@
 package xyz.gamars.game.huds;
 
 import xyz.gamars.game.entity.Player;
+import xyz.gamars.graphics.panels.GamePanel;
 
 import java.awt.*;
 
@@ -26,6 +27,7 @@ public class StatsHUD {
         graphics2D.drawString("Collision: " + player.isColliding(), 5, graphics2D.getFont().getSize() * 5);
         graphics2D.drawString("In Grass: " + player.isInGrass(), 5, graphics2D.getFont().getSize() * 6);
         graphics2D.drawString("Bullet Cooldown: " + player.getCurrentBulletCooldown(), 5, graphics2D.getFont().getSize() * 7);
+        graphics2D.drawString("Interactables: " + GamePanel.getGamePanel().getInteractables(), 5, graphics2D.getFont().getSize() * 8);
     }
 
 }

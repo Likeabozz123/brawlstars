@@ -42,11 +42,11 @@ public class TileLayer extends Layer {
                     // tile 3: crate
 
                     if (tileIndex == 1) {
-                        tiles[x][y] = new Tile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_0.png")), true);
+                        tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_0.png")), false);
                     } else if (tileIndex == -1) {
-                        tiles[x][y] = new Tile(null, false);
+                        tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), null, true);
                     } else {
-                        tiles[x][y] = new Tile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_0.png")), false);
+                        tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_0.png")), true);
                     }
                 }
             }

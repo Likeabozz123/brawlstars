@@ -194,7 +194,13 @@ public class Entity {
             graphics2D.drawImage(image, screenX, screenY,
                     gamePanel.getTileSize(), gamePanel.getTileSize(), null);
             graphics2D.setColor(Color.RED);
-            graphics2D.drawRect(screenX, screenY, collisionBounds.width, collisionBounds.height);
+
+            if (getCollisionBounds().width < gamePanel.getTileSize() || getCollisionBounds().height < gamePanel.getTileSize()) {
+                graphics2D.drawRect(screenX + collisionBounds.width / 2, screenY + collisionBounds.height / 2, collisionBounds.width, collisionBounds.height);
+            } else {
+                graphics2D.drawRect(screenX, screenY, collisionBounds.width, collisionBounds.height);
+            }
+
             graphics2D.setColor(Color.MAGENTA);
         }
     }

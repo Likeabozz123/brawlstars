@@ -29,9 +29,9 @@ public class GrassLayer extends Layer {
                     // tile 0: grass
 
                     if (tileIndex != -1) {
-                        tiles[x][y] = new GrassTile(ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_1.png")), false);
+                        tiles[x][y] = new GrassTile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize(), ImageIO.read(new ResourceFile("tiles/tile_" + tileIndex + "_layer_1.png")), false);
                     } else {
-                        tiles[x][y] = new EmptyTile();
+                        tiles[x][y] = new EmptyTile(x * GamePanel.getGamePanel().getTileSize(), y * GamePanel.getGamePanel().getTileSize());
                     }
                 }
             }

@@ -4,6 +4,7 @@ import xyz.gamars.game.entity.components.IAnimatable;
 import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.game.entity.entities.BulletEntity;
 import xyz.gamars.game.handlers.KeyHandler;
+import xyz.gamars.game.layers.Tile;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -44,9 +45,11 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      * @param keyHandler The key handler for controlling the player.
      */
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
-        super(GamePanel.getGamePanel().getWorldWidth() / 2, GamePanel.getGamePanel().getWorldHeight() / 2, 3, null,
-                new Rectangle(GamePanel.getGamePanel().getTileSize() / 6, GamePanel.getGamePanel().getTileSize() / 3,
-                        (GamePanel.getGamePanel().getTileSize() / 3) * 2, (GamePanel.getGamePanel().getTileSize() / 3) * 2)
+        super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 6, 3, null,
+                new Rectangle((GamePanel.getGamePanel().getTileSize() * 8) + (GamePanel.getGamePanel().getTileSize() / 4) - 3,
+                        (GamePanel.getGamePanel().getTileSize() * 6) + (GamePanel.getGamePanel().getTileSize() / 3) - 1,
+                        (GamePanel.getGamePanel().getTileSize() / 3) * 2,
+                        (GamePanel.getGamePanel().getTileSize() / 3) * 2)
                 , EntityDirection.RIGHT, false);
 
         this.keyHandler = keyHandler;
@@ -59,6 +62,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         this.downImages = new BufferedImage[totalSpriteCount];
         this.rightImages = new BufferedImage[totalSpriteCount];
         this.leftImages = new BufferedImage[totalSpriteCount];
+
 
         loadPlayerImages();
     }
@@ -112,11 +116,6 @@ public class Player extends Entity implements IAnimatable, IUpdating {
                 setEntityDirection(EntityDirection.LEFT);
                 decrementX();
             }
-
-
-            gamePanel.getCollisionHandler().checkTile(this);
-            gamePanel.getGrassHandler().checkTile(this);
-            int objectIndex = gamePanel.getCollisionHandler().checkObjectIfHit(this, true);
 
 
             // if its colliding undo the movement changes
@@ -186,6 +185,37 @@ public class Player extends Entity implements IAnimatable, IUpdating {
             graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
         }
         graphics2D.drawImage(getImage(), getScreenX(), getScreenY(), gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+
+        graphics2D.setColor(Color.RED);
+
+        if (getCollisionBounds().width < gamePanel.getTileSize() || getCollisionBounds().height < gamePanel.getTileSize()) {
+            graphics2D.drawRect(screenX + getCollisionBounds().width / 3, screenY + getCollisionBounds().height / 2, getCollisionBounds().width, getCollisionBounds().height);
+        } else {
+            graphics2D.drawRect(screenX, screenY, getCollisionBounds().width, getCollisionBounds().height);
+        }
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawRect(screenX, screenY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
+    }
+
+    @Override
+    public boolean isColliding() {
+
+        GamePanel gamePanel = GamePanel.getGamePanel();
+        for (Tile[] tiles : gamePanel.getTileLayer().getTiles()) {
+            for (Tile tile : tiles) {
+                if (this.getCollisionBounds().intersects(tile.getCollisionBounds())) {
+                    if (!tile.isCollidable()) return true;
+                }
+            }
+        }
+
+        for (Entity interactable : gamePanel.getInteractables()) {
+            if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
+                if (!interactable.isCollidable()) return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -213,7 +243,6 @@ public class Player extends Entity implements IAnimatable, IUpdating {
     public void setInGrass(boolean inGrass) {
         this.inGrass = inGrass;
     }
-
 
     /**
      * Gets the total number of sprites for animation.

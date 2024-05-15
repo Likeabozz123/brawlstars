@@ -4,7 +4,6 @@ import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.entity.components.IUpdating;
 import xyz.gamars.game.entity.entities.EntityPlacement;
-import xyz.gamars.game.handlers.CollisionHandler;
 import xyz.gamars.game.handlers.GrassHandler;
 import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.game.huds.StatsHUD;
@@ -51,7 +50,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     private KeyHandler keyHandler = new KeyHandler();
 
-    private CollisionHandler collisionHandler = new CollisionHandler();
     private GrassHandler grassHandler = new GrassHandler();
     private EntityPlacement entityPlacement = new EntityPlacement();
 
@@ -265,9 +263,6 @@ public class GamePanel extends JPanel implements Runnable {
         return player;
     }
 
-    public CollisionHandler getCollisionHandler() {
-        return collisionHandler;
-    }
 
     public GrassHandler getGrassHandler() {
         return grassHandler;

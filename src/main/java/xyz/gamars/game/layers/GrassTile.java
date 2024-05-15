@@ -11,7 +11,7 @@ public class GrassTile extends Tile {
      * @param image      The image representing the tile.
      * @param collidable Indicates whether the tile is collidable or not.
      */
-    public GrassTile(BufferedImage image, boolean collidable) {
-        super(image, collidable);
+    public GrassTile(int worldX, int worldY, BufferedImage image, boolean collidable) {
+        super(worldX, worldY, image, collidable);
     }
 }

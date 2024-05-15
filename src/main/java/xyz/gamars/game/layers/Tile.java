@@ -1,5 +1,8 @@
 package xyz.gamars.game.layers;
 
+import xyz.gamars.graphics.panels.GamePanel;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -10,15 +13,18 @@ public class Tile {
     private BufferedImage image;
     private boolean collidable;
 
+    private Rectangle collisionBounds;
+
     /**
      * Constructs a tile with the specified image and collidable.
      *
      * @param image      The image representing the tile.
      * @param collidable Indicates whether the tile is collidable or not.
      */
-    public Tile(BufferedImage image, boolean collidable) {
+    public Tile(int worldX, int worldY, BufferedImage image, boolean collidable) {
         this.image = image;
         this.collidable = collidable;
+        this.collisionBounds = new Rectangle(worldX, worldY, GamePanel.getGamePanel().getTileSize(), GamePanel.getGamePanel().getTileSize());
     }
 
     /**
@@ -37,5 +43,9 @@ public class Tile {
      */
     public boolean isCollidable() {
         return collidable;
+    }
+
+    public Rectangle getCollisionBounds() {
+        return collisionBounds;
     }
 }

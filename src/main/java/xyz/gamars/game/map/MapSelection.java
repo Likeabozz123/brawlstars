@@ -2,7 +2,7 @@ package xyz.gamars.game.map;
 
 public enum MapSelection {
 
-    UNDERGROUND(0, "underground", 21, 33),
+    UNDERGROUND(0, "underground", 23, 35),
     SANDSTONE(1, "sandstone", 20, 25)
 
     ;

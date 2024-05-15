@@ -35,8 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
     private final int maxScreenHeight = 12; //change later?
 
     // The dimensions of the screen
-    private final int screenWidth = tileSize * maxScreenWidth; //768 pix
-    private final int screenHeight = tileSize * maxScreenHeight; // 576 pix
+    private final int screenWidth = tileSize * maxScreenWidth;
+    private final int screenHeight = tileSize * maxScreenHeight;
 
     private MapSelection mapSelection = MapSelection.UNDERGROUND;
 

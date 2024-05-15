@@ -151,6 +151,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
             if (currentBulletCooldown <= 0) {
                 try {
                     GamePanel.getGamePanel().getInteractables().add(new BulletEntity(getWorldX(), getWorldY(), getEntityDirection()));
+                    setInGrass(false);
                     currentBulletCooldown = BULLET_COOLDOWN;
                 } catch (IOException e) {
                     throw new RuntimeException(e);

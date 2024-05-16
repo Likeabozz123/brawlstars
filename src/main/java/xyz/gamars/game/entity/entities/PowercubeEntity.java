@@ -2,12 +2,9 @@ package xyz.gamars.game.entity.entities;
 
 import xyz.gamars.game.entity.Entity;
 import xyz.gamars.game.entity.EntityDirection;
-import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class PowercubeEntity extends Entity {
@@ -16,8 +13,8 @@ public class PowercubeEntity extends Entity {
     /**
      * Constructs an Entity with specified parameters.
      *
-     * @param worldX          The initial worldX-coordinate of the entity in the world.
-     * @param worldY          The initial worldY-coordinate of the entity in the world.
+     * @param worldX The initial worldX-coordinate of the entity in the world.
+     * @param worldY The initial worldY-coordinate of the entity in the world.
      * @author Daryan, Vishak, Sai
      */
     public PowercubeEntity(int worldX, int worldY) throws IOException {
@@ -28,8 +25,9 @@ public class PowercubeEntity extends Entity {
     }
 
     /**
-     * Shows position of PowerCube on HUD
-     * @return the position of the powerCube
+     * Returns a string representation of the PowercubeEntity
+     *
+     * @return A string representation of the CrateEntity.
      * @author Daryan, Vishak, Sai
      */
     @Override

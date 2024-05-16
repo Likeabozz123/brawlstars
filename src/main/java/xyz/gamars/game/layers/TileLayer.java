@@ -1,7 +1,6 @@
 package xyz.gamars.game.layers;
 
 import xyz.gamars.game.layers.tiles.Tile;
-import xyz.gamars.game.map.MapSelection;
 import xyz.gamars.graphics.panels.GamePanel;
 import xyz.gamars.util.ResourceFile;
 
@@ -16,8 +15,8 @@ public class TileLayer extends Layer {
     private Tile[][] tiles;
 
     /**
-     *
      * Constructs a TileManager with the specified game panel.
+     *
      * @author Daryan, Vishak, Sai
      */
     public TileLayer() {
@@ -28,6 +27,7 @@ public class TileLayer extends Layer {
 
     /**
      * Sets up tiles based on data from the map_layer_0.txt file.
+     *
      * @author Daryan, Vishak, Sai
      */
     @Override
@@ -52,8 +52,8 @@ public class TileLayer extends Layer {
                             }
                         }
                     }
-                    tiles[x][y] = new Tile( x * GamePanel.getGamePanel().getTileSize(),
-                                            y * GamePanel.getGamePanel().getTileSize(),
+                    tiles[x][y] = new Tile(x * GamePanel.getGamePanel().getTileSize(),
+                            y * GamePanel.getGamePanel().getTileSize(),
                             ImageIO.read(new ResourceFile("tiles/" + GamePanel.getGamePanel().getMapSelection().getFolder() + "/tile_" + tileIndex + "_layer_0.png")), collidable);
 
                 }
@@ -101,6 +101,7 @@ public class TileLayer extends Layer {
 
     /**
      * returns all tiles found
+     *
      * @return the 2d array of tiles
      * @author Daryan, Vishak, Sai
      */

@@ -18,6 +18,7 @@ public class PanelManager {
 
     /**
      * Constructs the PanelManager instance, instantiates the window, panels, and starts the window.
+     *
      * @author Daryan, Vishak, Sai
      */
     private PanelManager() {
@@ -38,6 +39,7 @@ public class PanelManager {
 
     /**
      * Instantiates the main window of the game.
+     *
      * @author Daryan, Vishak, Sai
      */
     private void instantiateWindow() {
@@ -46,8 +48,10 @@ public class PanelManager {
         window.setResizable(false);
         window.setTitle("Brawlstars");
     }
+
     /**
      * Instantiates the panels of the game.
+     *
      * @author Daryan, Vishak, Sai
      */
     private void instantiatePanels() {
@@ -64,8 +68,10 @@ public class PanelManager {
         this.window.add(cardLayoutPanel);
         this.panels = (CardLayout) cardLayoutPanel.getLayout();
     }
+
     /**
      * Starts the main window of the game.
+     *
      * @author Daryan, Vishak, Sai
      */
     private void startWindow() {
@@ -73,8 +79,10 @@ public class PanelManager {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
+
     /**
      * Switches to the game panel.
+     *
      * @author Daryan, Vishak, Sai
      */
     // Method to switch to the game panel
@@ -86,6 +94,7 @@ public class PanelManager {
         gamePanel.setUpGame();
         gamePanel.startGameThread();
     }
+
     /**
      * Retrieves the CardLayout object managing panels.
      *

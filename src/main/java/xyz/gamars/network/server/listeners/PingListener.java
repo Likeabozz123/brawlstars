@@ -7,6 +7,7 @@ import xyz.gamars.network.server.packets.PongPacket;
 
 /**
  * A listener for receiving Ping packets from clients and sending back Pong packets.
+ *
  * @author Daryan, Vishak, Sai
  */
 public class PingListener extends Listener {

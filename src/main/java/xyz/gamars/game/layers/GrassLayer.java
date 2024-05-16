@@ -11,6 +11,7 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+
 /**
  * The GrassLayer class represents a layer of grass tiles in the game world.
  */
@@ -22,6 +23,7 @@ public class GrassLayer extends Layer {
      * Constructs a new GrassLayer object.
      * Initializes the tiles array based on the maximum world width and height from the GamePanel.
      * Calls the setupImages method to load the grass tiles from a file.
+     *
      * @author Daryan, Vishak, Sai
      */
     public GrassLayer() {
@@ -34,6 +36,7 @@ public class GrassLayer extends Layer {
      * If a tile index is -1, it represents an empty tile.
      * Each grass tile is loaded as a GrassTile object with the corresponding image.
      * Empty tiles are represented by EmptyTile objects.
+     *
      * @author Daryan, Vishak, Sai
      */
     @Override
@@ -64,6 +67,7 @@ public class GrassLayer extends Layer {
             throw new RuntimeException(e);
         }
     }
+
     /**
      * Renders the grass tiles onto the screen using the specified graphics context.
      * Only renders tiles that are within the visible screen bounds.
@@ -98,6 +102,7 @@ public class GrassLayer extends Layer {
             }
         }
     }
+
     /**
      * Returns the 2D array of grass tiles in this layer.
      *

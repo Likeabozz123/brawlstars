@@ -11,6 +11,7 @@ public class Network {
 
     /**
      * Registers all classes, so they're serialized to send as a packet
+     *
      * @param endPoint The endpoint to register classes with.
      * @author Daryan, Vishak, Sai
      */

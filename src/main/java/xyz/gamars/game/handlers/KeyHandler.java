@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 /**
  * The KeyHandler Class.
+ *
  * @author Daryan, Vishak, Sai
  */
 public class KeyHandler implements KeyListener {
@@ -25,7 +26,7 @@ public class KeyHandler implements KeyListener {
      * Handles the event when a key is pressed.
      *
      * @param e The KeyEvent representing the key press event.
-     *  @author Daryan, Vishak, Sai
+     * @author Daryan, Vishak, Sai
      */
     @Override
     public void keyPressed(KeyEvent e) {

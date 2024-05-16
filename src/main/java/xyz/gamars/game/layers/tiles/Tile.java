@@ -55,6 +55,7 @@ public class Tile {
 
     /**
      * Represents the collision bounds of an object.
+     *
      * @author Daryan, Vishak, Sai
      */
     public Rectangle getCollisionBounds() {

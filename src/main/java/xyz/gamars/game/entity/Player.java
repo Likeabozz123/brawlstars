@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 /**
  * The Player Class.
+ *
  * @author Daryan, Vishak, Sai
  */
 public class Player extends Entity implements IAnimatable, IUpdating {
@@ -50,7 +51,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
         super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 7, 3, 20, null,
                 3, 3, 5, 3,
-                 EntityDirection.RIGHT, false);
+                EntityDirection.RIGHT, false);
 
         this.keyHandler = keyHandler;
         this.inGrass = false;
@@ -69,6 +70,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Loads the player images from resources.
+     *
      * @author Daryan, Vishak, Sai
      */
     private void loadPlayerImages() {
@@ -88,6 +90,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Updates the player's position and animation frame based on user input.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void update() {
@@ -204,6 +207,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Updates the collision state of the player based on collisions with grass tiles.
+     *
      * @author Daryan, Vishak, Sai
      */
     @Override
@@ -215,6 +219,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
             inGrass = true;
         }
     }
+
     /**
      * Finds and returns the grass tile that the player is currently colliding with.
      * If the player is not colliding with any grass tile, null is returned.
@@ -256,7 +261,8 @@ public class Player extends Entity implements IAnimatable, IUpdating {
     }
 
     /**
-     *  Checks if entity is in grass or not
+     * Checks if entity is in grass or not
+     *
      * @return true if entity in grass, false otherwise
      * @author Daryan, Vishak, Sai
      */
@@ -265,7 +271,6 @@ public class Player extends Entity implements IAnimatable, IUpdating {
     }
 
     /**
-     *
      * @param inGrass
      */
     public void setInGrass(boolean inGrass) {
@@ -294,6 +299,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Increments the current frame count of the entity's animation.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void incrementCurrentFrame() {
@@ -332,6 +338,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Increments the index of the current sprite in the animation.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void incrementCurrentSpriteIndex() {
@@ -383,6 +390,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
 
     /**
      * Gets the bullet cooldown time on the HUD
+     *
      * @return the current bullet cooldown time
      * @author Daryan, Vishak, Sai
      */

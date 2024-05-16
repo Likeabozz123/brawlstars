@@ -1,6 +1,5 @@
 package xyz.gamars;
 
-import xyz.gamars.discord.DiscordRP;
 import xyz.gamars.graphics.PanelManager;
 
 public class Main {

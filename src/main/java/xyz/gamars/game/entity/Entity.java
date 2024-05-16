@@ -32,13 +32,11 @@ public class Entity {
     /**
      * Constructs an Entity with specified parameters.
      *
-     *
      * @param worldX          The initial world X-coordinate of the entity.
      * @param worldY          The initial world Y-coordinate of the entity.
      * @param speed           The movement speed of the entity.
      * @param maxHealth       The maximum health points of the entity.
      * @param image           The image representing the entity.
-     * @param collisionBounds The bounding box used for collision detection.
      * @param entityDirection The initial direction of the entity.
      * @param collidable      Determines if the entity can collide with other entities or tiles.
      * @author Daryan, Vishak, Sai
@@ -53,9 +51,9 @@ public class Entity {
         this.collisionBoundsXOffset = collisionBoundsXOffset;
         this.collisionBoundsYOffset = collisionBoundsYOffset;
         this.collisionBounds = new Rectangle(worldX + (collisionBoundsXOffset * GamePanel.getGamePanel().getScale()),
-                                             worldY + (collisionBoundsYOffset * GamePanel.getGamePanel().getScale()),
-                                             GamePanel.getGamePanel().getTileSize() - (spriteWidthMargins * GamePanel.getGamePanel().getScale()),
-                                             GamePanel.getGamePanel().getTileSize() - (spriteHeightMargins * GamePanel.getGamePanel().getScale()));
+                worldY + (collisionBoundsYOffset * GamePanel.getGamePanel().getScale()),
+                GamePanel.getGamePanel().getTileSize() - (spriteWidthMargins * GamePanel.getGamePanel().getScale()),
+                GamePanel.getGamePanel().getTileSize() - (spriteHeightMargins * GamePanel.getGamePanel().getScale()));
 
         this.entityDirection = entityDirection;
         this.collidable = collidable;
@@ -123,6 +121,7 @@ public class Entity {
 
     /**
      * Increments the Y-coordinate of the entity by its speed.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void incrementY() {
@@ -132,6 +131,7 @@ public class Entity {
 
     /**
      * Decrements the Y-coordinate of the entity by its speed.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void decrementY() {
@@ -141,6 +141,7 @@ public class Entity {
 
     /**
      * Increments the X-coordinate of the entity by its speed.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void incrementX() {
@@ -150,6 +151,7 @@ public class Entity {
 
     /**
      * Decrements the X-coordinate of the entity by its speed.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void decrementX() {
@@ -159,6 +161,7 @@ public class Entity {
 
     /**
      * Gets the area of rectangle
+     *
      * @return the collision bounds
      * @author Daryan, Vishak, Sai
      */
@@ -168,6 +171,7 @@ public class Entity {
 
     /**
      * returns whether an entity is colliding or not
+     *
      * @return colliding
      * @author Daryan, Vishak, Sai
      */
@@ -204,6 +208,7 @@ public class Entity {
     public void setEntityDirection(EntityDirection entityDirection) {
         this.entityDirection = entityDirection;
     }
+
     /**
      * Gets the image representing the entity.
      *
@@ -213,6 +218,7 @@ public class Entity {
     public BufferedImage getImage() {
         return image;
     }
+
     /**
      * Sets the image representing the entity.
      *
@@ -222,6 +228,7 @@ public class Entity {
     public void setImage(BufferedImage image) {
         this.image = image;
     }
+
     /**
      * Checks if the entity is collidable.
      *
@@ -231,6 +238,7 @@ public class Entity {
     public boolean isCollidable() {
         return collidable;
     }
+
     /**
      * Gets the maximum health points of the entity.
      *
@@ -243,7 +251,8 @@ public class Entity {
 
     /**
      * sets health of entity to inputted value
-     * @param currentHealth
+     *
+     * @param currentHealth current health
      * @author Daryan, Vishak, Sai
      */
     public void setCurrentHealth(int currentHealth) {
@@ -251,8 +260,10 @@ public class Entity {
         if (currentHealth <= 0) currentHealth = 0;
         if (currentHealth >= maxHealth) currentHealth = maxHealth;
     }
+
     /**
      * Increases health of entity
+     *
      * @author Daryan, Vishak, Sai
      */
     public void incrementHealth() {
@@ -262,6 +273,7 @@ public class Entity {
 
     /**
      * Decrements health of entity
+     *
      * @author Daryan, Vishak, Sai
      */
     public void decrementHealth() {
@@ -272,6 +284,7 @@ public class Entity {
 
     /**
      * Updates the collision state of the entity based on collisions with other entities or tiles.
+     *
      * @author Daryan, Vishak, Sai
      */
     public int getMaxHealth() {
@@ -280,6 +293,7 @@ public class Entity {
 
     /**
      * gets x-coordinate of CollisionBounds
+     *
      * @return x-coordinate of collisionBounds
      * @author Daryan, Vishak, Sai
      */
@@ -289,6 +303,7 @@ public class Entity {
 
     /**
      * gets y-coordinate of collisionBounds
+     *
      * @return y-coordinate of collisionBounds
      * @author Daryan, Vishak, Sai
      */
@@ -297,7 +312,8 @@ public class Entity {
     }
 
     /**
-     * if colliding, sets to true, else false
+     * handles collision
+     *
      * @author Daryan, Vishak, Sai
      */
     public void handleCollisions() {
@@ -310,6 +326,7 @@ public class Entity {
             colliding = true;
         }
     }
+
     /**
      * Checks for collision with other entities and returns the colliding entity.
      *
@@ -328,6 +345,7 @@ public class Entity {
         }
         return null;
     }
+
     /**
      * Checks for collision with tiles and returns the colliding tile.
      *
@@ -371,7 +389,7 @@ public class Entity {
 
             graphics2D.setColor(Color.MAGENTA);
 
-            }
+        }
     }
 
 

@@ -26,6 +26,7 @@ public class GameServer {
 
     /**
      * Starts the server
+     *
      * @author Daryan, Vishak, Sai
      */
     public void start() {

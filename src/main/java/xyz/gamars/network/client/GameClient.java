@@ -19,6 +19,7 @@ public class GameClient {
 
     /**
      * Starts the client
+     *
      * @author Daryan, Vishak, Sai
      */
     public void start() {
@@ -28,6 +29,7 @@ public class GameClient {
 
     /**
      * Connects the client to the server
+     *
      * @author Daryan, Vishak, Sai
      */
     public void connect() {
@@ -40,6 +42,7 @@ public class GameClient {
 
     /**
      * Closes the client
+     *
      * @author Daryan, Vishak, Sai
      */
     public void close() {
@@ -48,6 +51,7 @@ public class GameClient {
 
     /**
      * Adds a listener to the client
+     *
      * @param listener listener
      * @author Daryan, Vishak, Sai
      */
@@ -77,6 +81,7 @@ public class GameClient {
 
     /**
      * Returns whether the client is connected to the server
+     *
      * @author Daryan, Vishak, Sai
      */
     public boolean isConnected() {

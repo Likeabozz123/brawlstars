@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * The LayerManager class manages layers in the game world.
+ *
  * @author Daryan, Vishak, Sai
  */
 public class LayerManager {
@@ -13,6 +14,7 @@ public class LayerManager {
 
     /**
      * Sets up the layers in the game world.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void setupLayers() {
@@ -30,8 +32,10 @@ public class LayerManager {
     public ArrayList<Layer> getBelowPlayerLayers() {
         return belowPlayerLayers;
     }
+
     /**
      * Gets the ArrayList of layers rendered above the player.
+     *
      * @return The ArrayList containing layers above the player.
      * @author Daryan, Vishak, Sai
      */

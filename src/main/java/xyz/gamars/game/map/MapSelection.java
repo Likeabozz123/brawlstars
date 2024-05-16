@@ -2,14 +2,13 @@ package xyz.gamars.game.map;
 
 /**
  * Selects which map to play as background
+ *
  * @author Daryan, Vishak, Sai
  */
 public enum MapSelection {
 
     UNDERGROUND(0, "underground", 23, 35),
-    SANDSTONE(1, "sandstone", 20, 25)
-
-    ;
+    SANDSTONE(1, "sandstone", 20, 25);
 
     private int mapID;
     private String folder;
@@ -25,6 +24,7 @@ public enum MapSelection {
 
     /**
      * gets the ID of the map
+     *
      * @return the map ID
      * @author Daryan, Vishak, Sai
      */
@@ -34,6 +34,7 @@ public enum MapSelection {
 
     /**
      * gets the map's width
+     *
      * @return the width of the map
      * @author Daryan, Vishak, Sai
      */
@@ -43,6 +44,7 @@ public enum MapSelection {
 
     /**
      * get's the map's height
+     *
      * @return the height of the map
      * @author Daryan, Vishak, Sai
      */
@@ -52,6 +54,7 @@ public enum MapSelection {
 
     /**
      * Gets the folder with the correct map
+     *
      * @return folder with the needed map
      * @author Daryan, Vishak, Sai
      */
@@ -61,8 +64,9 @@ public enum MapSelection {
 
     /**
      * Gets the map's name
+     *
      * @return a string with the map's name
-     * @author Daryan, Vishak, Sai 
+     * @author Daryan, Vishak, Sai
      */
     public String getMapName() {
         return name().charAt(0) + name().substring(1).toLowerCase();

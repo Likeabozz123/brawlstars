@@ -5,6 +5,7 @@ import java.io.File;
 public class ResourceFile extends File {
     /**
      * allows for easier access to a file
+     *
      * @param pathname
      * @author Daryan, Vishak
      */

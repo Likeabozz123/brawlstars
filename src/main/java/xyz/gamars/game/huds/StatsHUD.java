@@ -7,6 +7,7 @@ import java.awt.*;
 
 /**
  * The StatsHUD class handles how the HUD renders on screen for the user.
+ *
  * @author Daryan, Vishak, Sai
  */
 public class StatsHUD {

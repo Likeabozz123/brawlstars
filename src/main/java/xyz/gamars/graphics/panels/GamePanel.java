@@ -1,9 +1,9 @@
 package xyz.gamars.graphics.panels;
 
 import xyz.gamars.game.entity.Entity;
+import xyz.gamars.game.entity.EntityPlacement;
 import xyz.gamars.game.entity.Player;
 import xyz.gamars.game.entity.components.IUpdating;
-import xyz.gamars.game.entity.EntityPlacement;
 import xyz.gamars.game.handlers.KeyHandler;
 import xyz.gamars.game.huds.StatsHUD;
 import xyz.gamars.game.layers.GrassLayer;
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * The GamePanel Class.
+ *
  * @author Daryan, Vishak, Sai
  */
 public class GamePanel extends JPanel implements Runnable {
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * Constructs the game panel.
+     *
      * @author Daryan, Vishak, Sai
      */
     private GamePanel() {
@@ -74,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
     }
+
     /**
      * Retrieves the singleton instance of the GamePanel class.
      *
@@ -83,8 +86,10 @@ public class GamePanel extends JPanel implements Runnable {
     public static GamePanel getGamePanel() {
         return gamePanel;
     }
+
     /**
      * Sets up the game by initializing the player, layer manager, and entity positions.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void setUpGame() {
@@ -95,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * Starts the game thread.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void startGameThread() {
@@ -104,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * The main game loop.
+     *
      * @author Daryan, Vishak, Sai
      */
     @Override
@@ -139,6 +146,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * Updates game logic.
+     *
      * @author Daryan, Vishak, Sai
      */
     public void update() {
@@ -273,6 +281,7 @@ public class GamePanel extends JPanel implements Runnable {
     public TileLayer getTileLayer() {
         return (TileLayer) this.layerManager.getBelowPlayerLayers().get(0);
     }
+
     /**
      * Retrieves the GrassLayer object, which represents the layer containing grass elements.
      *
@@ -282,6 +291,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GrassLayer getGrassLayer() {
         return (GrassLayer) this.layerManager.getAbovePlayerLayers().get(0);
     }
+
     /**
      * Retrieves the list of interactable entities in the game.
      *
@@ -294,6 +304,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * gets current map of game
+     *
      * @return the current map being selected for the game
      * @author Daryan, Vishak, Sai
      */
@@ -303,6 +314,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * gets the scale of gamePanel
+     *
      * @return scale of gamePanel to get its true size
      * @author Daryan, Vishak, Sai
      */

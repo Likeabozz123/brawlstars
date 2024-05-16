@@ -207,6 +207,14 @@ public class Entity {
         return maxHealth;
     }
 
+    public int getCollisionBoundsXOffset() {
+        return collisionBoundsXOffset;
+    }
+
+    public int getCollisionBoundsYOffset() {
+        return collisionBoundsYOffset;
+    }
+
     public void handleCollisions() {
         colliding = false;
         Entity interactable = getCollidingEntity();

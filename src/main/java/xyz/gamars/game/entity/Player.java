@@ -189,7 +189,7 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         graphics2D.setColor(Color.RED);
 
         if (getCollisionBounds().width < gamePanel.getTileSize() || getCollisionBounds().height < gamePanel.getTileSize()) {
-            graphics2D.drawRect(screenX + (3 * GamePanel.getGamePanel().getScale()), screenY + (3 * GamePanel.getGamePanel().getScale()), getCollisionBounds().width, getCollisionBounds().height);
+            graphics2D.drawRect(screenX + (getCollisionBoundsXOffset() * GamePanel.getGamePanel().getScale()), screenY + (getCollisionBoundsYOffset() * GamePanel.getGamePanel().getScale()), getCollisionBounds().width, getCollisionBounds().height);
         } else {
             graphics2D.drawRect(screenX, screenY, getCollisionBounds().width, getCollisionBounds().height);
         }

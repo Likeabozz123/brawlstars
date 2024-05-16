@@ -25,4 +25,9 @@ public class PowercubeEntity extends Entity {
                 3, 2, 6, 5, EntityDirection.NONE, true);
 
     }
+
+    @Override
+    public String toString() {
+        return "PowercubeEntity{position=" + getWorldX() + ", " + getWorldY() + " }";
+    }
 }

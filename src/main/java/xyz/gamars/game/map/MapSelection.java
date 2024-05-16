@@ -62,7 +62,7 @@ public enum MapSelection {
     /**
      * Gets the map's name
      * @return a string with the map's name
-     * @author Daryan, Vishak, Sai
+     * @author Daryan, Vishak, Sai 
      */
 
     public String getMapName() {

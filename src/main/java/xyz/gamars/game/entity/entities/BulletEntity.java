@@ -31,10 +31,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
      */
     public BulletEntity(int worldX, int worldY, EntityDirection entityDirection) throws IOException {
         super(worldX, worldY, 4, 0, ImageIO.read(new ResourceFile("player/bullet.png")),
-                new Rectangle( worldX + (4 * GamePanel.getGamePanel().getScale()),
-                                            worldY + (3 * GamePanel.getGamePanel().getScale()),
-                                            GamePanel.getGamePanel().getTileSize() - (7 * GamePanel.getGamePanel().getScale()),
-                                            GamePanel.getGamePanel().getTileSize() - (7 * GamePanel.getGamePanel().getScale())),
+                4, 3, 7, 7,
                 entityDirection, true);
     }
     /**
@@ -91,30 +88,10 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
             die();
         }
     }
-    /**
-     * Handles collisions of the bullet entity with other entities or tiles.
-     * If a collision occurs, the bullet is removed from the game.
-     * @author Daryan, Vishak, Sai
-     */
-    public boolean isColliding() {
 
-        // either colliding with another entity
-        // or colliding with a tile that does not allow collisions
-
-        GamePanel gamePanel = GamePanel.getGamePanel();
-        for (Entity interactable : gamePanel.getInteractables()) {
-            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
-                if (this.getCollisionBounds().intersects(interactable.getCollisionBounds())) {
-                    if (!interactable.isCollidable()) return true;
-                }
-            }
-        }
-        return false;
-    }
     /**
-     * Returns a string representation of the bullet entity, including its remaining lifespan.
-     *
-     * @return A string representation of the bullet entity.
+     * Shows lifespan and collisionPosition of entity in HUD
+     * @return string that shows lifespan and collisionPosition
      * @author Daryan, Vishak, Sai
      */
     @Override

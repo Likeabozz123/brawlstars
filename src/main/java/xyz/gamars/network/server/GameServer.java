@@ -43,6 +43,7 @@ public class GameServer {
      * Adds a listener to the server
      *
      * @param listener listener
+     * @author Daryan, Vishak, Sai
      */
     public void addListener(Listener listener) {
         server.addListener(listener);
@@ -52,6 +53,7 @@ public class GameServer {
      * Send packet to all connected through TCP
      *
      * @param packet packet
+     * @author Daryan, Vishak, Sai
      */
     public void sendPacketToAllTCP(Packet packet) {
         server.sendToAllTCP(packet);
@@ -61,6 +63,7 @@ public class GameServer {
      * Send packet to all connected through UDP
      *
      * @param packet packet
+     * @author Daryan, Vishak, Sai
      */
     public void sendPacketToAllUDP(Packet packet) {
         server.sendToAllUDP(packet);
@@ -71,6 +74,7 @@ public class GameServer {
      *
      * @param connectionID connection id of the excluded connection
      * @param packet       packet
+     * @author Daryan, Vishak, Sai
      */
     public void sendPacketToAllTCPExcept(int connectionID, Packet packet) {
         server.sendToAllExceptTCP(connectionID, packet);
@@ -81,6 +85,7 @@ public class GameServer {
      *
      * @param connectionID connection id of the excluded connection
      * @param packet       packet
+     * @author Daryan, Vishak, Sai
      */
     public void sendPacketToAllUDPExcept(int connectionID, Packet packet) {
         server.sendToAllExceptUDP(connectionID, packet);
@@ -91,6 +96,7 @@ public class GameServer {
      *
      * @param connectionID connection id to send to
      * @param packet       packet
+     * @author Daryan, Vishak, Sai
      */
     public void sendPacketTCP(int connectionID, Packet packet) {
         server.sendToTCP(connectionID, packet);
@@ -101,6 +107,7 @@ public class GameServer {
      *
      * @param connectionID connection id to send to
      * @param packet       packet
+     * @author Daryan, Vishak
      */
     public void sendPacketUDP(int connectionID, Packet packet) {
         server.sendToUDP(connectionID, packet);
@@ -110,6 +117,7 @@ public class GameServer {
      * Return all connections to the server
      *
      * @return connections
+     * @author Daryan, Vishak
      */
     public Connection[] getConnections() {
         return server.getConnections();

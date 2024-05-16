@@ -36,8 +36,8 @@ public class GamePanel extends JPanel implements Runnable {
     private final int maxScreenHeight = 12; //change later?
 
     // The dimensions of the screen
-    private final int screenWidth = tileSize * maxScreenWidth; //768 pix
-    private final int screenHeight = tileSize * maxScreenHeight; // 576 pix
+    private final int screenWidth = tileSize * maxScreenWidth;
+    private final int screenHeight = tileSize * maxScreenHeight;
 
     private MapSelection mapSelection = MapSelection.UNDERGROUND;
 
@@ -195,26 +195,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-     * Gets the max screen width (in tiles).
-     *
-     * @return The maximum number of tiles that fit on the screen.
-     * @author Daryan, Vishak, Sai
-     */
-    public int getMaxScreenWidth() {
-        return maxScreenWidth;
-    }
-
-    /**
-     * Gets the max screen height (in tiles).
-     *
-     * @return The maximum number of tiles that fit on the screen.
-     * @author Daryan, Vishak, Sai
-     */
-    public int getMaxScreenHeight() {
-        return maxScreenHeight;
-    }
-
-    /**
      * Gets the screen width.
      *
      * @return The width of the screen.
@@ -312,10 +292,20 @@ public class GamePanel extends JPanel implements Runnable {
         return interactables;
     }
 
+    /**
+     * gets current map of game
+     * @return the current map being selected for the game
+     * @author Daryan, Vishak, Sai
+     */
     public MapSelection getMapSelection() {
         return mapSelection;
     }
 
+    /**
+     * gets the scale of gamePanel
+     * @return scale of gamePanel to get its true size
+     * @author Daryan, Vishak, Sai
+     */
     public int getScale() {
         return scale;
     }

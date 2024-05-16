@@ -22,8 +22,8 @@ public class Entity {
     private boolean colliding = false;
     private boolean collidable;
 
-    private int collisionBoundsDefaultX;
-    private int collisionBoundsDefaultY;
+    private int collisionBoundsXOffset;
+    private int collisionBoundsYOffset;
 
     private EntityDirection entityDirection;
 
@@ -43,16 +43,20 @@ public class Entity {
      * @param collidable      Determines if the entity can collide with other entities or tiles.
      * @author Daryan, Vishak, Sai
      */
-    public Entity(int worldX, int worldY, int speed, int maxHealth, BufferedImage image, Rectangle collisionBounds, EntityDirection entityDirection, boolean collidable) {
+    public Entity(int worldX, int worldY, int speed, int maxHealth, BufferedImage image, int collisionBoundsXOffset, int collisionBoundsYOffset, int spriteWidthMargins, int spriteHeightMargins, EntityDirection entityDirection, boolean collidable) {
         this.worldX = worldX;
         this.worldY = worldY;
         this.speed = speed;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.image = image;
-        this.collisionBounds = collisionBounds;
-        this.collisionBoundsDefaultX = collisionBounds.x;
-        this.collisionBoundsDefaultY = collisionBounds.y;
+        this.collisionBoundsXOffset = collisionBoundsXOffset;
+        this.collisionBoundsYOffset = collisionBoundsYOffset;
+        this.collisionBounds = new Rectangle(worldX + (collisionBoundsXOffset * GamePanel.getGamePanel().getScale()),
+                                             worldY + (collisionBoundsYOffset * GamePanel.getGamePanel().getScale()),
+                                             GamePanel.getGamePanel().getTileSize() - (spriteWidthMargins * GamePanel.getGamePanel().getScale()),
+                                             GamePanel.getGamePanel().getTileSize() - (spriteHeightMargins * GamePanel.getGamePanel().getScale()));
+
         this.entityDirection = entityDirection;
         this.collidable = collidable;
     }
@@ -163,27 +167,8 @@ public class Entity {
     }
 
     /**
-     * Gets the default X-coordinate of the collision bounds.
-     *
-     * @return The default X-coordinate of the collision bounds.
-     */
-    public int getCollisionBoundsDefaultX() {
-        return collisionBoundsDefaultX;
-    }
-    /**
-     * Gets the default Y-coordinate of the collision bounds.
-     *
-     * @return The default Y-coordinate of the collision bounds.
-     * @author Daryan, Vishak, Sai
-     */
-    public int getCollisionBoundsDefaultY() {
-        return collisionBoundsDefaultY;
-    }
-
-    /**
-     * Checks if the entity is currently colliding with other entities or tiles.
-     *
-     * @return true if the entity is colliding, false otherwise.
+     * returns whether an entity is colliding or not
+     * @return colliding
      * @author Daryan, Vishak, Sai
      */
     public boolean isColliding() {
@@ -292,8 +277,27 @@ public class Entity {
     public int getMaxHealth() {
         return maxHealth;
     }
+
     /**
-     * Updates the collision state of the entity based on collisions with other entities or tiles.
+     * gets x-coordinate of CollisionBounds
+     * @return x-coordinate of collisionBounds
+     * @author Daryan, Vishak, Sai
+     */
+    public int getCollisionBoundsXOffset() {
+        return collisionBoundsXOffset;
+    }
+
+    /**
+     * gets y-coordinate of collisionBounds
+     * @return y-coordinate of collisionBounds
+     * @author Daryan, Vishak, Sai
+     */
+    public int getCollisionBoundsYOffset() {
+        return collisionBoundsYOffset;
+    }
+
+    /**
+     * if colliding, sets to true, else false
      * @author Daryan, Vishak, Sai
      */
     public void handleCollisions() {
@@ -365,15 +369,12 @@ public class Entity {
                     gamePanel.getTileSize(), gamePanel.getTileSize(), null);
             graphics2D.setColor(Color.RED);
 
-            if (getCollisionBounds().width < gamePanel.getTileSize() || getCollisionBounds().height < gamePanel.getTileSize()) {
-                graphics2D.drawRect(screenX + (4 * GamePanel.getGamePanel().getScale()), screenY + (3 * GamePanel.getGamePanel().getScale()), collisionBounds.width, collisionBounds.height);
-            } else {
-                graphics2D.drawRect(screenX, screenY, collisionBounds.width, collisionBounds.height);
-            }
-            // graphics2D.drawRect(screenX - GamePanel.getGamePanel().getTileSize() - collisionBounds.x, screenY - GamePanel.getGamePanel().getTileSize() - collisionBounds.y, collisionBounds.width, collisionBounds.height);
+
+            graphics2D.drawRect(screenX + (collisionBoundsXOffset * GamePanel.getGamePanel().getScale()), screenY + (collisionBoundsYOffset * GamePanel.getGamePanel().getScale()), collisionBounds.width, collisionBounds.height);
 
             graphics2D.setColor(Color.MAGENTA);
-        }
+
+            }
     }
 
 

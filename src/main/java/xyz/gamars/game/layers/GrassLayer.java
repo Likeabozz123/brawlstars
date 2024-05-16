@@ -75,7 +75,7 @@ public class GrassLayer extends Layer {
     @Override
     public void draw(Graphics2D graphics2D) {
         GamePanel gamePanel = GamePanel.getGamePanel();
-        for (int x = 0; x < gamePanel.getMaxScreenWidth(); x++) {
+        for (int x = 0; x < gamePanel.getMaxWorldWidth(); x++) {
             for (int y = 0; y < gamePanel.getMaxWorldHeight(); y++) {
                 int worldX = x * gamePanel.getTileSize();
                 int worldY = y * gamePanel.getTileSize();

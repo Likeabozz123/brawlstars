@@ -6,7 +6,7 @@ package xyz.gamars.game.map;
  */
 public enum MapSelection {
 
-    UNDERGROUND(0, "underground", 21, 33),
+    UNDERGROUND(0, "underground", 23, 35),
     SANDSTONE(1, "sandstone", 20, 25)
 
     ;
@@ -64,7 +64,6 @@ public enum MapSelection {
      * @return a string with the map's name
      * @author Daryan, Vishak, Sai 
      */
-
     public String getMapName() {
         return name().charAt(0) + name().substring(1).toLowerCase();
     }

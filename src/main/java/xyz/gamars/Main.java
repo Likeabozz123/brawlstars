@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /*
         Thread discordRPThread = new Thread() {
             @Override
             public void run() {
@@ -15,8 +16,9 @@ public class Main {
             }
         };
         discordRPThread.start();
+        */
 
-/*
+        /*
         Thread clientThread = new Thread() {
             @Override
             public void run() {
@@ -28,7 +30,9 @@ public class Main {
             }
         };
         clientThread.start();
-*/
+        */
+
+
         PanelManager panelManager = PanelManager.getPanelManager();
 
 

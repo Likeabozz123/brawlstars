@@ -20,10 +20,7 @@ public class CrateEntity extends Entity implements IUpdating {
      */
     public CrateEntity(int worldX, int worldY) throws IOException {
         super(worldX, worldY, 0, 5, ImageIO.read(new ResourceFile("tiles/tile_3_layer_0.png")),
-                new Rectangle(worldX,
-                        worldY,
-                        GamePanel.getGamePanel().getTileSize(),
-                        GamePanel.getGamePanel().getTileSize()),
+                0, 0, 0, 0,
                 EntityDirection.NONE, false);
 
     }
@@ -40,6 +37,11 @@ public class CrateEntity extends Entity implements IUpdating {
 
     public void die() {
         GamePanel.getGamePanel().getInteractables().remove(this);
+        try {
+            GamePanel.getGamePanel().getInteractables().add(new PowercubeEntity(getWorldX(), getWorldY()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

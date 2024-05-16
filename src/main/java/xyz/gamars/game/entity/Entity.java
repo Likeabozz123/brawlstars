@@ -22,8 +22,8 @@ public class Entity {
     private boolean colliding = false;
     private boolean collidable;
 
-    private int collisionBoundsDefaultX;
-    private int collisionBoundsDefaultY;
+    private int collisionBoundsXOffset;
+    private int collisionBoundsYOffset;
 
     private EntityDirection entityDirection;
 
@@ -37,16 +37,20 @@ public class Entity {
      * @param speed           The speed of the entity.
      * @param entityDirection The initial direction of the entity.
      */
-    public Entity(int worldX, int worldY, int speed, int maxHealth, BufferedImage image, Rectangle collisionBounds, EntityDirection entityDirection, boolean collidable) {
+    public Entity(int worldX, int worldY, int speed, int maxHealth, BufferedImage image, int collisionBoundsXOffset, int collisionBoundsYOffset, int spriteWidthMargins, int spriteHeightMargins, EntityDirection entityDirection, boolean collidable) {
         this.worldX = worldX;
         this.worldY = worldY;
         this.speed = speed;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.image = image;
-        this.collisionBounds = collisionBounds;
-        this.collisionBoundsDefaultX = collisionBounds.x;
-        this.collisionBoundsDefaultY = collisionBounds.y;
+        this.collisionBoundsXOffset = collisionBoundsXOffset;
+        this.collisionBoundsYOffset = collisionBoundsYOffset;
+        this.collisionBounds = new Rectangle(worldX + (collisionBoundsXOffset * GamePanel.getGamePanel().getScale()),
+                                             worldY + (collisionBoundsYOffset * GamePanel.getGamePanel().getScale()),
+                                             GamePanel.getGamePanel().getTileSize() - (spriteWidthMargins * GamePanel.getGamePanel().getScale()),
+                                             GamePanel.getGamePanel().getTileSize() - (spriteHeightMargins * GamePanel.getGamePanel().getScale()));
+
         this.entityDirection = entityDirection;
         this.collidable = collidable;
     }
@@ -139,14 +143,6 @@ public class Entity {
 
     public Rectangle getCollisionBounds() {
         return collisionBounds;
-    }
-
-    public int getCollisionBoundsDefaultX() {
-        return collisionBoundsDefaultX;
-    }
-
-    public int getCollisionBoundsDefaultY() {
-        return collisionBoundsDefaultY;
     }
 
     public boolean isColliding() {
@@ -266,15 +262,12 @@ public class Entity {
                     gamePanel.getTileSize(), gamePanel.getTileSize(), null);
             graphics2D.setColor(Color.RED);
 
-            if (getCollisionBounds().width < gamePanel.getTileSize() || getCollisionBounds().height < gamePanel.getTileSize()) {
-                graphics2D.drawRect(screenX + (4 * GamePanel.getGamePanel().getScale()), screenY + (3 * GamePanel.getGamePanel().getScale()), collisionBounds.width, collisionBounds.height);
-            } else {
-                graphics2D.drawRect(screenX, screenY, collisionBounds.width, collisionBounds.height);
-            }
-            // graphics2D.drawRect(screenX - GamePanel.getGamePanel().getTileSize() - collisionBounds.x, screenY - GamePanel.getGamePanel().getTileSize() - collisionBounds.y, collisionBounds.width, collisionBounds.height);
+
+            graphics2D.drawRect(screenX + (collisionBoundsXOffset * GamePanel.getGamePanel().getScale()), screenY + (collisionBoundsYOffset * GamePanel.getGamePanel().getScale()), collisionBounds.width, collisionBounds.height);
 
             graphics2D.setColor(Color.MAGENTA);
-        }
+
+            }
     }
 
 

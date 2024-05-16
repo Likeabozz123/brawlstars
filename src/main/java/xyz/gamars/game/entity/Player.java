@@ -47,11 +47,8 @@ public class Player extends Entity implements IAnimatable, IUpdating {
      */
     public Player(KeyHandler keyHandler, int totalSpriteCount) {
         super(GamePanel.getGamePanel().getTileSize() * 8, GamePanel.getGamePanel().getTileSize() * 7, 3, 20, null,
-                new Rectangle( (GamePanel.getGamePanel().getTileSize() * 8) + (3 * GamePanel.getGamePanel().getScale()),
-                                            (GamePanel.getGamePanel().getTileSize() * 6) + (3 * GamePanel.getGamePanel().getScale()),
-                                            GamePanel.getGamePanel().getTileSize() - (5 * GamePanel.getGamePanel().getScale()),
-                                            (GamePanel.getGamePanel().getTileSize() - (3 * GamePanel.getGamePanel().getScale())))
-                , EntityDirection.RIGHT, false);
+                3, 3, 5, 3,
+                 EntityDirection.RIGHT, false);
 
         this.keyHandler = keyHandler;
         this.inGrass = false;
@@ -223,36 +220,6 @@ public class Player extends Entity implements IAnimatable, IUpdating {
         return null;
     }
 
-    @Override
-    public Tile getCollidingTile() {
-        GamePanel gamePanel = GamePanel.getGamePanel();
-        for (Tile[] tiles : gamePanel.getTileLayer().getTiles()) {
-            for (Tile tile : tiles) {
-                Rectangle offsetRect = (Rectangle) tile.getCollisionBounds().clone();
-                offsetRect.setBounds(tile.getWorldX(), tile.getWorldY() - gamePanel.getTileSize(), gamePanel.getTileSize(), gamePanel.getTileSize());
-                if (this.getCollisionBounds().intersects(offsetRect)) {
-                    if (!tile.isCollidable()) return tile;
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public Entity getCollidingEntity() {
-        GamePanel gamePanel = GamePanel.getGamePanel();
-        for (Entity interactable : gamePanel.getInteractables()) {
-            if (gamePanel.getInteractables().indexOf(this) != gamePanel.getInteractables().indexOf(interactable)) {
-                Rectangle offsetRect = (Rectangle) interactable.getCollisionBounds().clone();
-                offsetRect.setBounds(interactable.getWorldX(), interactable.getWorldY() - gamePanel.getTileSize(), gamePanel.getTileSize(), gamePanel.getTileSize());
-                if (this.getCollisionBounds().intersects(offsetRect)) {
-                    if (!interactable.isCollidable()) return interactable;
-                }
-            }
-        }
-
-        return null;
-    }
 
     /**
      * Gets the x-coordinate of the player's position on the screen.

@@ -180,24 +180,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-     * Gets the max screen width (in tiles).
-     *
-     * @return The maximum number of tiles that fit on the screen.
-     */
-    public int getMaxScreenWidth() {
-        return maxScreenWidth;
-    }
-
-    /**
-     * Gets the max screen height (in tiles).
-     *
-     * @return The maximum number of tiles that fit on the screen.
-     */
-    public int getMaxScreenHeight() {
-        return maxScreenHeight;
-    }
-
-    /**
      * Gets the screen width.
      *
      * @return The width of the screen.

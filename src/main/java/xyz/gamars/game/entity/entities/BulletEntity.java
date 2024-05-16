@@ -25,10 +25,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
      */
     public BulletEntity(int worldX, int worldY, EntityDirection entityDirection) throws IOException {
         super(worldX, worldY, 4, 0, ImageIO.read(new ResourceFile("player/bullet.png")),
-                new Rectangle( worldX + (4 * GamePanel.getGamePanel().getScale()),
-                                            worldY + (3 * GamePanel.getGamePanel().getScale()),
-                                            GamePanel.getGamePanel().getTileSize() - (7 * GamePanel.getGamePanel().getScale()),
-                                            GamePanel.getGamePanel().getTileSize() - (7 * GamePanel.getGamePanel().getScale())),
+                4, 3, 7, 7,
                 entityDirection, true);
     }
 
@@ -68,6 +65,7 @@ public class BulletEntity extends Entity implements IUpdating, IExpireable {
             die();
         }
     }
+
 
     @Override
     public String toString() {

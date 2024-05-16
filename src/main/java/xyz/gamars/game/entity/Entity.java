@@ -271,6 +271,13 @@ public class Entity {
         if (this.currentHealth >= maxHealth) currentHealth = maxHealth;
     }
 
+    public void heal() {
+        if (this.currentHealth < maxHealth) {
+            this.currentHealth++;
+            heal();
+        }
+    }
+
     /**
      * Decrements health of entity
      *

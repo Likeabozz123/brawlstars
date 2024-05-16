@@ -317,8 +317,6 @@ public class Entity {
      * @author Daryan, Vishak, Sai
      */
     public Entity getCollidingEntity() {
-        // either colliding with another entity
-        // or colliding with a tile that does no  t allow collisions
 
         GamePanel gamePanel = GamePanel.getGamePanel();
         for (Entity interactable : gamePanel.getInteractables()) {
@@ -328,7 +326,6 @@ public class Entity {
                 }
             }
         }
-
         return null;
     }
     /**

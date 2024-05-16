@@ -16,6 +16,7 @@ public class TileLayer extends Layer {
     private Tile[][] tiles;
 
     /**
+     *
      * Constructs a TileManager with the specified game panel.
      * @author Daryan, Vishak, Sai
      */
@@ -38,11 +39,6 @@ public class TileLayer extends Layer {
                 for (int x = 0; x < GamePanel.getGamePanel().getMaxWorldWidth(); x++) {
                     int tileIndex = scanner.nextInt();
 
-                    // tile -1: no tile
-                    // tile 0: floor thing
-                    // tile 1: bricks
-                    // tile 2: grass
-                    // tile 3: crate
                     boolean collidable = true;
                     switch (GamePanel.getGamePanel().getMapSelection()) {
                         case UNDERGROUND -> {
